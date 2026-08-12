@@ -1,0 +1,33 @@
+[
+  {
+    "id": "img-1",
+    "type": "image",
+    "tag": "Vocabulary",
+    "image": "https://images.unsplash.com/photo-1516321497487-e288fb19713f?auto=format&fit=crop&w=800&q=80",
+    "word": "apple",
+    "speechText": "apple"
+  },
+  {
+    "id": "gap-1",
+    "type": "gapfill",
+    "tag": "Grammar",
+    "sentence": "She ___ to school every day.",
+    "options": ["go", "goes", "going"],
+    "correctIndex": 1
+  },
+  {
+    "id": "listen-1",
+    "type": "listening",
+    "tag": "Listening",
+    "prompt": "Choose the word you hear.",
+    "speechText": "beautiful",
+    "options": ["beautiful", "friendly", "quick"],
+    "correctIndex": 0
+  },
+  {
+    "id": "exp-1",
+    "type": "explanation",
+    "tag": "Explanation",
+    "text": "This is a useful example with English and Arabic mixed together. Welcome to the lesson!"
+  }
+]

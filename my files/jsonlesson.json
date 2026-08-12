@@ -1,0 +1,140 @@
+[
+  {
+    "type": "hook",
+    "tag": "مقدمة",
+    "title": "الدرس الثالث: طلب القهوة ☕",
+    "question": "شحال من مرة مشيتي لشي بلاصة وبغيتي تطلب بالنڭليزية، ولكن خفتي تغلط؟ فهاد الدرس غنتعلمو كيفاش تطلب بأدب وبلا ما تبان بحال شي روبو.",
+    "speechText": "Let's learn how to order coffee."
+  },
+  {
+    "type": "explanation",
+    "tag": "شرح",
+    "text": "أول حاجة، ملي كنبغيو نطلبو شي حاجة، الأغلبية كيمشيو ديريكت لـ 'أنا بغيت'، ولكن هادي ماشي هي أحسن طريقة."
+  },
+  {
+    "type": "flipcard",
+    "tag": "العبارة السحرية",
+    "word": "I would like",
+    "phonetic": "/aɪ wʊd laɪk/",
+    "meaning": "بغيت (بأدب واحترام)",
+    "example": "I would like a coffee, please."
+  },
+  {
+    "type": "explanation",
+    "tag": "ملاحظة",
+    "text": "بيني وبينك، عارفك فهاد اللحظة غتكون فكرتي فكلمة 'Want'. الأغلبية كيغلطو فيها حيت كنترجمو 'بغيت' ديريكت."
+  },
+  {
+    "type": "mistake",
+    "tag": "صحح الغلط",
+    "title": "علاش ما كنستعملوش Want؟",
+    "wrong": "I want a tea.",
+    "right": "I would like a tea.",
+    "explanation": "استعمال 'I want' كيبان قاصح وفيه شوية ديال قلة الصواب (بحال يلا كتعطي أمر). 'I would like' هي الطريقة الزوينة والمحترمة مع السرباي."
+  },
+  {
+    "type": "gapfill",
+    "tag": "تمرين سريع",
+    "sentence": "Hello, I ___ ___ a black coffee, please.",
+    "options": [
+      "want to",
+      "would like",
+      "am like"
+    ],
+    "correctIndex": 1
+  },
+  {
+    "type": "builder",
+    "tag": "بني الجملة",
+    "question": "رتب هاد الكلمات باش تطلب أتاي بأدب:",
+    "words": [
+      { "id": 1, "text": "like" },
+      { "id": 2, "text": "I" },
+      { "id": 3, "text": "tea" },
+      { "id": 4, "text": "would" },
+      { "id": 5, "text": "a" }
+    ],
+    "correctOrder": [
+      "I",
+      "would",
+      "like",
+      "a",
+      "tea"
+    ]
+  },
+  {
+    "type": "explanation",
+    "tag": "شرح",
+    "text": "مزيان! دابا السرباي (الويتر) غياخد الطلب ديالك، ومن بعد غيسولك واش بغيتي تزيد شي حاجة خرى."
+  },
+  {
+    "type": "flipcard",
+    "tag": "سؤال السرباي",
+    "word": "Anything else?",
+    "phonetic": "/ˈenɪθɪŋ els/",
+    "meaning": "واش بغيتي شي حاجة خرى؟",
+    "example": "Here is your coffee. Anything else?"
+  },
+  {
+    "type": "explanation",
+    "tag": "شرح",
+    "text": "باش تجاوبو وتقول ليه 'صافي هادشي لي كاين شكرا'، كنستعملو هاد العبارة."
+  },
+  {
+    "type": "flipcard",
+    "tag": "الجواب",
+    "word": "That is all",
+    "phonetic": "/ðæt ɪz ɔːl/",
+    "meaning": "صافي هادشي لي كاين",
+    "example": "That is all, thank you."
+  },
+  {
+    "type": "dialogue",
+    "tag": "حوار فالقهوة",
+    "context": "السرباي جاب ليك القهوة وسولك.",
+    "personA": "Here is your coffee. Anything else?",
+    "options": [
+      "No, I do not want.",
+      "That is all, thank you.",
+      "Yes, I am done."
+    ],
+    "correctIndex": 1,
+    "explanation": "أحسن جواب وأكثر واحد طبيعي هو 'That is all, thank you'."
+  },
+  {
+    "type": "builder",
+    "tag": "بني الجملة",
+    "question": "رتب هاد الجملة باش تقول 'صافي شكرا':",
+    "words": [
+      { "id": 1, "text": "thank" },
+      { "id": 2, "text": "is" },
+      { "id": 3, "text": "you" },
+      { "id": 4, "text": "That" },
+      { "id": 5, "text": "all" }
+    ],
+    "correctOrder": [
+      "That",
+      "is",
+      "all",
+      "thank",
+      "you"
+    ]
+  },
+  {
+    "type": "explanation",
+    "tag": "تحدي زوين 🎁",
+    "text": "برافو! دابا عرفتي كيفاش تطلب بأدب. ولكن بيني وبينك، هادشي غتنساه يلا ما طبقتيهش بلسانك... الميريكان فالهضرة الزربة ماكيقولوش 'I would like'، كاين واحد 'القالب' سري كينطقوها بيه. مايمكنش ليا نكتبو لك هنا حيت خاصك تسمعو! كليكي على الزر لتحت، صيفط ليا كلمة 'قهوة' فواتساب، وغنصيفط ليك الأوديو السري، ونشوف واش تقدر تجاوبني بـ Voice message!"
+  },
+  {
+    "type": "summary",
+    "tag": "خلاصة الدرس 🧠",
+    "color": "emerald",
+    "title": "كيفاش تطلب القهوة بأدب؟",
+    "subtitle": "أهم 3 قواعد اتعقل عليهم فـ 30 ثانية",
+    "points": [
+        "استعمل I would like فبلاصت I want حيت كتبار محترمة.",
+        "للسؤال على شي حاجة زايدة قول: Anything else?",
+        "ملي تسالي الطلب قول: That is all, thank you."
+    ]
+  }
+]

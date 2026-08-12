@@ -1,1 +1,11 @@
 @import "tailwindcss";
+
+/* كنبدلو الخط الافتراضي ديال تيلويند */
+@theme {
+  --font-sans: "Tajawal", sans-serif;
+}
+
+/* هادي "ضربة قاضية" باش نضمنو أن السيت كامل، حتى الأزرار والإنبوت، ياخدو الخط */
+body, button, input, textarea {
+  font-family: "Tajawal", sans-serif !important;
+}
