@@ -3,6 +3,7 @@ import MainLayout from './layouts/MainLayout';
 import Home from './pages/Home';
 import About from './pages/About';
 import Lessons from './pages/Lessons';
+import Pricing from './pages/Pricing';
 import MicroLesson from './components/LessonApp';
 import WorksheetApp from './components/WorksheetApp';
 import Profile from './pages/Profile';
@@ -49,6 +50,7 @@ function App() {
             <Route path="worksheet/:slug" element={<WorksheetApp />} />
             <Route path="worksheets" element={<WorksheetsList />} />
             <Route path="english-worksheet" element={<EnglishWorksheet />} />
+            <Route path="pricing" element={<Pricing />} />
             <Route
               path="profile"
               element={

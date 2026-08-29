@@ -221,13 +221,13 @@ export default function WorksheetsList() {
                         {isCompleted ? 'مراجعة' : 'بدء التمرين'}
                       </Link>
                     ) : (
-                      <button
-                        onClick={() => alert('هاد التمرين حصري للمشتركين فالعرض المدفوع! 🚀')}
+                      <Link
+                        to="/pricing"
                         className="flex items-center gap-1.5 bg-amber-50 hover:bg-amber-100 text-amber-700 border-2 border-amber-200 text-xs sm:text-sm font-black px-4 py-2.5 rounded-2xl transition-all shadow-sm"
                       >
                         <FaLock className="text-xs" />
                         <span>مقفول</span>
-                      </button>
+                      </Link>
                     )}
                   </div>
                 </motion.div>

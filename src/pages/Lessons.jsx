@@ -175,13 +175,13 @@ function Lessons() {
                         );
                       } else {
                         return (
-                          <button
-                            onClick={() => alert('هاد الدرس حصري للمشتركين فالعرض المدفوع! تواصل معانا فواتساب باش ترقي الحساب ديالك 🚀')}
+                          <Link
+                            to="/pricing"
                             className="flex items-center justify-center gap-2 text-sm font-black px-5 py-2.5 rounded-xl border-2 border-amber-200 bg-amber-50 text-amber-600 hover:bg-amber-100 transition-all duration-200 shadow-sm shrink-0"
                           >
                             <FaLock className="text-xs" />
                             <span>مقفول</span>
-                          </button>
+                          </Link>
                         );
                       }
                     })()}
