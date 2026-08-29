@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { FaBars, FaTimes, FaHome, FaQuestionCircle, FaGraduationCap, FaUserCircle, FaSignOutAlt, FaBook, FaEdit } from 'react-icons/fa';
+import { FaBars, FaTimes, FaHome, FaHeadphones, FaQuestionCircle, FaGraduationCap, FaUserCircle, FaSignOutAlt, FaBook, FaEdit } from 'react-icons/fa';
 import { useAuth } from '../context/AuthContext';
 
 function Navbar() {
@@ -41,6 +41,10 @@ function Navbar() {
                 <FaBook className="text-lg" />
                 <span>الدروس</span>
               </Link>
+              <Link to="/worksheets" className="flex items-center gap-2 text-gray-500 hover:text-blue-600 font-bold transition-colors">
+              <FaHeadphones className="text-lg" />
+              <span>التمارين</span>
+            </Link>
               <Link to="/about" className="flex items-center gap-2 text-gray-500 hover:text-blue-600 font-bold transition-colors">
                 <FaQuestionCircle className="text-lg" />
                 <span>حول المنصة</span>
@@ -104,6 +108,11 @@ function Navbar() {
               <FaBook className="text-xl" />
               <span>الدروس</span>
             </Link>
+            <Link to="/worksheets" onClick={closeMenu} className="flex items-center gap-3 px-4 py-3 rounded-xl font-bold text-gray-600 hover:text-blue-600 hover:bg-blue-50 transition">
+              <FaHeadphones className="text-xl" />
+              <span>التمارين</span>
+            </Link>
+
             {user?.role === 'admin' && (
               <Link to="/add-lesson" onClick={closeMenu} className="flex items-center gap-3 px-4 py-3 rounded-xl font-bold text-blue-600 bg-blue-50 transition">
                 <FaEdit className="text-xl" />

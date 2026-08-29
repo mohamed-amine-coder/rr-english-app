@@ -1,0 +1,57 @@
+{
+  "dialogue": [
+    {
+      "person": "Agent",
+      "text": "Good morning! May I see your passport and ticket, please?"
+    },
+    {
+      "person": "Passenger",
+      "text": "Good morning. Here they are."
+    },
+    {
+      "person": "Agent",
+      "text": "Are you checking any bags today?"
+    },
+    {
+      "person": "Passenger",
+      "text": "Yes, just this suitcase. And I have one carry-on backpack."
+    },
+    {
+      "person": "Security",
+      "text": "Excuse me, sir. Please take your laptop out of your bag for the scanner."
+    },
+    {
+      "person": "Passenger",
+      "text": "Oh, sure! I forgot about that. Here it is."
+    }
+  ],
+  "questions": [
+    {
+      "question": "What documents did the agent ask for? (شنو هما الوثائق لي طلب الموظف؟)",
+      "options": [
+        "ID card and hotel reservation (البطاقة الوطنية وحجز الفندق)",
+        "Passport and ticket (الباسبور والتيكي)",
+        "Driver license only (رخصة السياقة بوحدها)"
+      ],
+      "correctAnswer": 1
+    },
+    {
+      "question": "How many bags is the passenger checking in? (شحال من فاليزا بغا يسجيل فالساقية؟)",
+      "options": [
+        "Two suitcases (فاليزان)",
+        "Just one suitcase (فاليزا وحدة)",
+        "No bags (مافيهاش الپلاكار)"
+      ],
+      "correctAnswer": 1
+    },
+    {
+      "question": "What did security ask the passenger to take out? (شنو طلب منه الأمن يخرج من الصاك؟)",
+      "options": [
+        "His smartphone (تلفونو)",
+        "His laptop (الباروك/البيسي)",
+        "His jacket (كاب)"
+      ],
+      "correctAnswer": 1
+    }
+  ]
+}

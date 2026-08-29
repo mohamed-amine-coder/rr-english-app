@@ -4,10 +4,14 @@ import Home from './pages/Home';
 import About from './pages/About';
 import Lessons from './pages/Lessons';
 import MicroLesson from './components/LessonApp';
+import WorksheetApp from './components/WorksheetApp';
 import Profile from './pages/Profile';
 import Login from './pages/admin/Login';
 import AddLesson from './pages/admin/AddLesson';
+import AddWorksheet from './pages/admin/AddWorksheet';
+import WorksheetsList from './pages/WorksheetsList';
 import { AuthProvider, useAuth } from './context/AuthContext';
+import EnglishWorksheet from './pages/EnglishWorksheet';
 
 function ProtectedRoute({ children }) {
   const { user, loading } = useAuth();
@@ -42,6 +46,9 @@ function App() {
             <Route path="about" element={<About />} />
             <Route path="lessons" element={<Lessons />} />
             <Route path="lesson/:id" element={<MicroLesson />} />
+            <Route path="worksheet/:slug" element={<WorksheetApp />} />
+            <Route path="worksheets" element={<WorksheetsList />} />
+            <Route path="english-worksheet" element={<EnglishWorksheet />} />
             <Route
               path="profile"
               element={
@@ -57,6 +64,14 @@ function App() {
             element={
               <AdminRoute>
                 <AddLesson />
+              </AdminRoute>
+            }
+          />
+          <Route
+            path="add-worksheet"
+            element={
+              <AdminRoute>
+                <AddWorksheet />
               </AdminRoute>
             }
           />
