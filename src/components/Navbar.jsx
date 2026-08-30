@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { FaBars, FaTimes, FaHome, FaHeadphones, FaQuestionCircle, FaGraduationCap, FaUserCircle, FaSignOutAlt, FaBook, FaEdit } from 'react-icons/fa';
+import { FaBars, FaTimes, FaHome, FaHeadphones, FaQuestionCircle, FaGraduationCap, FaUserCircle, FaSignOutAlt, FaBook, FaEdit, FaChevronDown, FaCalendarDay } from 'react-icons/fa';
 import { useAuth } from '../context/AuthContext';
 
 function Navbar() {
@@ -37,18 +37,38 @@ function Navbar() {
                 <FaHome className="text-lg" />
                 <span>الرئيسية</span>
               </Link>
-              <Link to="/lessons" className="flex items-center gap-2 text-gray-500 hover:text-blue-600 font-bold transition-colors">
+
+            {/* Dropdown المقرر */}
+            <div className="relative group">
+              <button className="flex items-center gap-2 text-gray-500 hover:text-blue-600 font-bold transition-colors py-2">
                 <FaBook className="text-lg" />
-                <span>الدروس</span>
-              </Link>
-              <Link to="/worksheets" className="flex items-center gap-2 text-gray-500 hover:text-blue-600 font-bold transition-colors">
-              <FaHeadphones className="text-lg" />
-              <span>التمارين</span>
+                <span>المقرر</span>
+                <FaChevronDown className="text-xs transition-transform duration-200 group-hover:rotate-180" />
+              </button>
+              
+              {/* محتوى الـ Dropdown */}
+              <div className="absolute top-full right-0 mt-2 w-48 bg-white rounded-2xl shadow-xl border border-gray-100 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 transform origin-top-right z-50">
+                <div className="p-2 flex flex-col gap-1">
+                  <Link to="/lessons" className="flex items-center gap-3 px-3 py-2.5 text-gray-600 hover:text-blue-600 hover:bg-blue-50 rounded-xl font-bold transition-colors">
+                    <FaBook className="text-sm" />
+                    <span>الدروس</span>
+                  </Link>
+                  <Link to="/worksheets" className="flex items-center gap-3 px-3 py-2.5 text-gray-600 hover:text-blue-600 hover:bg-blue-50 rounded-xl font-bold transition-colors">
+                    <FaHeadphones className="text-sm" />
+                    <span>التمارين</span>
+                  </Link>
+                  <Link to="/daily-classes" className="flex items-center gap-3 px-3 py-2.5 text-gray-600 hover:text-blue-600 hover:bg-blue-50 rounded-xl font-bold transition-colors">
+                    <FaCalendarDay className="text-sm" />
+                    <span>حصص اليوم</span>
+                  </Link>
+                </div>
+              </div>
+            </div>
+
+            <Link to="/about" className="flex items-center gap-2 text-gray-500 hover:text-blue-600 font-bold transition-colors">
+              <FaQuestionCircle className="text-lg" />
+              <span>حول المنصة</span>
             </Link>
-              <Link to="/about" className="flex items-center gap-2 text-gray-500 hover:text-blue-600 font-bold transition-colors">
-                <FaQuestionCircle className="text-lg" />
-                <span>حول المنصة</span>
-              </Link>
             </div>
 
             <div className="h-8 w-px bg-gray-200 rounded-full"></div>
@@ -104,14 +124,23 @@ function Navbar() {
               <FaHome className="text-xl" />
               <span>الرئيسية</span>
             </Link>
-            <Link to="/lessons" onClick={closeMenu} className="flex items-center gap-3 px-4 py-3 rounded-xl font-bold text-gray-600 hover:text-blue-600 hover:bg-blue-50 transition">
-              <FaBook className="text-xl" />
-              <span>الدروس</span>
-            </Link>
-            <Link to="/worksheets" onClick={closeMenu} className="flex items-center gap-3 px-4 py-3 rounded-xl font-bold text-gray-600 hover:text-blue-600 hover:bg-blue-50 transition">
-              <FaHeadphones className="text-xl" />
-              <span>التمارين</span>
-            </Link>
+
+            {/* قسم المقرر فالموبايل مجمع ومقاد */}
+            <div className="bg-slate-50 rounded-2xl p-2 my-2 border border-slate-100">
+              <span className="block px-3 py-2 text-xs font-black text-slate-400">المقرر الدراسي</span>
+              <Link to="/lessons" onClick={closeMenu} className="flex items-center gap-3 px-3 py-3 rounded-xl font-bold text-gray-600 hover:text-blue-600 hover:bg-white transition">
+                <FaBook className="text-xl" />
+                <span>الدروس</span>
+              </Link>
+              <Link to="/worksheets" onClick={closeMenu} className="flex items-center gap-3 px-3 py-3 rounded-xl font-bold text-gray-600 hover:text-blue-600 hover:bg-white transition">
+                <FaHeadphones className="text-xl" />
+                <span>التمارين</span>
+              </Link>
+              <Link to="/daily-classes" onClick={closeMenu} className="flex items-center gap-3 px-3 py-3 rounded-xl font-bold text-gray-600 hover:text-blue-600 hover:bg-white transition">
+                <FaCalendarDay className="text-xl" />
+                <span>حصص اليوم</span>
+              </Link>
+            </div>
 
             {user?.role === 'admin' && (
               <Link to="/add-lesson" onClick={closeMenu} className="flex items-center gap-3 px-4 py-3 rounded-xl font-bold text-blue-600 bg-blue-50 transition">
@@ -119,6 +148,7 @@ function Navbar() {
                 <span>إضافة درس</span>
               </Link>
             )}
+
             <Link to="/about" onClick={closeMenu} className="flex items-center gap-3 px-4 py-3 rounded-xl font-bold text-gray-600 hover:text-blue-600 hover:bg-blue-50 transition">
               <FaQuestionCircle className="text-xl" />
               <span>حول المنصة</span>

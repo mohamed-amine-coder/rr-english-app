@@ -21,7 +21,7 @@ export const ExplanationSlide = ({ slide }) => {
   }, [visibleCount, words.length]);
 
   return (
-    <div className="rounded-[2rem] border-4 border-violet-200 bg-violet-50 p-6 md:p-8 shadow-sm">
+    <div className="rounded-xl border-4 border-violet-200 bg-violet-50 p-6 md:p-8 shadow-sm">
       <p className="text-xl md:text-2xl font-black leading-loose text-slate-900 dir-rtl">
         {words.slice(0, visibleCount).map((word, index) => {
           const cleanedWord = word.trim();

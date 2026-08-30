@@ -35,10 +35,10 @@ export const BuilderSlide = ({ slide, onDone }) => {
   const correctOrder = slide.correctOrder || [];
 
   return (
-    <motion.div initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.32 }} className="space-y-5 overflow-x-hidden" dir="rtl">
+    <motion.div initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} className="space-y-5 overflow-x-hidden" dir="rtl">
       <p className="text-lg text-blue-800 font-extrabold [unicode-bidi:plaintext]">{slide.question}</p>
 
-      <div className="min-h-[80px] bg-white border-2 border-slate-100 rounded-2xl p-3 flex flex-wrap gap-3 items-center" dir="ltr">
+      <div className="min-h-[80px] bg-white border-2 border-slate-100 rounded-xl p-3 flex flex-wrap gap-3 items-center" dir="ltr">
         {selected.map(word => (
           <motion.button layout key={word.id} onClick={() => move(word, false)} className="py-3 px-4 bg-white border-2 border-slate-200 text-blue-800 font-semibold rounded-xl text-lg shadow-sm [unicode-bidi:plaintext]">{word.text}</motion.button>
         ))}
@@ -51,15 +51,15 @@ export const BuilderSlide = ({ slide, onDone }) => {
       </div>
 
       {!isSubmitted ? (
-        <motion.button whileTap={{ y: 4 }} disabled={selected.length === 0} onClick={checkAnswer} className="w-full py-3 md:py-4 bg-orange-500 disabled:opacity-50 text-white rounded-2xl text-lg font-black mt-4 shadow-sm">
+        <motion.button disabled={selected.length === 0} onClick={checkAnswer} className="w-full py-3 md:py-4 bg-orange-50 text-orange-900 border-2 border-orange-300 rounded-xl text-lg font-black mt-4 shadow-sm border-b-[3px] border-orange-400 active:border-b-0 active:translate-y-1 disabled:opacity-50">
           تأكد من الجواب
         </motion.button>
       ) : (
         <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="mt-4">
           {selected.map(w => w.text).join(' ') === correctOrder.join(' ') ? (
-            <div className="p-4 bg-orange-50 border-2 border-orange-200 rounded-2xl flex items-center gap-3 text-orange-800 font-bold [unicode-bidi:plaintext]"><FaCheckCircle className="text-2xl" /> برافو! جملة صحيحة.</div>
+            <div className="p-4 bg-orange-50 border-2 border-orange-200 rounded-xl flex items-center gap-3 text-orange-800 font-bold [unicode-bidi:plaintext]"><FaCheckCircle className="text-2xl" /> برافو! جملة صحيحة.</div>
           ) : (
-            <div className="p-4 bg-rose-50 border-2 border-rose-200 rounded-2xl flex flex-col gap-2 text-rose-900 font-bold">
+            <div className="p-4 bg-rose-50 border-2 border-rose-200 rounded-xl flex flex-col gap-2 text-rose-900 font-bold">
               <div className="flex items-center gap-3 [unicode-bidi:plaintext]"><FaTimesCircle className="text-2xl"/> خطأ! الجواب الصحيح هو:</div>
               <span className="font-mono bg-white px-3 py-2 border border-rose-200 rounded-lg dir-ltr w-fit">{correctOrder.join(' ')}</span>
             </div>

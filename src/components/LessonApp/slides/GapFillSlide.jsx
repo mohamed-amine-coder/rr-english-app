@@ -36,8 +36,8 @@ export const GapFillSlide = ({ slide, onDone }) => {
   };
 
   return (
-    <motion.div initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.32 }} className="space-y-5 overflow-x-hidden" dir="rtl">
-      <div className="rounded-2xl border-2 border-slate-100 bg-white p-5">
+    <motion.div initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} className="space-y-5 overflow-x-hidden" dir="rtl">
+      <div className="rounded-xl border-2 border-slate-100 bg-white p-5">
         <p className="text-xl md:text-2xl font-black text-blue-800 leading-loose [unicode-bidi:plaintext]">
           {renderSentence()}
         </p>
@@ -45,23 +45,22 @@ export const GapFillSlide = ({ slide, onDone }) => {
 
       <div className="grid gap-3">
         {slide.options?.map((option, index) => {
-          let btnClass = 'bg-white border-2 border-slate-100 text-blue-800';
+          let btnClass = 'bg-white border-2 border-slate-200 text-slate-700 hover:border-blue-200 hover:bg-slate-50';
 
           if (isSubmitted && index === slide.correctIndex) {
-            btnClass = 'bg-orange-100 border-orange-200 text-orange-800';
+            btnClass = 'bg-emerald-50 border-emerald-500 text-emerald-900 shadow-sm';
           } else if (isSubmitted && selectedOption === index) {
-            btnClass = 'bg-rose-100 border-rose-200 text-rose-900';
+            btnClass = 'bg-rose-50 border-rose-500 text-rose-900 shadow-sm';
           } else if (selectedOption === index) {
-            btnClass = 'bg-indigo-100 border-indigo-200 text-indigo-900';
+            btnClass = 'bg-blue-50 border-blue-500 text-blue-900 shadow-sm';
           }
 
           return (
             <motion.button
               key={index}
-              whileTap={{ y: 3 }}
               disabled={isSubmitted}
               onClick={() => handleSelect(index)}
-              className={`w-full rounded-2xl py-3 px-4 text-right font-bold transition-all ${btnClass} [unicode-bidi:plaintext]`}
+              className={`w-full rounded-xl py-3 px-4 text-right font-bold transition-all ${btnClass} [unicode-bidi:plaintext] active:border-b-0 active:translate-y-1`}
             >
               <TextWrapper text={option} />
             </motion.button>
@@ -70,7 +69,7 @@ export const GapFillSlide = ({ slide, onDone }) => {
       </div>
 
       {isSubmitted && (
-        <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="rounded-2xl border-2 p-4 text-sm font-bold [unicode-bidi:plaintext]">
+        <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="rounded-xl border-2 p-4 text-sm font-bold [unicode-bidi:plaintext]">
           {selectedOption === slide.correctIndex ? (
             <div className="flex items-center gap-3 bg-orange-100 border-orange-200 text-orange-800 p-3 rounded-lg">
               <FaCheckCircle className="text-2xl" />

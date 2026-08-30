@@ -113,7 +113,7 @@ export const SummarySlide = ({ slide }) => {
             {slide.points?.slice(0, 3).map((point, index) => (
               <div 
                 key={index} 
-                className="flex items-start gap-3 bg-slate-900/80 backdrop-blur-md p-3.5 rounded-2xl border border-slate-800/80"
+                className="flex items-start gap-3 bg-slate-900/80 backdrop-blur-md p-3.5 rounded-xl border border-slate-800/80"
               >
                 <span className={`w-6 h-6 rounded-lg flex items-center justify-center font-black text-xs shrink-0 border ${theme.num}`}>
                   {index + 1}
@@ -142,7 +142,7 @@ export const SummarySlide = ({ slide }) => {
         whileTap={{ scale: 0.98 }} 
         onClick={handleDownload}
         disabled={isDownloading}
-        className="flex items-center justify-center gap-3 w-full max-w-md py-4 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 disabled:opacity-50 text-white rounded-2xl text-base font-black shadow-lg shadow-indigo-500/25 transition-all"
+        className="flex items-center justify-center gap-3 w-full max-w-md py-4 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 disabled:opacity-50 text-white rounded-xl text-base font-black shadow-lg shadow-indigo-500/25 transition-all"
       >
         <FaDownload className="text-lg" />
         <span>{isDownloading ? 'جاري التصدير...' : 'تحميل البطاقة المربعة 📸'}</span>

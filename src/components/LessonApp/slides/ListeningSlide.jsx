@@ -33,23 +33,22 @@ export const ListeningSlide = ({ slide, onDone }) => {
 
       <div className="grid gap-3">
         {slide.options?.map((option, index) => {
-          let btnClass = 'bg-white border-2 border-slate-300 border-b-4 text-slate-700';
+          let btnClass = 'bg-white border-2 border-slate-200 text-slate-700 hover:border-blue-200 hover:bg-slate-50';
 
           if (isSubmitted && index === slide.correctIndex) {
-            btnClass = 'bg-emerald-100 border-emerald-500 border-b-4 text-emerald-900';
+            btnClass = 'bg-emerald-50 border-emerald-500 text-emerald-900 shadow-sm';
           } else if (isSubmitted && selectedOption === index) {
-            btnClass = 'bg-rose-100 border-rose-500 border-b-4 text-rose-900';
+            btnClass = 'bg-rose-50 border-rose-500 text-rose-900 shadow-sm';
           } else if (selectedOption === index) {
-            btnClass = 'bg-indigo-100 border-indigo-500 border-b-4 text-indigo-900';
+            btnClass = 'bg-blue-50 border-blue-500 text-blue-900 shadow-sm';
           }
 
           return (
             <motion.button
               key={index}
-              whileTap={{ y: 3 }}
               disabled={isSubmitted}
               onClick={() => handleSelect(index)}
-              className={`w-full rounded-2xl p-3 md:p-4 text-right font-bold transition-all ${btnClass}`}
+              className={`w-full rounded-xl p-3 md:p-4 text-right font-bold transition-all ${btnClass} active:border-b-0 active:translate-y-1`}
             >
               <TextWrapper text={option} />
             </motion.button>
@@ -58,7 +57,7 @@ export const ListeningSlide = ({ slide, onDone }) => {
       </div>
 
       {isSubmitted && (
-        <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="rounded-2xl border-2 p-4 text-sm font-bold dir-rtl">
+        <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="rounded-xl border-2 p-4 text-sm font-bold dir-rtl">
           {selectedOption === slide.correctIndex ? (
             <div className="flex items-center gap-3 bg-emerald-100 border-emerald-400 text-emerald-900">
               <FaCheckCircle className="text-2xl" />

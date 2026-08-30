@@ -1,103 +1,3 @@
-// import React, { useEffect, useState } from 'react';
-// import { Link } from 'react-router-dom';
-// import { supabase } from '../config/supabaseClient';
-// import { useAuth } from '../context/AuthContext';
-// import { FaLock, FaHeadphones, FaCheckCircle } from 'react-icons/fa';
-
-// export default function WorksheetsList() {
-//   const { user } = useAuth();
-//   const [worksheets, setWorksheets] = useState([]);
-//   const [completedSheets, setCompletedSheets] = useState([]);
-//   const [loading, setLoading] = useState(true);
-
-//   useEffect(() => {
-//     async function fetchData() {
-//       // 1. جيب جميع التمارين
-//       const { data: sheetsData } = await supabase
-//         .from('worksheets')
-//         .select('*')
-//         .order('created_at', { ascending: true });
-        
-//       if (sheetsData) setWorksheets(sheetsData);
-
-//       // 2. جيب التمارين لي مكملهم هاد اليوزر
-//       if (user?.id) {
-//         const { data: progressData } = await supabase
-//           .from('worksheet_progress')
-//           .select('worksheet_id')
-//           .eq('user_id', user.id);
-          
-//         if (progressData) {
-//           setCompletedSheets(progressData.map(p => p.worksheet_id));
-//         }
-//       }
-//       setLoading(false);
-//     }
-//     fetchData();
-//   }, [user]);
-
-//   return (
-//     <div className="min-h-screen bg-slate-50 py-8 px-4 sm:px-6 lg:px-8 dir-rtl font-sans">
-//       <div className="max-w-4xl mx-auto">
-//         <div className="text-center mb-10">
-//           <h1 className="text-3xl sm:text-4xl font-extrabold text-blue-800 mb-3">التمارين التفاعلية</h1>
-//           <p className="text-slate-600 max-w-xl mx-auto font-bold">درب ودنك وجاوب على الأسئلة باش تتبث داكشي لي قريتي.</p>
-//         </div>
-
-//         {loading ? (
-//           <div className="text-center font-bold text-slate-500">جاري التحميل... ⏳</div>
-//         ) : (
-//           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-//             {worksheets.map((sheet) => {
-//               const isCompleted = completedSheets.includes(sheet.id);
-//               const isAuthorized = !sheet.is_premium || user?.role === 'admin' || user?.plan === 'Premium';
-
-//               return (
-//                 <div key={sheet.id} className={`p-5 rounded-2xl border-2 flex items-center justify-between shadow-sm transition-all ${
-//                   isCompleted ? 'bg-emerald-50 border-emerald-100 hover:border-emerald-200' : 'bg-white border-slate-100 hover:border-blue-200'
-//                 }`}>
-//                   <div className="flex items-center gap-4">
-//                     <div className={`w-10 h-10 rounded-xl flex items-center justify-center text-lg ${
-//                       isCompleted ? 'bg-emerald-500 text-white' : 'bg-blue-100 text-blue-600'
-//                     }`}>
-//                       {isCompleted ? <FaCheckCircle /> : <FaHeadphones />}
-//                     </div>
-//                     <div>
-//                       <h3 className={`font-extrabold text-lg ${isCompleted ? 'text-emerald-900' : 'text-slate-800'}`}>{sheet.title}</h3>
-//                       <span className={`text-xs font-bold px-2 py-1 rounded-md mt-1 inline-block ${
-//                         isCompleted ? 'text-emerald-700 bg-emerald-100/50' : 'text-emerald-500 bg-emerald-50'
-//                       }`}>تمرين استماع</span>
-//                     </div>
-//                   </div>
-
-//                   {isAuthorized ? (
-//                     <Link
-//                       to={`/worksheet/${sheet.slug}`}
-//                       className={`text-sm font-black px-5 py-2.5 rounded-xl shadow-sm transition ${
-//                         isCompleted 
-//                           ? 'bg-white text-emerald-600 border-2 border-emerald-200 hover:bg-emerald-50' 
-//                           : 'bg-blue-600 hover:bg-blue-700 text-white'
-//                       }`}
-//                     >
-//                       {isCompleted ? 'مراجعة' : 'بدأ التمرين'}
-//                     </Link>
-//                   ) : (
-//                     <button
-//                       onClick={() => alert('هاد التمرين حصري للمشتركين Premium! 🚀')}
-//                       className="flex items-center gap-2 bg-amber-50 text-amber-600 border-2 border-amber-200 text-sm font-black px-4 py-2 rounded-xl"
-//                     >
-//                       <FaLock className="text-xs" /> مقفول
-//                     </button>
-//                   )}
-//                 </div>
-//               );
-//             })}
-//           </div>
-//         )}
-//       </div>
-//     </div>
-//   );
-// }
 
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
@@ -114,6 +14,9 @@ export default function WorksheetsList() {
 
   useEffect(() => {
     async function fetchData() {
+      // 1. رجع حالة التحميل لـ true فكل مرة كيتعاود فيها الـ Effect
+      setLoading(true); 
+      
       const { data: sheetsData } = await supabase
         .from('worksheets')
         .select('*')
@@ -131,8 +34,11 @@ export default function WorksheetsList() {
           setCompletedSheets(progressData.map(p => p.worksheet_id));
         }
       }
+      
+      // 2. حيّد حالة التحميل حتى يسالي كلشي
       setLoading(false);
     }
+    
     fetchData();
   }, [user]);
 

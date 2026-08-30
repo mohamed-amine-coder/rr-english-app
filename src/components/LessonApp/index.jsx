@@ -136,14 +136,13 @@ export default function MicroLesson() {
 
   return (
     <div className="min-h-screen text-slate-800 flex flex-col items-center justify-center p-4 font-sans selection:bg-yellow-300">
-      <Header xp={(user?.xp || 0) + xp} />
-      <div className="w-full max-w-3xl bg-white border-4 border-slate-900 rounded-[2rem] p-5 md:p-8 shadow-[0_8px_0_#0F172A] relative overflow-hidden">
+      <Header currentIndex={currentIndex} total={lessonSlides.length} progress={progress} />
+      <div className="w-full max-w-4xl bg-white border-[3px] border-slate-900 rounded-[1.5rem] p-5 md:p-6 shadow-[0_6px_0_#0F172A] relative overflow-hidden">
         {!isCompleted ? (
           <>
-            <ProgressBar slide={slide} currentIndex={currentIndex} total={lessonSlides.length} progress={progress} />
             <div className="min-h-[220px] md:min-h-[250px] flex flex-col justify-center">
               <AnimatePresence mode="wait">
-                <motion.div key={slide.id} initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -20 }} transition={{ duration: 0.2 }} className="w-full">
+                <motion.div key={slide.id} initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -10 }} className="w-full">
                   {slide.type === 'hook' && <HookSlide slide={slide} />}
                   {slide.type === 'mistake' && <MistakeSlide slide={slide} />}
                   {slide.type === 'flipcard' && <FlipCardSlide slide={slide} />}
@@ -158,7 +157,7 @@ export default function MicroLesson() {
               </AnimatePresence>
             </div>
             <div className="mt-6 md:mt-8 pt-4 border-t-2 border-slate-100 flex justify-end">
-              <motion.button whileTap={{ y: 4 }} disabled={!canProceed || saving} onClick={handleNext} className="flex items-center gap-2 bg-indigo-600 hover:bg-indigo-700 text-white font-black px-8 py-3 rounded-2xl text-base disabled:opacity-30 border-b-4 border-indigo-900 shadow-sm transition">
+              <motion.button disabled={!canProceed || saving} onClick={handleNext} className="flex items-center gap-2 bg-indigo-600 hover:bg-indigo-700 text-white font-black px-8 py-3 rounded-xl text-base disabled:opacity-30 border-b-[3px] border-indigo-900 active:border-b-0 active:translate-y-1 shadow-sm transition-all">
                 <span>{saving ? 'جاري الحفظ...' : currentIndex === lessonSlides.length - 1 ? 'إنهاء' : 'التالي'}</span>
                 <FaChevronRight className="text-sm" />
               </motion.button>

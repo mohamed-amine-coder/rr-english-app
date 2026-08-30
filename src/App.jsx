@@ -4,6 +4,7 @@ import Home from './pages/Home';
 import About from './pages/About';
 import Lessons from './pages/Lessons';
 import Pricing from './pages/Pricing';
+import DailyClasses from './pages/DailyClasses';
 import MicroLesson from './components/LessonApp';
 import WorksheetApp from './components/WorksheetApp';
 import Profile from './pages/Profile';
@@ -12,7 +13,7 @@ import AddLesson from './pages/admin/AddLesson';
 import AddWorksheet from './pages/admin/AddWorksheet';
 import WorksheetsList from './pages/WorksheetsList';
 import { AuthProvider, useAuth } from './context/AuthContext';
-import EnglishWorksheet from './pages/EnglishWorksheet';
+import ScrollToTop from './components/ScrollToTop';
 
 function ProtectedRoute({ children }) {
   const { user, loading } = useAuth();
@@ -41,15 +42,16 @@ function App() {
   return (
     <AuthProvider>
       <BrowserRouter>
+        <ScrollToTop />
         <Routes>
           <Route element={<MainLayout />}>
             <Route index element={<Home />} />
             <Route path="about" element={<About />} />
             <Route path="lessons" element={<Lessons />} />
+            <Route path="daily-classes" element={<DailyClasses />} />
             <Route path="lesson/:id" element={<MicroLesson />} />
             <Route path="worksheet/:slug" element={<WorksheetApp />} />
             <Route path="worksheets" element={<WorksheetsList />} />
-            <Route path="english-worksheet" element={<EnglishWorksheet />} />
             <Route path="pricing" element={<Pricing />} />
             <Route
               path="profile"

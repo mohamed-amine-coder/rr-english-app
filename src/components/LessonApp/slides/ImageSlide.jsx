@@ -14,7 +14,7 @@ export const ImageSlide = ({ slide }) => (
       />
     )}
 
-    <div className="rounded-[2rem] border-4 border-amber-300 bg-amber-100 p-5 shadow-sm">
+    <div className="rounded-xl border-4 border-amber-300 bg-amber-100 p-5 shadow-sm">
       <p className="text-2xl md:text-3xl font-black text-slate-900 dir-rtl">
         <TextWrapper text={slide.word || ''} />
       </p>

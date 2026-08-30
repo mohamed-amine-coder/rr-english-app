@@ -12,7 +12,7 @@ export const playAudio = (text) => {
 };
 
 const AudioButton = ({ text }) => (
-  <motion.button whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.95 }} onClick={() => playAudio(text)} className="mb-4 px-4 py-2 bg-sky-400 hover:bg-sky-500 text-white border-b-4 border-sky-600 rounded-2xl flex items-center gap-2 text-sm font-extrabold shadow-sm transition w-fit">
+  <motion.button whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }} onClick={() => playAudio(text)} className="mb-4 px-4 py-2 bg-sky-500 hover:bg-sky-600 text-white border-b-[3px] border-sky-700 rounded-xl flex items-center gap-2 text-sm font-extrabold shadow-sm transition-all w-fit active:border-b-0 active:translate-y-1">
     <FaVolumeUp className="text-base" /><span>النطق 🔊</span>
   </motion.button>
 );
@@ -24,7 +24,7 @@ export const HookSlide = ({ slide }) => (
       <div className="flex-1 space-y-4">
         <h2 className="text-3xl md:text-5xl font-black text-slate-900 leading-tight">{slide.title}</h2>
       </div>
-      <div className="flex-1 p-6 bg-yellow-100 border-3 border-yellow-400 rounded-3xl w-full">
+      <div className="flex-1 p-6 bg-yellow-100 border-3 border-yellow-400 rounded-xl w-full">
         <p className="text-slate-800 text-xl font-bold leading-relaxed">{slide.question}</p>
       </div>
     </div>
@@ -39,16 +39,16 @@ export const MistakeSlide = ({ slide }) => {
     <div className="space-y-4">
       <h3 className="text-2xl font-black text-slate-900 dir-rtl mb-4">{slide.title}</h3>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-        <div className="p-5 bg-rose-50 border-3 border-rose-300 rounded-3xl flex flex-col items-center justify-center text-center">
+        <div className="p-5 bg-rose-50 border-3 border-rose-300 rounded-xl flex flex-col items-center justify-center text-center">
           <FaTimesCircle className="text-rose-500 text-4xl mb-2" />
           <p className="text-rose-900 font-black text-xl line-through">{slide.wrong}</p>
         </div>
         {!isRevealed ? (
-          <motion.button whileTap={{ y: 4 }} onClick={() => setIsRevealed(true)} className="p-5 bg-emerald-400 border-b-4 border-emerald-600 rounded-3xl flex items-center justify-center text-slate-900 font-black text-lg shadow-sm">
+          <motion.button onClick={() => setIsRevealed(true)} className="p-5 bg-emerald-50 text-emerald-900 border-2 border-emerald-300 rounded-xl flex items-center justify-center font-black text-lg shadow-sm border-b-[3px] border-emerald-400 active:border-b-0 active:translate-y-1">
             اكتشف الجواب الصحيح ✨
           </motion.button>
         ) : (
-          <motion.div initial={{ scale: 0.9 }} animate={{ scale: 1 }} className="p-5 bg-emerald-50 border-3 border-emerald-300 rounded-3xl flex flex-col items-center justify-center text-center">
+          <motion.div initial={{ scale: 0.9 }} animate={{ scale: 1 }} className="p-5 bg-emerald-50 border-3 border-emerald-300 rounded-xl flex flex-col items-center justify-center text-center">
             <FaCheckCircle className="text-emerald-500 text-4xl mb-2" />
             <p className="text-emerald-900 font-black text-xl">{slide.right}</p>
           </motion.div>
@@ -111,26 +111,26 @@ export const BuilderSlide = ({ slide, onDone }) => {
   return (
     <div className="space-y-5">
       <p className="text-lg text-slate-800 dir-rtl font-extrabold">{slide.question}</p>
-      <div className="min-h-[80px] bg-slate-100 border-3 border-dashed border-slate-300 rounded-3xl p-3 flex flex-wrap gap-2 items-center dir-ltr">
+      <div className="min-h-[80px] bg-slate-100 border-3 border-dashed border-slate-300 rounded-xl p-3 flex flex-wrap gap-2 items-center dir-ltr">
         {selected.map(word => (
-          <motion.button layout key={word.id} onClick={() => move(word, false)} className="px-4 py-2 bg-white border-2 border-slate-900 border-b-4 text-slate-900 font-black rounded-xl text-lg transition-all">{word.text}</motion.button>
+          <motion.button layout key={word.id} onClick={() => move(word, false)} className="px-4 py-2 bg-white border-2 border-slate-900 border-b-[3px] text-slate-900 font-black rounded-xl text-lg transition-all active:border-b-0 active:translate-y-1">{word.text}</motion.button>
         ))}
       </div>
       <div className="flex flex-wrap gap-3 dir-ltr justify-center border-t-2 border-slate-100 pt-4">
         {available.map(word => (
-          <motion.button layout key={word.id} onClick={() => move(word, true)} className="px-4 py-2 bg-purple-100 border-2 border-purple-500 border-b-4 text-purple-900 font-black rounded-xl text-lg hover:bg-purple-200 transition-all">{word.text}</motion.button>
+          <motion.button layout key={word.id} onClick={() => move(word, true)} className="px-4 py-2 bg-purple-50 border-2 border-purple-500 border-b-[3px] text-purple-900 font-black rounded-xl text-lg hover:bg-purple-100 transition-all active:border-b-0 active:translate-y-1">{word.text}</motion.button>
         ))}
       </div>
       {!isSubmitted ? (
-        <motion.button whileTap={{ y: 4 }} disabled={selected.length === 0} onClick={checkAnswer} className="w-full py-3 md:py-4 bg-emerald-400 disabled:opacity-50 text-slate-900 border-b-4 border-emerald-600 rounded-2xl text-lg font-black mt-4">
+        <motion.button disabled={selected.length === 0} onClick={checkAnswer} className="w-full py-3 md:py-4 bg-emerald-50 disabled:opacity-50 text-emerald-900 border-2 border-emerald-300 rounded-xl text-lg font-black mt-4 border-b-[3px] border-emerald-400 active:border-b-0 active:translate-y-1">
           تأكد من الجواب
         </motion.button>
       ) : (
         <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="mt-4">
           {selected.map(w => w.text).join(' ') === slide.correctOrder.join(' ') ? (
-            <div className="p-4 bg-emerald-100 border-2 border-emerald-400 rounded-2xl flex items-center gap-3 dir-rtl text-emerald-900 font-bold"><FaCheckCircle className="text-2xl" /> برافو! جملة صحيحة.</div>
+            <div className="p-4 bg-emerald-100 border-2 border-emerald-400 rounded-xl flex items-center gap-3 dir-rtl text-emerald-900 font-bold"><FaCheckCircle className="text-2xl" /> برافو! جملة صحيحة.</div>
           ) : (
-            <div className="p-4 bg-rose-100 border-2 border-rose-400 rounded-2xl flex flex-col gap-2 dir-rtl text-rose-900 font-bold">
+            <div className="p-4 bg-rose-100 border-2 border-rose-400 rounded-xl flex flex-col gap-2 dir-rtl text-rose-900 font-bold">
               <div className="flex items-center gap-3"><FaTimesCircle className="text-2xl"/> خطأ! الجواب الصحيح هو:</div>
               <span className="font-mono bg-white px-3 py-1 border border-rose-200 rounded-lg dir-ltr w-fit">{slide.correctOrder.join(' ')}</span>
             </div>
@@ -153,28 +153,28 @@ export const DialogueSlide = ({ slide, onDone }) => {
   };
 
   return (
-    <div className="space-y-4 bg-slate-50 p-4 md:p-6 rounded-3xl border-2 border-slate-100">
+    <div className="space-y-4 bg-slate-50 p-4 md:p-6 rounded-xl border-2 border-slate-100">
       <div className="flex items-center justify-between mb-4 border-b-2 border-slate-200 pb-2">
          <span className="font-extrabold text-slate-700 dir-rtl text-sm bg-white px-3 py-1 rounded-lg border border-slate-200">{slide.context}</span>
       </div>
       <div className="flex gap-3">
         <div className="w-10 h-10 rounded-full bg-indigo-500 border-2 border-slate-900 flex-shrink-0"></div>
-        <div className="bg-white border-2 border-slate-900 p-3 md:p-4 rounded-2xl rounded-tl-none font-bold text-slate-800 text-base">{slide.personA}</div>
+        <div className="bg-white border-2 border-slate-900 p-3 md:p-4 rounded-xl rounded-tl-none font-bold text-slate-800 text-base">{slide.personA}</div>
       </div>
       <div className="flex flex-col gap-3 pl-8 md:pl-12 mt-4">
         {slide.options.map((opt, idx) => {
-          let btnStyle = "bg-white border-2 border-slate-300 border-b-4 text-slate-700";
-          if (selectedOption === idx) btnStyle = "bg-indigo-100 border-indigo-500 border-b-4 text-indigo-900";
-          if (isSubmitted && idx === slide.correctIndex) btnStyle = "bg-emerald-100 border-emerald-500 border-b-4 text-emerald-900";
-          else if (isSubmitted && selectedOption === idx) btnStyle = "bg-rose-100 border-rose-500 border-b-4 text-rose-900";
+          let btnStyle = 'bg-white border-2 border-slate-200 text-slate-700 hover:border-blue-200 hover:bg-slate-50';
+          if (selectedOption === idx) btnStyle = 'bg-blue-50 border-blue-500 text-blue-900 shadow-sm';
+          if (isSubmitted && idx === slide.correctIndex) btnStyle = 'bg-emerald-50 border-emerald-500 text-emerald-900 shadow-sm';
+          else if (isSubmitted && selectedOption === idx) btnStyle = 'bg-rose-50 border-rose-500 text-rose-900 shadow-sm';
 
           return (
-            <motion.button key={idx} whileTap={{ y: 3 }} disabled={isSubmitted} onClick={() => setSelectedOption(idx)} className={`w-full p-3 md:p-4 rounded-2xl rounded-tr-none text-left font-bold transition-all ${btnStyle}`}>{opt}</motion.button>
+            <motion.button key={idx} disabled={isSubmitted} onClick={() => setSelectedOption(idx)} className={`w-full p-3 md:p-4 rounded-xl rounded-tr-none text-left font-bold transition-all ${btnStyle} active:border-b-0 active:translate-y-1`}>{opt}</motion.button>
           );
         })}
       </div>
       {!isSubmitted ? (
-        <motion.button whileTap={{ y: 4 }} disabled={selectedOption === null} onClick={checkAnswer} className="w-full mt-4 py-3 bg-emerald-400 disabled:opacity-40 text-slate-900 border-b-4 border-emerald-600 rounded-2xl font-black">جاوب</motion.button>
+        <motion.button disabled={selectedOption === null} onClick={checkAnswer} className="w-full mt-4 py-3 bg-emerald-50 disabled:opacity-40 text-emerald-900 border-2 border-emerald-300 rounded-xl font-black border-b-[3px] border-emerald-400 active:border-b-0 active:translate-y-1">جاوب</motion.button>
       ) : (
         <p className="text-sm text-emerald-900 p-3 bg-emerald-100 border-2 border-emerald-300 rounded-xl dir-rtl mt-2 text-center font-bold">{slide.explanation}</p>
       )}

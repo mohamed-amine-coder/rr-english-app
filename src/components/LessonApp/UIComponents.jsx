@@ -1,17 +1,27 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { FaFire, FaStar, FaTrophy, FaRedo, FaArrowLeft } from 'react-icons/fa';
+import { FaCrown, FaStar, FaTrophy, FaRedo, FaArrowLeft } from 'react-icons/fa';
 
-export const Header = ({ xp }) => (
-  <div className="w-full max-w-3xl flex justify-between items-center mb-6 px-2 dir-rtl">
-    {/* <div className="flex items-center gap-2 bg-orange-500 text-white font-extrabold text-sm px-4 py-2.5 rounded-2xl border-b-4 border-orange-700 shadow-sm">
-      <FaFire className="text-xl animate-bounce text-yellow-300" />
-      <span>3 أيام متابعة</span>
+export const Header = ({ currentIndex, total, progress }) => (
+  <div className="w-full max-w-4xl mb-4">
+    <div className="flex items-center justify-between mb-3">
+      <div className="inline-flex items-center gap-1.5 bg-gradient-to-r from-amber-200 to-yellow-400 text-amber-900 px-3 py-1 rounded-lg text-xs font-black shadow-sm">
+        <FaCrown className="text-base" />
+        <span>Premium</span>
+      </div>
+      <span className="text-slate-500 font-bold text-xs">
+        {`درس ${currentIndex + 1} / ${total}`}
+      </span>
     </div>
-    <div className="flex items-center gap-2 bg-amber-400 text-slate-900 font-extrabold text-sm px-4 py-2.5 rounded-2xl border-b-4 border-amber-600 shadow-sm">
-      <FaStar className="text-xl text-white" />
-      <span>{xp} XP</span>
-    </div> */}
+
+    <div className="w-full h-2 bg-slate-200 rounded-full overflow-hidden dir-ltr">
+      <motion.div
+        className="h-full bg-emerald-400 rounded-full"
+        initial={{ width: 0 }}
+        animate={{ width: `${progress}%` }}
+        transition={{ type: 'spring', stiffness: 50 }}
+      />
+    </div>
   </div>
 );
 
@@ -26,10 +36,10 @@ export const ProgressBar = ({ slide, currentIndex, total, progress }) => (
       </span>
     </div>
     <div className="w-full h-5 bg-slate-100 rounded-full p-1 border-2 border-slate-900">
-      <motion.div 
+      <motion.div
         className="h-full bg-emerald-400 border-b-2 border-emerald-600 rounded-full"
         animate={{ width: `${progress}%` }}
-        transition={{ type: "spring", stiffness: 80 }}
+        transition={{ type: 'spring', stiffness: 50 }}
       />
     </div>
   </div>
@@ -37,7 +47,7 @@ export const ProgressBar = ({ slide, currentIndex, total, progress }) => (
 
 export const CompletionScreen = ({ onRestart, onNextLesson }) => (
   <motion.div initial={{ scale: 0.9 }} animate={{ scale: 1 }} className="py-10 text-center space-y-6">
-    <div className="w-24 h-24 bg-yellow-400 border-4 border-slate-900 rounded-3xl flex items-center justify-center mx-auto text-slate-900 text-5xl shadow-[0_6px_0_#0F172A] rotate-3">
+    <div className="w-24 h-24 bg-yellow-400 border-4 border-slate-900 rounded-2xl flex items-center justify-center mx-auto text-slate-900 text-5xl shadow-[0_6px_0_#0F172A] rotate-3">
       <FaTrophy />
     </div>
     <div>
@@ -45,11 +55,11 @@ export const CompletionScreen = ({ onRestart, onNextLesson }) => (
       <p className="text-lg text-slate-600 dir-rtl mt-2 font-bold">ربحتي +40 XP وزدتي خطوة للقدام.</p>
     </div>
     <div className="pt-4 max-w-sm mx-auto flex flex-col gap-3">
-      <motion.button whileTap={{ y: 4 }} onClick={onNextLesson} className="flex items-center justify-center gap-2 w-full py-4 bg-emerald-400 hover:bg-emerald-500 text-slate-900 border-b-4 border-emerald-600 rounded-2xl text-lg font-black shadow-sm transition">
+      <motion.button onClick={onNextLesson} className="flex items-center justify-center gap-2 w-full py-4 bg-emerald-400 hover:bg-emerald-500 text-slate-900 border-b-[3px] border-emerald-600 rounded-xl text-lg font-black shadow-sm transition-all active:border-b-0 active:translate-y-1">
         <FaArrowLeft />
         <span>دوز للدرس الجاي</span>
       </motion.button>
-      <motion.button whileTap={{ y: 4 }} onClick={onRestart} className="flex items-center justify-center gap-2 w-full py-3 bg-slate-100 hover:bg-slate-200 text-slate-700 border-b-4 border-slate-300 rounded-2xl text-base font-bold shadow-sm transition">
+      <motion.button onClick={onRestart} className="flex items-center justify-center gap-2 w-full py-3 bg-slate-100 hover:bg-slate-200 text-slate-700 border-b-[3px] border-slate-300 rounded-xl text-base font-bold shadow-sm transition-all active:border-b-0 active:translate-y-1">
         <FaRedo />
         <span>نعاود هاد الدرس</span>
       </motion.button>
