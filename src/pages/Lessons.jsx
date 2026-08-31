@@ -18,8 +18,9 @@ function Lessons() {
       setLoading(true);
       try {
         // 1. كنجيبو جميع الدروس مرتبين من القديم للجديد
+        // 1. Kanjibo jmi3 dorous
         const { data: lessonsData, error: lessonsError } = await supabase
-          .from('lessonsTitles')
+          .from('lessons') // Kant lessonsTitles
           .select('*')
           .order('created_at', { ascending: true });
 

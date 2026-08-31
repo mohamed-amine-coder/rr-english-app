@@ -120,6 +120,19 @@
       "you"
     ]
   },
+    {
+    "type": "spot_error",
+    "tag": "صيد الخطأ 🕵️‍♂️",
+    "instruction": "كليكي على الكلمة لي غالطة فالجملة:",
+    "words": [
+      { "text": "She", "isWrong": false },
+      { "text": "have", "isWrong": true },
+      { "text": "a", "isWrong": false },
+      { "text": "nice", "isWrong": false },
+      { "text": "car.", "isWrong": false }
+    ],
+    "tip": "مع She و He و It ديما كنستعملو has ماشي have!"
+  },
   {
     "type": "explanation",
     "tag": "تحدي زوين 🎁",

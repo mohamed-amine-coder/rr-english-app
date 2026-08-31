@@ -5,7 +5,6 @@ import { supabase } from '../config/supabaseClient';
 export const useProfile = () => {
   const { user, loading: authLoading } = useAuth();
   const [profile, setProfile] = useState(null);
-  // زدنا هاد الـ State باش نحفظو فيه التقدم
   const [progressStats, setProgressStats] = useState({ completed: 0, total: 0 });
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -27,7 +26,7 @@ export const useProfile = () => {
       setError(null);
 
       try {
-        // 1. نجيبو معلومات البروفايل
+        // 1. نجيبو معلومات البروفايل د اليوزر
         const { data: userData, error: userError } = await supabase
           .from('users')
           .select('*')
@@ -36,9 +35,9 @@ export const useProfile = () => {
 
         if (userError) throw userError;
 
-        // 2. نحسبو شحال من درس كاين فالسيت كامل
+        // 2. نحسبو شحال من درس كاين فالسيت كامل (الجدول الجديد lessons)
         const { count: totalLessons, error: totalError } = await supabase
-          .from('lessonsTitles')
+          .from('lessons') 
           .select('*', { count: 'exact', head: true });
 
         if (totalError) throw totalError;
@@ -74,7 +73,7 @@ export const useProfile = () => {
 
   return {
     profile,
-    progressStats, // كنصدرو هاد الداتا باش نخدمو بيها فالواجهة
+    progressStats,
     loading: authLoading || loading,
     error,
   };

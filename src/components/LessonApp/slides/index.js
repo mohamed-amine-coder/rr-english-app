@@ -10,3 +10,4 @@ export { ExplanationSlide } from './ExplanationSlide';
 export { TextWrapper } from './TextWrapper';
 export { AudioButton, playAudio } from './SharedComponents';
 export { SummarySlide } from './SummarySlide';
+export { SpotErrorSlide } from './SpotErrorSlide';

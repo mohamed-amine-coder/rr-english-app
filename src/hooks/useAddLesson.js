@@ -6,49 +6,35 @@ export const useAddLesson = () => {
   const [success, setSuccess] = useState(false);
   const [error, setError] = useState(null);
 
-  // ضفنا isPremium كمتغير ثالث
   const addLessonWithJSON = async (title, slidesJsonString, isPremium = false) => {
     setLoading(true);
     setSuccess(false);
     setError(null);
 
     try {
-      if (!title?.trim()) throw new Error("ضروري تكتب عنوان الدرس");
+      if (!title?.trim()) throw new Error("Darouri tekteb 3onwan dars");
 
       let slidesArray = [];
       try {
         slidesArray = JSON.parse(slidesJsonString);
         if (!Array.isArray(slidesArray)) throw new Error();
       } catch (e) {
-        throw new Error("كاين خطأ فـ الـ JSON. تأكد من الأقواس [] والفواصل.");
+        throw new Error("Kayn khat2 f JSON. T2akked mn l'a9was [] w lfawasil.");
       }
 
       const slug = title.toLowerCase().replace(/[^a-z0-9\u0600-\u06FF]+/g, '-').replace(/(^-|-$)+/g, '');
 
-      // زدنا is_premium فعملية الإدخال لـ Supabase
-      const { data: lessonData, error: lessonError } = await supabase
-        .from('lessonsTitles')
-        .insert([{ title: title.trim(), slug: slug, is_premium: isPremium }])
-        .select()
-        .single();
+      // Insert dars w slides f d9a we7da
+      const { error: lessonError } = await supabase
+        .from('lessons')
+        .insert([{ 
+            title: title.trim(), 
+            slug: slug, 
+            is_premium: isPremium,
+            slides: slidesArray 
+        }]);
 
       if (lessonError) throw lessonError;
-
-      const slidesToInsert = slidesArray.map((slide, index) => {
-        const { type, tag, id, ...contentData } = slide;
-        return {
-          lesson_id: lessonData.id,
-          slide_order: index + 1,
-          type: type,
-          tag: tag || 'عام',
-          content: contentData,
-        };
-      });
-
-      if (slidesToInsert.length > 0) {
-        const { error: slidesError } = await supabase.from('slides').insert(slidesToInsert);
-        if (slidesError) throw slidesError;
-      }
 
       setSuccess(true);
       return true;

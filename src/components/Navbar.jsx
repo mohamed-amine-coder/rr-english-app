@@ -82,6 +82,11 @@ function Navbar() {
                       <FaEdit className="text-lg" />
                     </Link>
                   )}
+                  {user.role === 'admin' && (
+                    <Link to="/add-worksheet" className="bg-blue-100 text-blue-600 p-2 rounded-full hover:bg-blue-200 transition-colors" title="إضافة تمارين">
+                      <FaEdit className="text-lg" />
+                    </Link>
+                  )}
                   {/* استعملنا px-2 بلاصة pr-2 باش تجي مقادة فالعربية */}
                   <div className="flex flex-col text-right px-2">
                     <span className="text-sm font-extrabold text-gray-800">{user.full_name || 'طالب'}</span>
@@ -146,6 +151,12 @@ function Navbar() {
               <Link to="/add-lesson" onClick={closeMenu} className="flex items-center gap-3 px-4 py-3 rounded-xl font-bold text-blue-600 bg-blue-50 transition">
                 <FaEdit className="text-xl" />
                 <span>إضافة درس</span>
+              </Link>
+            )}
+            {user?.role === 'admin' && (
+              <Link to="/add-worksheet" onClick={closeMenu} className="flex items-center gap-3 px-4 py-3 rounded-xl font-bold text-blue-600 bg-blue-50 transition">
+                <FaEdit className="text-xl" />
+                <span>إضافة تمارين</span>
               </Link>
             )}
 
