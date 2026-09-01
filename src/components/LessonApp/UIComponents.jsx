@@ -45,7 +45,7 @@ export const ProgressBar = ({ slide, currentIndex, total, progress }) => (
   </div>
 );
 
-export const CompletionScreen = ({ onRestart, onNextLesson }) => (
+export const CompletionScreen = ({ onRestart, onNextLesson, isNextLoading }) => (
   <motion.div initial={{ scale: 0.9 }} animate={{ scale: 1 }} className="py-10 text-center space-y-6">
     <div className="w-24 h-24 bg-yellow-400 border-4 border-slate-900 rounded-2xl flex items-center justify-center mx-auto text-slate-900 text-5xl shadow-[0_6px_0_#0F172A] rotate-3">
       <FaTrophy />
@@ -55,11 +55,25 @@ export const CompletionScreen = ({ onRestart, onNextLesson }) => (
       <p className="text-lg text-slate-600 dir-rtl mt-2 font-bold">ربحتي +40 XP وزدتي خطوة للقدام.</p>
     </div>
     <div className="pt-4 max-w-sm mx-auto flex flex-col gap-3">
-      <motion.button onClick={onNextLesson} className="flex items-center justify-center gap-2 w-full py-4 bg-emerald-400 hover:bg-emerald-500 text-slate-900 border-b-[3px] border-emerald-600 rounded-xl text-lg font-black shadow-sm transition-all active:border-b-0 active:translate-y-1">
-        <FaArrowLeft />
-        <span>دوز للدرس الجاي</span>
+      <motion.button 
+        onClick={onNextLesson} 
+        disabled={isNextLoading}
+        className="flex items-center justify-center gap-2 w-full py-4 bg-emerald-400 hover:bg-emerald-500 disabled:opacity-50 text-slate-900 border-b-[3px] border-emerald-600 rounded-xl text-lg font-black shadow-sm transition-all active:border-b-0 active:translate-y-1"
+      >
+        {isNextLoading ? (
+          <span>جاري التحميل... ⏳</span>
+        ) : (
+          <>
+            <FaArrowLeft />
+            <span>دوز للدرس الجاي</span>
+          </>
+        )}
       </motion.button>
-      <motion.button onClick={onRestart} className="flex items-center justify-center gap-2 w-full py-3 bg-slate-100 hover:bg-slate-200 text-slate-700 border-b-[3px] border-slate-300 rounded-xl text-base font-bold shadow-sm transition-all active:border-b-0 active:translate-y-1">
+      <motion.button 
+        onClick={onRestart} 
+        disabled={isNextLoading}
+        className="flex items-center justify-center gap-2 w-full py-3 bg-slate-100 hover:bg-slate-200 text-slate-700 border-b-[3px] border-slate-300 rounded-xl text-base font-bold shadow-sm transition-all active:border-b-0 active:translate-y-1"
+      >
         <FaRedo />
         <span>نعاود هاد الدرس</span>
       </motion.button>

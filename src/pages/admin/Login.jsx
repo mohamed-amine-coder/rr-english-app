@@ -35,11 +35,11 @@ export default function Login() {
         
         {/* الأيقونة الفوق */}
         <div className="w-20 h-20 bg-white rounded-2xl shadow-sm border border-slate-100 flex items-center justify-center mx-auto mb-8 rotate-3 hover:rotate-0 transition-transform duration-300">
-          <span className="text-4xl">🔐</span>
+          <span className="text-4xl">🎓</span>
         </div>
 
-        <h1 className="text-3xl font-black mb-2 text-slate-800">مرحباً بعودتك!</h1>
-        <p className="text-slate-500 font-medium mb-8">سجل الدخول للتحكم فـ المنصة ديالك</p>
+        <h1 className="text-3xl font-black mb-2 text-slate-800">مرحبا بيك معانا!</h1>
+        <p className="text-slate-500 font-medium mb-8">سجل الدخول باش تبدا أو تكمل طريقك فتعلم الإنجليزية</p>
         
         {error && (
           <div className="bg-rose-50 text-rose-600 font-bold p-4 rounded-xl mb-6 border border-rose-100">
@@ -59,12 +59,12 @@ export default function Login() {
               className="w-6 h-6 group-hover:scale-110 transition-transform" 
             />
           </div>
-          <span>{loading ? 'جاري التحويل...' : 'الدخول باستخدام حساب Google'}</span>
+          <span>{loading ? 'جاري الانشاء...' : 'الدخول باستخدام حساب Google'}</span>
         </button>
 
         <div className="mt-8 pt-6 border-t border-slate-200/50">
-          <p className="text-sm text-slate-400 font-medium">
-            هاد الصفحة مخصصة غير للمسؤولين (Admins)
+          <p className="text-sm text-slate-500 font-bold">
+           قاد حساب باش تحفظ التقدم وتستفد من الدروس المخصصة ليك 🚀
           </p>
         </div>
       </div>

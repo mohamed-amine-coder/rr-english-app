@@ -53,6 +53,7 @@ function App() {
             <Route path="worksheet/:slug" element={<WorksheetApp />} />
             <Route path="worksheets" element={<WorksheetsList />} />
             <Route path="pricing" element={<Pricing />} />
+            <Route path="login" element={<Login />} />
             <Route
               path="profile"
               element={
@@ -62,7 +63,6 @@ function App() {
               }
             />
           </Route>
-          <Route path="login" element={<Login />} />
           <Route
             path="add-lesson"
             element={
