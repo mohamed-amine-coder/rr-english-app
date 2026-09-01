@@ -12,7 +12,7 @@ export default function Login() {
     const { error } = await supabase.auth.signInWithOAuth({
       provider: 'google',
       options: {
-        redirectTo: 'https://rrenglish.vercel.app/about' 
+        redirectTo: 'https://rrenglish.vercel.app/' 
       }
     });
 
