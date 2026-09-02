@@ -4,9 +4,11 @@ import Home from './pages/Home';
 import About from './pages/About';
 import Lessons from './pages/Lessons';
 import Pricing from './pages/Pricing';
+import NotFound from './pages/NotFound';
 import DailyClasses from './pages/DailyClasses';
 import MicroLesson from './components/LessonApp';
 import WorksheetApp from './components/WorksheetApp';
+import LessonPDF from './pages/LessonPDF'
 import Profile from './pages/Profile';
 import Login from './pages/admin/Login';
 import AddLesson from './pages/admin/AddLesson';
@@ -52,8 +54,10 @@ function App() {
             <Route path="lesson/:id" element={<MicroLesson />} />
             <Route path="worksheet/:slug" element={<WorksheetApp />} />
             <Route path="worksheets" element={<WorksheetsList />} />
+            <Route path="lesson-pdf" element={<LessonPDF />} />
             <Route path="pricing" element={<Pricing />} />
             <Route path="login" element={<Login />} />
+            <Route path="*" element={<NotFound />} />
             <Route
               path="profile"
               element={
@@ -79,7 +83,6 @@ function App() {
               </AdminRoute>
             }
           />
-          <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
       </BrowserRouter>
     </AuthProvider>

@@ -1,27 +1,23 @@
 import React, { useState } from 'react';
-import { supabase } from '../../config/supabaseClient'; 
+import { useAuth } from '../../context/AuthContext';
 
 export default function Login() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
+  const { login } = useAuth(); // جبد login من context
 
   const handleGoogleLogin = async () => {
     setLoading(true);
     setError('');
 
-    const { error } = await supabase.auth.signInWithOAuth({
-      provider: 'google',
-      options: {
-        redirectTo: 'https://rrenglish.vercel.app/' 
-      }
-    });
+    const { error } = await login();
 
     if (error) {
       setError('وقع شي مشكل فالتسجيل ❌');
       setLoading(false);
     }
   };
-
+  
   return (
     // خلفية مدمجة بألوان المنصة (تدرج لوني ناعم)
     <div className="min-h-screen bg-gradient-to-br from-[#FFF9E6] via-indigo-50 to-indigo-100 flex items-center justify-center p-6 dir-rtl font-sans relative overflow-hidden">

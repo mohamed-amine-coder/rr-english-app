@@ -69,7 +69,13 @@ export const AuthProvider = ({ children }) => {
       loading,
       isAuthenticated: Boolean(session?.user),
       updateLocalXP,
-      login: () => supabase.auth.signInWithOAuth({ provider: 'google', options: { redirectTo: 'rrenglish.vercel.app' } }),
+      login: () =>
+        supabase.auth.signInWithOAuth({
+          provider: 'google',
+          options: {
+            redirectTo: `${window.location.origin}/lessons`,
+          },
+        }),
       logout: () => supabase.auth.signOut(),
       signOut: () => supabase.auth.signOut(),
     }),

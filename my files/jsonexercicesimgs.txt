@@ -1,0 +1,16 @@
+{
+  "title": "AT THE COFFEE SHOP",
+  "reading": "Sarah loves visiting the local cafe on weekends. She usually sits near the window and orders a hot cappuccino with an almond croissant.\nThe atmosphere is always calm, with soft jazz music playing in the background. Many people come here to read novels or work on their laptops.\nBefore leaving, Sarah chats with the friendly barista named Leo. She pays for her order, leaves a generous tip, and walks to the park nearby.",
+  "vocabulary": "Order = يطلب, Atmosphere = أجواء, Friendly = ودود, Barista = مُعِد القهوة, Tip = إكرامية (بقشيش), Nearby = قريب",
+  "questions": "Where does Sarah like to go on weekends?\nWhat does she order with her cappuccino?\nWhat kind of music plays in the cafe?\nWhat is the name of the barista?\nWhere does Sarah go after leaving the cafe?",
+  "practice": "Yesterday, I went to a quiet cafe (1)........................ my house. The (2)........................ was very relaxing. I decided to (3)........................ a fresh orange juice. The (4)........................ was smiling and very (5)......................... Before I left, I gave him a small (6)........................ for his great service."
+}
+
+
+{
+  "title": "",
+  "reading": "",
+  "vocabulary": "",
+  "questions": "",
+  "practice": ""
+}
