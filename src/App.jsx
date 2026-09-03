@@ -7,13 +7,12 @@ import Pricing from './pages/Pricing';
 import NotFound from './pages/NotFound';
 import DailyClasses from './pages/DailyClasses';
 import MicroLesson from './components/LessonApp';
-import WorksheetApp from './components/WorksheetApp';
+import Worksheets from './components/Worksheets';
 import LessonPDF from './pages/LessonPDF'
 import Profile from './pages/Profile';
 import Login from './pages/admin/Login';
 import AddLesson from './pages/admin/AddLesson';
 import AddWorksheet from './pages/admin/AddWorksheet';
-import WorksheetsList from './pages/WorksheetsList';
 import { AuthProvider, useAuth } from './context/AuthContext';
 import ScrollToTop from './components/ScrollToTop';
 
@@ -52,37 +51,16 @@ function App() {
             <Route path="lessons" element={<Lessons />} />
             <Route path="daily-classes" element={<DailyClasses />} />
             <Route path="lesson/:id" element={<MicroLesson />} />
-            <Route path="worksheet/:slug" element={<WorksheetApp />} />
-            <Route path="worksheets" element={<WorksheetsList />} />
             <Route path="lesson-pdf" element={<LessonPDF />} />
             <Route path="pricing" element={<Pricing />} />
             <Route path="login" element={<Login />} />
+            <Route path="worksheets" element={<Worksheets />} />
             <Route path="*" element={<NotFound />} />
-            <Route
-              path="profile"
-              element={
-                <ProtectedRoute>
-                  <Profile />
-                </ProtectedRoute>
-              }
-            />
+            <Route path="profile" element={<ProtectedRoute> <Profile /> </ProtectedRoute>} />
+          <Route path="add-lesson" element={<AdminRoute> <AddLesson /> </AdminRoute>} />
+          <Route path="lesson-pdf" element={<AdminRoute> <LessonPDF /> </AdminRoute>} />
+          <Route path="add-worksheet" element={<AdminRoute> <AddWorksheet /> </AdminRoute>} />
           </Route>
-          <Route
-            path="add-lesson"
-            element={
-              <AdminRoute>
-                <AddLesson />
-              </AdminRoute>
-            }
-          />
-          <Route
-            path="add-worksheet"
-            element={
-              <AdminRoute>
-                <AddWorksheet />
-              </AdminRoute>
-            }
-          />
         </Routes>
       </BrowserRouter>
     </AuthProvider>

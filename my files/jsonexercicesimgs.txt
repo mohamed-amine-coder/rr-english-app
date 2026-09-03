@@ -1,16 +1,93 @@
-{
-  "title": "AT THE COFFEE SHOP",
-  "reading": "Sarah loves visiting the local cafe on weekends. She usually sits near the window and orders a hot cappuccino with an almond croissant.\nThe atmosphere is always calm, with soft jazz music playing in the background. Many people come here to read novels or work on their laptops.\nBefore leaving, Sarah chats with the friendly barista named Leo. She pays for her order, leaves a generous tip, and walks to the park nearby.",
-  "vocabulary": "Order = يطلب, Atmosphere = أجواء, Friendly = ودود, Barista = مُعِد القهوة, Tip = إكرامية (بقشيش), Nearby = قريب",
-  "questions": "Where does Sarah like to go on weekends?\nWhat does she order with her cappuccino?\nWhat kind of music plays in the cafe?\nWhat is the name of the barista?\nWhere does Sarah go after leaving the cafe?",
-  "practice": "Yesterday, I went to a quiet cafe (1)........................ my house. The (2)........................ was very relaxing. I decided to (3)........................ a fresh orange juice. The (4)........................ was smiling and very (5)......................... Before I left, I gave him a small (6)........................ for his great service."
-}
+Act as a Senior ESL Curriculum Developer and Pedagogy Expert specializing in interactive online English lessons for Moroccan adults. Your goal is to generate a comprehensive, intensive, high-density lesson in strict JSON format designed specifically for a 60-minute interactive live class of 1 teacher and exactly 6 students.
 
+Lesson Constraints & Requirements (Pedagogical Depth):
+1. Class Size: Exactly 6 students. Every activity must have enough volume so every single student gets 1-2 distinct turns without repetition.
+2. "reading": Must be an extended, rich real-life story containing EXACTLY 5 to 6 distinct, well-developed paragraphs (numbered P1 through P6).
+3. "vocabulary": Exactly 12 practical phrases/words formatted strictly as: "Word = Darija/Arabic meaning".
+4. "matching": Exactly 12 communicative chunks/phrases from the story (left side) matched with their Darija translations (scrambled on the right side).
+5. "questions" (Comprehension & Critical Thinking): Exactly 12 questions (2 questions per student). Divide them into factual recall (Q1-Q6) and discussion/opinion questions (Q7-Q12).
+6. "practice" (Story Sequencing): Exactly 6 scrambled sentences summarizing the main actions of the 6 paragraphs. (Each student will own and read one step).
+7. "practice" (Roleplay & Speaking): Exactly 3 distinct speaking scenarios (Scenario A, Scenario B, Scenario C) so the 6 students can work in 3 distinct pairs, each performing a completely different dialogue.
+8. "darija": High-value, professional grammar hacks/cultural tips written in natural Moroccan Darija.
+9. "image": Valid Unsplash image representing the topic (e.g., https://images.unsplash.com/featured/800x600/?[KEYWORD]).
 
-{
-  "title": "",
-  "reading": "",
-  "vocabulary": "",
-  "questions": "",
-  "practice": ""
-}
+Topic of the lesson: [كيفاش تعرف على صحاب جداد؟]
+
+Output ONLY valid raw JSON. Do not include markdown code block tags like ```json or any introductory/closing conversational text. The JSON must follow this exact multi-page schema:
+
+[
+  {
+    "id": "page1_context_reading",
+    "blocks": [
+      { "id": "b1_header", "type": "header", "content": { "title": "UNIT X: [TOPIC TITLE]" } },
+      { "id": "b2_image", "type": "image", "content": { "url": "[https://images.unsplash.com/featured/800x600/](https://images.unsplash.com/featured/800x600/)?[KEYWORD]" } },
+      { "id": "b3_darija", "type": "darija", "content": { "text": "💡 ..." } },
+      { "id": "b4_reading", "type": "reading", "content": { "text": "Paragraph 1...\n\nParagraph 2...\n\nParagraph 3...\n\nParagraph 4...\n\nParagraph 5...\n\nParagraph 6..." } },
+      { "id": "b5_footer", "type": "footer", "content": {} }
+    ]
+  },
+  {
+    "id": "page2_dialogue_vocab",
+    "blocks": [
+      { "id": "b6_header", "type": "header", "content": { "title": "PAGE 2 - VOCABULARY & ROLEPLAY" } },
+      { "id": "b7_roleplay", "type": "roleplay", "content": { "text": "Person A: ...\nPerson B: ...\nPerson A: ...\nPerson B: ..." } },
+      { "id": "b8_vocabulary", "type": "vocabulary", "content": { "text": "Word1 = شرح1, Word2 = شرح2, Word3 = شرح3, Word4 = شرح4, Word5 = شرح5, Word6 = شرح6, Word7 = شرح7, Word8 = شرح8, Word9 = شرح9, Word10 = شرح10, Word11 = شرح11, Word12 = شرح12" } },
+      { "id": "b9_footer", "type": "footer", "content": {} }
+    ]
+  },
+  {
+    "id": "page3_matching_12",
+    "blocks": [
+      { "id": "b10_header", "type": "header", "content": { "title": "PAGE 3 - MATCHING CHALLENGE (12 CHUNKS)" } },
+      { "id": "b11_darija", "type": "darija", "content": { "text": "📌 كل طالب عندو جوج عبارات خاصو يربطهم بالمعنى ويستعملهم فجملة شفوية..." } },
+      { "id": "b12_matching", "type": "matching", "content": { 
+          "items": [
+            { "left": "Phrase 1", "right": "شرح مخربق" },
+            { "left": "Phrase 2", "right": "شرح مخربق" },
+            { "left": "Phrase 3", "right": "شرح مخربق" },
+            { "left": "Phrase 4", "right": "شرح مخربق" },
+            { "left": "Phrase 5", "right": "شرح مخربق" },
+            { "left": "Phrase 6", "right": "شرح مخربق" },
+            { "left": "Phrase 7", "right": "شرح مخربق" },
+            { "left": "Phrase 8", "right": "شرح مخربق" },
+            { "left": "Phrase 9", "right": "شرح مخربق" },
+            { "left": "Phrase 10", "right": "شرح مخربق" },
+            { "left": "Phrase 11", "right": "شرح مخربق" },
+            { "left": "Phrase 12", "right": "شرح مخربق" }
+          ] 
+      }},
+      { "id": "b13_footer", "type": "footer", "content": {} }
+    ]
+  },
+  {
+    "id": "page4_questions_12",
+    "blocks": [
+      { "id": "b14_header", "type": "header", "content": { "title": "PAGE 4 - 12 QUESTIONS (2 PER STUDENT)" } },
+      { "id": "b15_questions", "type": "questions", "content": { 
+          "text": "Part 1: Story Details (Fact-Check)\n1. ...\n2. ...\n3. ...\n4. ...\n5. ...\n6. ...\n\nPart 2: Discussion & Opinion (Deep Speaking)\n7. ...\n8. ...\n9. ...\n10. ...\n11. ...\n12. ..." 
+      }},
+      { "id": "b16_footer", "type": "footer", "content": {} }
+    ]
+  },
+  {
+    "id": "page5_story_ordering",
+    "blocks": [
+      { "id": "b17_header", "type": "header", "content": { "title": "PAGE 5 - RECONSTRUCT THE STORY" } },
+      { "id": "b18_darija", "type": "darija", "content": { "text": "🎯 تمرين جماعي: 6 ديال الجمل ملخبطين كيمثلو أحداث الفقرات بـ 6. كل طالب ياخد جملة وناقشو بالإنجليزية باش ترتبوهم من 1 لـ 6." } },
+      { "id": "b19_practice", "type": "practice", "content": { 
+          "text": "Put these 6 key moments in chronological order (1 to 6):\n\n[ ] Event A...\n[ ] Event B...\n[ ] Event C...\n[ ] Event D...\n[ ] Event E...\n[ ] Event F..." 
+      }},
+      { "id": "b20_footer", "type": "footer", "content": {} }
+    ]
+  },
+  {
+    "id": "page6_pair_scenarios",
+    "blocks": [
+      { "id": "b21_header", "type": "header", "content": { "title": "PAGE 6 - 3 PAIR SCENARIOS (6 STUDENTS)" } },
+      { "id": "b22_practice", "type": "practice", "content": { 
+          "text": "Pair 1 (Student 1 & Student 2) - Scenario A:\n...\n\nPair 2 (Student 3 & Student 4) - Scenario B:\n...\n\nPair 3 (Student 5 & Student 6) - Scenario C:\n..." 
+      }},
+      { "id": "b23_footer", "type": "footer", "content": {} }
+    ]
+  }
+]
