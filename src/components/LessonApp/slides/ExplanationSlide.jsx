@@ -1,52 +1,8 @@
-// import React, { useEffect, useState } from 'react';
-// import { motion } from 'framer-motion';
-// import { TextWrapper } from './TextWrapper';
-
-// export const ExplanationSlide = ({ slide }) => {
-//   const [visibleCount, setVisibleCount] = useState(0);
-//   const words = (slide.text || '').trim().split(/\s+/).filter(Boolean);
-
-//   useEffect(() => {
-//     setVisibleCount(0);
-//   }, [slide.id]);
-
-//   useEffect(() => {
-//     if (visibleCount >= words.length) return;
-
-//     const timeout = window.setTimeout(() => {
-//       setVisibleCount((prev) => prev + 1);
-//     }, 120);
-
-//     return () => window.clearTimeout(timeout);
-//   }, [visibleCount, words.length]);
-
-//   return (
-//     <div className="rounded-xl border-4 border-violet-200 bg-violet-50 p-6 md:p-8 shadow-sm">
-//       <p className="text-xl md:text-2xl font-black leading-loose text-slate-900 dir-rtl">
-//         {words.slice(0, visibleCount).map((word, index) => {
-//           const cleanedWord = word.trim();
-//           if (!cleanedWord) return null;
-
-//           return (
-//             <motion.span
-//               key={`${cleanedWord}-${index}`}
-//               initial={{ opacity: 0, y: 10 }}
-//               animate={{ opacity: 1, y: 0 }}
-//               className="mr-1 inline-block"
-//             >
-//               <TextWrapper text={cleanedWord} />
-//             </motion.span>
-//           );
-//         })}
-//       </p>
-//     </div>
-//   );
-// };
-
-// src/components/LessonApp/slides/ExplanationSlide.jsx
 import React from 'react';
 import { FaLightbulb, FaVolumeUp } from 'react-icons/fa';
 import { HybridText } from './HybridText';
+import mrRr from '../../../assets/mr-rr.png';
+import { motion } from 'framer-motion';
 
 export const ExplanationSlide = ({ slide }) => {
   const playSpeech = (text) => {
@@ -60,16 +16,23 @@ export const ExplanationSlide = ({ slide }) => {
   };
 
   return (
-    <div className="space-y-4 text-center">
-      <div className="w-14 h-14 bg-amber-100 text-amber-600 border-2 border-amber-300 rounded-2xl flex items-center justify-center text-2xl mx-auto shadow-sm rotate-3">
-        <FaLightbulb />
-      </div>
+    <div className="space-y-6 text-center flex flex-col items-center">
+      <motion.div 
+        animate={{ y: [0, -8, 0] }}
+        transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+        className="relative"
+      >
+        <img src={mrRr} alt="Mr RR" className="w-24 h-24 object-cover rounded-3xl border-4 border-white shadow-xl bg-amber-50" />
+        <div className="absolute -bottom-3 -right-3 w-10 h-10 bg-amber-100 text-amber-600 border-2 border-white rounded-full flex items-center justify-center text-lg shadow-md">
+          <FaLightbulb />
+        </div>
+      </motion.div>
 
-      <h2 className="text-2xl font-black text-slate-900">
+      <h2 className="text-2xl sm:text-3xl font-black text-slate-900">
         <HybridText text={slide.title || "فهم هاد اللعيبة 🧠"} />
       </h2>
 
-      <div className="bg-indigo-50/70 border-2 border-indigo-200 p-5 rounded-3xl text-right">
+      <div className="bg-blue-50 border-2 border-blue-200 p-6 rounded-3xl text-right w-full shadow-sm">
         <p className="text-base sm:text-lg font-bold text-slate-800 leading-loose">
           <HybridText text={slide.text || slide.explanation} />
         </p>
@@ -78,9 +41,9 @@ export const ExplanationSlide = ({ slide }) => {
       {slide.speechText && (
         <button
           onClick={() => playSpeech(slide.speechText)}
-          className="inline-flex items-center gap-2 bg-slate-900 hover:bg-slate-800 text-white font-black px-5 py-2.5 rounded-xl text-sm transition-transform active:scale-95 shadow-sm"
+          className="inline-flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white font-black px-6 py-3 rounded-xl text-sm transition-all active:scale-95 shadow-md cursor-pointer"
         >
-          <FaVolumeUp className="text-amber-400" />
+          <FaVolumeUp className="text-blue-200" />
           <span>سمع النطق الإنجليزي 🔊</span>
         </button>
       )}

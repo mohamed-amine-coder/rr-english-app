@@ -275,8 +275,8 @@ export default function PdfViewerModal({ worksheet, onClose }) {
             {isDownloading 
                 ? 'جاري التحميل...' 
                 : isAuthorizedToDownload 
-                ? 'تحميل الملخص كامل' 
-                : 'هذا الملخص حصري للمشتركين'}
+                ? 'تحميل التمرين كامل' 
+                : 'هذا التمرين حصري للمشتركين'}
             </button>
         </div>
 

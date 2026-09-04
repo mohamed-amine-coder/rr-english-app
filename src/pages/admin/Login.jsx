@@ -1,10 +1,15 @@
 import React, { useState } from 'react';
 import { useAuth } from '../../context/AuthContext';
+import { motion } from 'framer-motion';
+
+// جيب الصور ديال الشخصيات
+import mrRr from '../../assets/mr-rr.png';
+import msRr from '../../assets/ms-rr.png';
 
 export default function Login() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
-  const { login } = useAuth(); // جبد login من context
+  const { login } = useAuth(); 
 
   const handleGoogleLogin = async () => {
     setLoading(true);
@@ -19,51 +24,94 @@ export default function Login() {
   };
   
   return (
-    // خلفية مدمجة بألوان المنصة (تدرج لوني ناعم)
-    <div className="min-h-screen bg-gradient-to-br from-[#FFF9E6] via-indigo-50 to-indigo-100 flex items-center justify-center p-6 dir-rtl font-sans relative overflow-hidden">
+    <div className="flex-1 flex items-center justify-center min-h-[75vh] w-full dir-rtl font-sans relative px-4 sm:px-0 overflow-hidden">
       
-      {/* دوائر ديكور فالخلفية */}
-      <div className="absolute top-[-10%] right-[-5%] w-96 h-96 bg-yellow-300 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-blob"></div>
-      <div className="absolute bottom-[-10%] left-[-5%] w-96 h-96 bg-indigo-300 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-blob animation-delay-2000"></div>
+      {/* إضاءات خلفية فخمة ومتحركة */}
+      <div className="absolute top-0 right-1/4 w-72 h-72 bg-amber-300/20 rounded-full blur-[80px] pointer-events-none animate-pulse"></div>
+      <div className="absolute bottom-0 left-1/4 w-72 h-72 bg-blue-400/20 rounded-full blur-[80px] pointer-events-none animate-pulse delay-700"></div>
 
-      {/* البطاقة الرئيسية (Glassmorphism Effect) */}
-      <div className="max-w-md w-full bg-white/70 backdrop-blur-xl p-10 rounded-[2.5rem] border border-white/50 shadow-[0_20px_40px_-15px_rgba(0,0,0,0.1)] text-center relative z-10">
+      {/* البطاقة الرئيسية */}
+      <motion.div 
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5, ease: "easeOut" }}
+        className="w-full max-w-md bg-white/90 backdrop-blur-2xl p-8 sm:p-10 rounded-[2.5rem] border border-white shadow-[0_20px_60px_-15px_rgba(0,0,0,0.1)] relative z-10 text-center"
+      >
         
-        {/* الأيقونة الفوق */}
-        <div className="w-20 h-20 bg-white rounded-2xl shadow-sm border border-slate-100 flex items-center justify-center mx-auto mb-8 rotate-3 hover:rotate-0 transition-transform duration-300">
-          <span className="text-4xl">🎓</span>
+        {/* تقديم الشخصيات بأنيميشن سريعة وحيوية */}
+        <div className="flex justify-center items-center -space-x-4 rtl:space-x-reverse mb-6">
+          <motion.div 
+            animate={{ y: [0, -12, 0], rotate: [-3, 3, -3] }}
+            transition={{ duration: 1, repeat: Infinity, ease: "easeInOut" }}
+            whileHover={{ scale: 1.05 }}
+            className="z-10 relative cursor-pointer"
+          >
+            <img 
+              src={mrRr} 
+              alt="Mr RR" 
+              className="w-20 h-20 sm:w-24 sm:h-24 rounded-2xl border-4 border-white shadow-lg object-cover" 
+            />
+            <div className="absolute -bottom-2 -left-2 bg-blue-100 text-blue-700 text-[10px] font-black px-2 py-0.5 rounded-full border-2 border-white shadow-sm">
+              Mr-RR
+            </div>
+          </motion.div>
+
+          <motion.div 
+            animate={{ y: [0, -10, 0], rotate: [3, -3, 3] }}
+            transition={{ duration: 1.2, repeat: Infinity, ease: "easeInOut", delay: 0.2 }}
+            whileHover={{ scale: 1.05 }}
+            className="z-20 relative cursor-pointer"
+          >
+            <img 
+              src={msRr} 
+              alt="Ms RR" 
+              className="w-20 h-20 sm:w-24 sm:h-24 rounded-2xl border-4 border-white shadow-xl object-cover" 
+            />
+            <div className="absolute -bottom-2 -right-2 bg-amber-100 text-amber-700 text-[10px] font-black px-2 py-0.5 rounded-full border-2 border-white shadow-sm">
+              Ms-RR
+            </div>
+          </motion.div>
         </div>
 
-        <h1 className="text-3xl font-black mb-2 text-slate-800">مرحبا بيك معانا!</h1>
-        <p className="text-slate-500 font-medium mb-8">سجل الدخول باش تبدا أو تكمل طريقك فتعلم الإنجليزية</p>
+        <h1 className="text-3xl font-black mb-3 text-slate-900 tracking-tight">
+          مرحبا بيك معانا! 🚀
+        </h1>
+        <p className="text-slate-500 font-bold text-sm mb-8 leading-relaxed px-2">
+          سيدي ولالة RR كيتسناو فيك.. دخل دابا باش يعاونوك فطريقك فـإتقان الإنجليزية.
+        </p>
         
         {error && (
-          <div className="bg-rose-50 text-rose-600 font-bold p-4 rounded-xl mb-6 border border-rose-100">
+          <motion.div 
+            initial={{ opacity: 0 }} 
+            animate={{ opacity: 1 }} 
+            className="bg-rose-50 text-rose-600 font-bold text-sm p-4 rounded-xl mb-6 border border-rose-100"
+          >
             {error}
-          </div>
+          </motion.div>
         )}
 
+        {/* زر جوجل بتصميم VIP */}
         <button 
           onClick={handleGoogleLogin}
           disabled={loading}
-          className="w-full flex items-center justify-center gap-4 bg-white hover:bg-slate-50 text-slate-700 font-bold text-lg py-4 px-6 rounded-2xl border-2 border-slate-200 shadow-sm hover:shadow-md hover:border-indigo-100 transition-all duration-300 disabled:opacity-50 group"
+          className="w-full flex items-center justify-center gap-4 bg-slate-900 hover:bg-slate-800 text-white font-black text-base sm:text-lg py-4 px-6 rounded-2xl border border-slate-700 shadow-[0_8px_20px_rgba(15,23,42,0.2)] hover:shadow-[0_10px_25px_rgba(15,23,42,0.3)] transition-all duration-300 disabled:opacity-50 cursor-pointer disabled:cursor-not-allowed active:scale-95 group"
         >
-          <div className="bg-slate-50 p-2 rounded-xl group-hover:bg-white transition-colors">
+          <div className="bg-white p-1.5 rounded-xl group-hover:scale-105 transition-transform">
             <img 
               src="https://www.svgrepo.com/show/475656/google-color.svg" 
               alt="Google" 
-              className="w-6 h-6 group-hover:scale-110 transition-transform" 
+              className="w-5 h-5" 
             />
           </div>
-          <span>{loading ? 'جاري الانشاء...' : 'الدخول باستخدام حساب Google'}</span>
+          <span>{loading ? 'جاري التحميل...' : 'دخول بحساب Google'}</span>
         </button>
 
-        <div className="mt-8 pt-6 border-t border-slate-200/50">
-          <p className="text-sm text-slate-500 font-bold">
-           قاد حساب باش تحفظ التقدم وتستفد من الدروس المخصصة ليك 🚀
+        <div className="mt-8 pt-6 border-t border-slate-100">
+          <p className="text-xs text-slate-400 font-bold leading-relaxed">
+           قاد حساب فثواني باش تحفظ التقدم ديالك وتستفد من الدروس المخصصة ليك.
           </p>
         </div>
-      </div>
+      </motion.div>
     </div>
   );
 }

@@ -5,7 +5,6 @@ import About from './pages/About';
 import Lessons from './pages/Lessons';
 import Pricing from './pages/Pricing';
 import NotFound from './pages/NotFound';
-import DailyClasses from './pages/DailyClasses';
 import MicroLesson from './components/LessonApp';
 import Worksheets from './components/Worksheets';
 import LessonPDF from './pages/LessonPDF'
@@ -49,7 +48,6 @@ function App() {
             <Route index element={<Home />} />
             <Route path="about" element={<About />} />
             <Route path="lessons" element={<Lessons />} />
-            <Route path="daily-classes" element={<DailyClasses />} />
             <Route path="lesson/:id" element={<MicroLesson />} />
             <Route path="lesson-pdf" element={<LessonPDF />} />
             <Route path="pricing" element={<Pricing />} />

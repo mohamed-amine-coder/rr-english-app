@@ -1,111 +1,138 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { FaBars, FaTimes, FaHome, FaHeadphones, FaQuestionCircle, FaGraduationCap, FaUserCircle, FaSignOutAlt, FaBook, FaEdit, FaChevronDown, FaCalendarDay } from 'react-icons/fa';
+import { 
+  FaBars, FaTimes, FaHome, FaQuestionCircle, FaGraduationCap, 
+  FaUserCircle, FaSignOutAlt, FaBook, FaEdit, FaChevronDown, 
+  FaCalendarDay, FaBolt, FaPenNib
+} from 'react-icons/fa';
 import { useAuth } from '../context/AuthContext';
+import { motion, AnimatePresence } from 'framer-motion';
+
+// استيراد الشخصيات
+import mrRr from '../assets/mr-rr.png';
+import msRr from '../assets/ms-rr.png';
 
 function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
+  const [imgError, setImgError] = useState(false); // حالة الصورة
   const { user, logout } = useAuth();
   
   const closeMenu = () => setIsOpen(false);
   
-  // جمعنا تسجيل الخروج وسدان المينو ففانكشن وحدة
   const handleLogout = () => {
     logout();
     closeMenu();
   };
 
   return (
-    <nav className="sticky top-0 z-50 bg-white/80 backdrop-blur-md border-b border-gray-100 shadow-sm" dir="rtl">
-      <div className="container mx-auto px-6 lg:px-12">
+    <nav className="sticky top-0 z-50 bg-white/90 backdrop-blur-xl border-b border-slate-100 shadow-sm" dir="rtl">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-12">
         <div className="flex items-center justify-between h-20">
           
           {/* اللوغو */}
-          <Link to="/" className="flex items-center gap-3" onClick={closeMenu}>
-            <div className="bg-blue-50 p-2 rounded-xl">
-              <FaGraduationCap className="text-3xl text-blue-600" />
+          <Link to="/" className="flex items-center gap-3 cursor-pointer group" onClick={closeMenu}>
+            <div className="bg-blue-50 p-2.5 rounded-2xl group-hover:bg-blue-100 transition-colors">
+              <FaGraduationCap className="text-2xl sm:text-3xl text-blue-600" />
             </div>
-            <span className="font-black text-2xl tracking-wide text-gray-900">
+            <span className="font-black text-xl sm:text-2xl tracking-wide text-slate-900">
               RR <span className="text-blue-600">ENGLISH</span>
             </span>
           </Link>
 
           {/* قائمة الديسكتوب */}
-          <div className="hidden md:flex items-center gap-10 lg:gap-14">
+          <div className="hidden md:flex items-center gap-10 lg:gap-12">
             <div className="flex items-center gap-8">
-              <Link to="/" className="flex items-center gap-2 text-gray-500 hover:text-blue-600 font-bold transition-colors">
+              <Link to="/" className="flex items-center gap-2 text-slate-600 hover:text-blue-600 font-bold transition-colors cursor-pointer">
                 <FaHome className="text-lg" />
                 <span>الرئيسية</span>
               </Link>
 
-            {/* Dropdown المقرر */}
-            <div className="relative group">
-              <button className="flex items-center gap-2 text-gray-500 hover:text-blue-600 font-bold transition-colors py-2">
-                <FaBook className="text-lg" />
-                <span>المقرر</span>
-                <FaChevronDown className="text-xs transition-transform duration-200 group-hover:rotate-180" />
-              </button>
-              
-              {/* محتوى الـ Dropdown */}
-              <div className="absolute top-full right-0 mt-2 w-48 bg-white rounded-2xl shadow-xl border border-gray-100 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 transform origin-top-right z-50">
-                <div className="p-2 flex flex-col gap-1">
-                  <Link to="/lessons" className="flex items-center gap-3 px-3 py-2.5 text-gray-600 hover:text-blue-600 hover:bg-blue-50 rounded-xl font-bold transition-colors">
-                    <FaBook className="text-sm" />
-                    <span>الدروس</span>
-                  </Link>
-                  <Link to="/worksheets" className="flex items-center gap-3 px-3 py-2.5 text-gray-600 hover:text-blue-600 hover:bg-blue-50 rounded-xl font-bold transition-colors">
-                    <FaBook className="text-sm" />
-                    <span>التمارين</span>
-                  </Link>
-                  <Link to="/daily-classes" className="flex items-center gap-3 px-3 py-2.5 text-gray-600 hover:text-blue-600 hover:bg-blue-50 rounded-xl font-bold transition-colors">
-                    <FaCalendarDay className="text-sm" />
-                    <span>حصص اليوم</span>
-                  </Link>
+              {/* Dropdown المقرر */}
+              <div className="relative group">
+                <button className="flex items-center gap-2 text-slate-600 hover:text-blue-600 font-bold transition-colors py-2 cursor-pointer">
+                  <FaBook className="text-lg" />
+                  <span>المقرر</span>
+                  <FaChevronDown className="text-[10px] transition-transform duration-300 group-hover:rotate-180 mt-1" />
+                </button>
+                
+                {/* محتوى الـ Dropdown */}
+                <div className="absolute top-full right-0 mt-3 w-56 bg-white rounded-2xl shadow-[0_15px_40px_-10px_rgba(0,0,0,0.1)] border border-slate-100 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 transform origin-top-right scale-95 group-hover:scale-100 z-50">
+                  <div className="p-3 flex flex-col gap-1.5 relative overflow-hidden">
+                    <div className="absolute -bottom-4 -left-4 w-16 h-16 bg-blue-50 rounded-full blur-xl -z-10"></div>
+                    
+                    <Link to="/lessons" className="flex items-center gap-3 px-3 py-3 text-slate-700 hover:text-blue-700 hover:bg-blue-50 rounded-xl font-bold transition-all cursor-pointer">
+                      <div className="bg-white shadow-sm p-1.5 rounded-lg text-blue-500"><FaBook className="text-sm" /></div>
+                      <span>الدروس التفاعلية</span>
+                    </Link>
+                    <Link to="/worksheets" className="flex items-center gap-3 px-3 py-3 text-slate-700 hover:text-amber-700 hover:bg-amber-50 rounded-xl font-bold transition-all cursor-pointer">
+                      <div className="bg-white shadow-sm p-1.5 rounded-lg text-amber-500"><FaPenNib className="text-sm" /></div>
+                      <span>التمارين</span>
+                    </Link>
+                  </div>
                 </div>
               </div>
+
+              <Link to="/about" className="flex items-center gap-2 text-slate-600 hover:text-blue-600 font-bold transition-colors cursor-pointer">
+                <FaQuestionCircle className="text-lg" />
+                <span>حول المنصة</span>
+              </Link>
             </div>
 
-            <Link to="/about" className="flex items-center gap-2 text-gray-500 hover:text-blue-600 font-bold transition-colors">
-              <FaQuestionCircle className="text-lg" />
-              <span>حول المنصة</span>
-            </Link>
-            </div>
+            <div className="h-8 w-px bg-slate-200 rounded-full"></div>
 
-            <div className="h-8 w-px bg-gray-200 rounded-full"></div>
-
-            {/* معلومات المستخدم / زر تسجيل الدخول */}
+            {/* معلومات المستخدم / الأزرار */}
             <div>
               {user ? (
-                <div className="flex items-center gap-4 bg-gray-50 py-1.5 px-3 rounded-full border border-gray-100">
+                <div className="flex items-center gap-3 bg-slate-50 py-1.5 pr-4 pl-1.5 rounded-2xl border border-slate-200 shadow-sm transition-all hover:border-blue-200">
+                  
+                  {/* أزرار الأدمن */}
                   {user.role === 'admin' && (
-                    <Link to="/add-lesson" className="bg-blue-100 text-blue-600 p-2 rounded-full hover:bg-blue-200 transition-colors" title="إضافة درس">
-                      <FaEdit className="text-lg" />
-                    </Link>
+                    <div className="flex gap-1.5 ml-2 border-l border-slate-200 pl-3">
+                      <Link to="/add-lesson" className="bg-white text-blue-600 p-2 rounded-xl hover:bg-blue-100 shadow-sm transition-colors cursor-pointer" title="إضافة درس">
+                        <FaEdit className="text-sm" />
+                      </Link>
+                      <Link to="/add-worksheet" className="bg-white text-amber-600 p-2 rounded-xl hover:bg-amber-100 shadow-sm transition-colors cursor-pointer" title="إضافة تمارين">
+                        <FaEdit className="text-sm" />
+                      </Link>
+                    </div>
                   )}
-                  {user.role === 'admin' && (
-                    <Link to="/lesson-pdf" className="bg-blue-100 text-blue-600 p-2 rounded-full hover:bg-blue-200 transition-colors" title="إضافة تمارين">
-                      <FaEdit className="text-lg" />
-                    </Link>
-                  )}
-                  {/* استعملنا px-2 بلاصة pr-2 باش تجي مقادة فالعربية */}
-                  <div className="flex flex-col text-right px-2">
-                    <span className="text-sm font-extrabold text-gray-800">{user.full_name || 'طالب'}</span>
-                    <span className="text-xs text-orange-500 font-bold tracking-wider">{user.xp || 0} XP ⚡</span>
-                  </div>
-                  <Link to="/profile">
-                    <FaUserCircle className="text-4xl text-blue-200 bg-white rounded-full hover:text-blue-400 transition" />
+                  
+                  {/* بيانات الطالب + زر البروفايل */}
+                  <Link to="/profile" className="flex items-center gap-3 cursor-pointer group hover:bg-white p-1 rounded-xl transition-colors">
+                    <div className="flex flex-col text-right">
+                      <span className="text-sm font-black text-slate-800 group-hover:text-blue-600 transition-colors">{user.full_name || 'طالب'}</span>
+                      <span className="text-xs text-amber-500 font-black tracking-wider flex items-center gap-1 justify-end">
+                        <FaBolt className="text-[10px]" /> {user.xp || 0} XP
+                      </span>
+                    </div>
+                    <div className="relative">
+                      {user.avatar_url && !imgError ? (
+                        <img 
+                          src={user.avatar_url} 
+                          alt="avatar" 
+                          onError={() => setImgError(true)}
+                          className="w-10 h-10 rounded-xl object-cover border-2 border-slate-200 shadow-sm group-hover:border-blue-400 group-hover:scale-105 transition-all" 
+                        />
+                      ) : (
+                        <div className="w-10 h-10 rounded-xl border-2 border-slate-200 shadow-sm bg-slate-100 flex items-center justify-center text-slate-400 group-hover:border-blue-400 group-hover:text-blue-500 group-hover:scale-105 transition-all">
+                          <FaUserCircle className="text-2xl" />
+                        </div>
+                      )}
+                      <span className="absolute -bottom-1 -right-1 w-3.5 h-3.5 bg-emerald-400 border-2 border-white rounded-full z-10"></span>
+                    </div>
                   </Link>
+
+                  {/* زر الخروج */}
                   <button
                     onClick={handleLogout}
-                    // استعملنا ms-2 بلاصة ml-2
-                    className="ms-2 bg-red-50 p-2 rounded-full text-red-500 hover:bg-red-500 hover:text-white transition-all"
+                    className="mr-2 bg-white p-2.5 rounded-xl text-rose-500 hover:bg-rose-500 hover:text-white shadow-sm border border-slate-100 transition-all cursor-pointer active:scale-95"
                     title="تسجيل الخروج"
                   >
-                    <FaSignOutAlt className="text-lg" />
+                    <FaSignOutAlt className="text-sm" />
                   </button>
                 </div>
               ) : (
-                <Link to="/login" className="bg-blue-600 text-white px-6 py-2.5 rounded-full font-bold hover:bg-blue-700 transition shadow-md flex items-center gap-2">
+                <Link to="/login" className="bg-slate-900 text-white px-6 py-3 rounded-xl font-black hover:bg-slate-800 transition-all shadow-[0_5px_15px_rgba(15,23,42,0.2)] active:scale-95 flex items-center gap-2 cursor-pointer">
                   تسجيل الدخول
                 </Link>
               )}
@@ -114,80 +141,115 @@ function Navbar() {
 
           {/* زر الموبايل */}
           <div className="md:hidden flex items-center">
-            <button onClick={() => setIsOpen(!isOpen)} className="text-gray-800 bg-gray-50 p-2 rounded-lg hover:bg-gray-100 transition focus:outline-none">
-              {isOpen ? <FaTimes className="text-2xl" /> : <FaBars className="text-2xl" />}
+            <button 
+              onClick={() => setIsOpen(!isOpen)} 
+              className="text-slate-800 bg-slate-50 p-2.5 rounded-xl hover:bg-slate-100 border border-slate-200 transition-all focus:outline-none cursor-pointer active:scale-95"
+            >
+              {isOpen ? <FaTimes className="text-xl" /> : <FaBars className="text-xl" />}
             </button>
           </div>
         </div>
       </div>
 
-      {/* قائمة الموبايل */}
-      {isOpen && (
-        <div className="md:hidden bg-white border-t border-gray-100 shadow-xl absolute w-full">
-          <div className="px-6 py-4 space-y-3">
-            <Link to="/" onClick={closeMenu} className="flex items-center gap-3 px-4 py-3 rounded-xl font-bold text-gray-600 hover:text-blue-600 hover:bg-blue-50 transition">
-              <FaHome className="text-xl" />
-              <span>الرئيسية</span>
-            </Link>
-
-            {/* قسم المقرر فالموبايل مجمع ومقاد */}
-            <div className="bg-slate-50 rounded-2xl p-2 my-2 border border-slate-100">
-              <span className="block px-3 py-2 text-xs font-black text-slate-400">المقرر الدراسي</span>
-              <Link to="/lessons" onClick={closeMenu} className="flex items-center gap-3 px-3 py-3 rounded-xl font-bold text-gray-600 hover:text-blue-600 hover:bg-white transition">
-                <FaBook className="text-xl" />
-                <span>الدروس</span>
+      {/* قائمة الموبايل (Mobile Menu) */}
+      <AnimatePresence>
+        {isOpen && (
+          <motion.div 
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: 'auto' }}
+            exit={{ opacity: 0, height: 0 }}
+            className="md:hidden bg-white border-t border-slate-100 shadow-[0_20px_40px_rgba(0,0,0,0.1)] absolute w-full overflow-hidden"
+          >
+            <div className="px-5 py-6 space-y-4">
+              
+              <Link to="/" onClick={closeMenu} className="flex items-center gap-3 px-4 py-3.5 rounded-2xl font-black text-slate-700 hover:text-blue-600 hover:bg-blue-50 transition-all cursor-pointer">
+                <FaHome className="text-xl text-slate-400" />
+                <span>الرئيسية</span>
               </Link>
-              <Link to="/worksheets" onClick={closeMenu} className="flex items-center gap-3 px-3 py-3 rounded-xl font-bold text-gray-600 hover:text-blue-600 hover:bg-white transition">
-                <FaHeadphones className="text-xl" />
-                <span>التمارين</span>
-              </Link>
-              <Link to="/daily-classes" onClick={closeMenu} className="flex items-center gap-3 px-3 py-3 rounded-xl font-bold text-gray-600 hover:text-blue-600 hover:bg-white transition">
-                <FaCalendarDay className="text-xl" />
-                <span>حصص اليوم</span>
-              </Link>
-            </div>
 
-            {user?.role === 'admin' && (
-              <Link to="/add-lesson" onClick={closeMenu} className="flex items-center gap-3 px-4 py-3 rounded-xl font-bold text-blue-600 bg-blue-50 transition">
-                <FaEdit className="text-xl" />
-                <span>إضافة درس</span>
+              {/* قسم المقرر فالموبايل */}
+              <div className="bg-slate-50 rounded-3xl p-3 border border-slate-100 shadow-inner">
+                <span className="block px-3 py-2 text-[11px] font-black text-slate-400 uppercase tracking-wider mb-1">المقرر الدراسي</span>
+                <Link to="/lessons" onClick={closeMenu} className="flex items-center gap-3 px-3 py-3 rounded-2xl font-bold text-slate-700 hover:text-blue-600 hover:bg-white hover:shadow-sm transition-all cursor-pointer">
+                  <FaBook className="text-lg text-blue-500" />
+                  <span>الدروس التفاعلية</span>
+                </Link>
+                <Link to="/worksheets" onClick={closeMenu} className="flex items-center gap-3 px-3 py-3 rounded-2xl font-bold text-slate-700 hover:text-amber-600 hover:bg-white hover:shadow-sm transition-all cursor-pointer">
+                  <FaPenNib className="text-lg text-amber-500" />
+                  <span>التمارين</span>
+                </Link>
+              </div>
+
+              {/* أزرار الأدمن فالموبايل */}
+              {user?.role === 'admin' && (
+                <div className="flex gap-3">
+                  <Link to="/add-lesson" onClick={closeMenu} className="flex-1 flex justify-center items-center gap-2 p-3 rounded-2xl font-bold text-blue-700 bg-blue-100 transition-all cursor-pointer text-sm">
+                    <FaEdit /> درس جديد
+                  </Link>
+                  <Link to="/add-worksheet" onClick={closeMenu} className="flex-1 flex justify-center items-center gap-2 p-3 rounded-2xl font-bold text-amber-700 bg-amber-100 transition-all cursor-pointer text-sm">
+                    <FaEdit /> تمرين جديد
+                  </Link>
+                </div>
+              )}
+
+              <Link to="/about" onClick={closeMenu} className="flex items-center gap-3 px-4 py-3.5 rounded-2xl font-black text-slate-700 hover:text-blue-600 hover:bg-blue-50 transition-all cursor-pointer">
+                <FaQuestionCircle className="text-xl text-slate-400" />
+                <span>حول المنصة</span>
               </Link>
-            )}
 
-            <Link to="/about" onClick={closeMenu} className="flex items-center gap-3 px-4 py-3 rounded-xl font-bold text-gray-600 hover:text-blue-600 hover:bg-blue-50 transition">
-              <FaQuestionCircle className="text-xl" />
-              <span>حول المنصة</span>
-            </Link>
-
-            <div className="border-t border-gray-100 my-4 pt-4">
-              {user ? (
-                <div className="flex items-center justify-between bg-gray-50 p-4 rounded-xl border border-gray-100">
-                  <div className="flex items-center gap-3">
-                    <Link to="/profile" onClick={closeMenu}>
-                      <FaUserCircle className="text-4xl text-blue-200 bg-white rounded-full" />
-                    </Link>
-                    <div>
-                      <div className="font-extrabold text-gray-800">{user.full_name || 'طالب'}</div>
-                      <div className="text-sm text-orange-500 font-bold">{user.xp || 0} XP</div>
+              {/* قسم اليوزر أو تسجيل الدخول */}
+              <div className="border-t border-slate-100 mt-6 pt-6">
+                {user ? (
+                  <div className="flex flex-col gap-4">
+                    <div className="flex items-center justify-between bg-white p-4 rounded-2xl border-2 border-slate-100 shadow-sm">
+                      <Link to="/profile" onClick={closeMenu} className="flex items-center gap-3 cursor-pointer group hover:bg-slate-50 p-2 rounded-xl transition-colors">
+                        <div className="relative">
+                          {user.avatar_url && !imgError ? (
+                            <img 
+                              src={user.avatar_url} 
+                              alt="avatar" 
+                              onError={() => setImgError(true)}
+                              className="w-12 h-12 rounded-xl object-cover border-2 border-slate-100 group-hover:border-blue-400 transition-colors" 
+                            />
+                          ) : (
+                            <div className="w-12 h-12 rounded-xl border-2 border-slate-100 bg-slate-50 flex items-center justify-center text-slate-400 group-hover:border-blue-400 group-hover:text-blue-500 transition-colors">
+                              <FaUserCircle className="text-3xl" />
+                            </div>
+                          )}
+                          <span className="absolute -bottom-1 -right-1 w-3.5 h-3.5 bg-emerald-400 border-2 border-white rounded-full z-10"></span>
+                        </div>
+                        <div>
+                          <div className="font-black text-slate-800 group-hover:text-blue-600 transition-colors">{user.full_name || 'طالب'}</div>
+                          <div className="text-sm text-amber-500 font-black flex items-center gap-1"><FaBolt className="text-[10px]"/> {user.xp || 0} XP</div>
+                        </div>
+                      </Link>
+                      <button onClick={handleLogout} className="bg-rose-50 p-3.5 rounded-xl text-rose-500 hover:bg-rose-500 hover:text-white transition-all cursor-pointer active:scale-95">
+                        <FaSignOutAlt className="text-lg" />
+                      </button>
+                    </div>
+                    
+                    {/* ترحيب من الشخصيات فالموبايل */}
+                    <div className="flex items-center justify-center gap-3 text-slate-400 text-xs font-bold pt-2">
+                      <img src={mrRr} alt="Mr" className="w-8 h-8 rounded-full border border-slate-200 bg-amber-50" />
+                      <span>مستعد تكمل التعلم ديالك؟ 🚀</span>
+                      <img src={msRr} alt="Ms" className="w-8 h-8 rounded-full border border-slate-200 bg-blue-50" />
                     </div>
                   </div>
-                  <button onClick={handleLogout} className="bg-red-50 p-3 rounded-xl text-red-500 hover:bg-red-500 hover:text-white transition">
-                    <FaSignOutAlt className="text-xl" />
-                  </button>
-                </div>
-              ) : (
-                <Link
-                  to="/login"
-                  onClick={closeMenu}
-                  className="w-full flex justify-center bg-blue-600 text-white px-4 py-3 rounded-xl font-bold shadow-md shadow-blue-200"
-                >
-                  تسجيل الدخول
-                </Link>
-              )}
+                ) : (
+                  <Link
+                    to="/login"
+                    onClick={closeMenu}
+                    className="w-full flex justify-center items-center bg-slate-900 text-white px-4 py-4 rounded-2xl font-black shadow-md active:scale-95 transition-all cursor-pointer text-lg"
+                  >
+                    تسجيل الدخول
+                  </Link>
+                )}
+              </div>
+
             </div>
-          </div>
-        </div>
-      )}
+          </motion.div>
+        )}
+      </AnimatePresence>
     </nav>
   );
 }

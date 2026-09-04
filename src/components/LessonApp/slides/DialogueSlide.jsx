@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
+import { MascotFeedback } from './SharedComponents'; // استيراد المكون
 
 export const DialogueSlide = ({ slide, onDone }) => {
   const [selectedOption, setSelectedOption] = useState(null);
@@ -35,10 +36,16 @@ export const DialogueSlide = ({ slide, onDone }) => {
           );
         })}
       </div>
+      
       {!isSubmitted ? (
         <motion.button disabled={selectedOption === null} onClick={checkAnswer} className="w-full mt-4 py-3 bg-orange-50 text-orange-900 border-2 border-orange-300 rounded-xl font-black border-b-[3px] border-orange-400 active:border-b-0 active:translate-y-1 disabled:opacity-40">جاوب</motion.button>
       ) : (
-        <p className="text-sm text-blue-800 p-3 bg-blue-50 border-2 border-blue-100 rounded-xl [unicode-bidi:plaintext] mt-2 text-center font-bold">{slide.explanation}</p>
+        <MascotFeedback 
+          isCorrect={selectedOption === slide.correctIndex}
+          message={selectedOption === slide.correctIndex ? "ناضي! كمل بهاد الريتم 🎯" : "للأسف غلط! ماشي مشكل هادا هو الصحيح:"}
+          correction={selectedOption !== slide.correctIndex ? slide.options[slide.correctIndex] : null}
+          explanation={slide.explanation}
+        />
       )}
     </motion.div>
   );

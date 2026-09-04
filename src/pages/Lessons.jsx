@@ -1,14 +1,140 @@
 import { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { supabase } from '../config/supabaseClient';
 import { useAuth } from '../context/AuthContext';
-import { FaCheckCircle, FaLock } from 'react-icons/fa';
+import { FaCheckCircle, FaLock, FaSpinner, FaPlay, FaRedo, FaRocket, FaCrown, FaBolt } from 'react-icons/fa';
 import { motion } from 'framer-motion';
 
+// استيراد الشخصيات
+import mrRr from '../assets/mr-rr.png';
+import msRr from '../assets/ms-rr.png';
+
+// 1. مكون الكارت الأفقية للدرس بتصميم تحفيزي وفخم
+const InteractiveLessonCard = ({ lesson, index, isCompleted, isAuthorized, onActionClick }) => {
+  // التناوب بين الشخصيات
+  const currentMascot = index % 2 === 0 ? mrRr : msRr;
+
+  // تحديد الألوان حسب حالة الدرس (مكتمل، متاح، مقفول)
+  let statusTheme = {
+    bg: 'bg-gradient-to-br from-blue-50 to-indigo-50',
+    glow: 'bg-blue-400',
+    border: 'hover:border-blue-300',
+    iconBg: 'bg-blue-600 border-blue-400 text-white',
+    icon: <FaPlay className="text-xl ml-1" />,
+    textHover: 'group-hover:text-blue-600'
+  };
+
+  if (isCompleted) {
+    statusTheme = {
+      bg: 'bg-gradient-to-br from-emerald-50 to-teal-50',
+      glow: 'bg-emerald-400',
+      border: 'hover:border-emerald-300 border-emerald-100',
+      iconBg: 'bg-emerald-500 border-emerald-400 text-white',
+      icon: <FaRedo className="text-xl" />,
+      textHover: 'group-hover:text-emerald-600'
+    };
+  } else if (!isAuthorized) {
+    statusTheme = {
+      bg: 'bg-gradient-to-br from-slate-50 to-slate-100',
+      glow: 'bg-slate-400',
+      border: 'hover:border-amber-300',
+      iconBg: 'bg-slate-100 border-slate-200 text-slate-500',
+      icon: <FaLock className="text-xl" />,
+      textHover: 'group-hover:text-amber-600'
+    };
+  }
+
+  return (
+    <motion.div 
+      initial={{ opacity: 0, y: 15 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ delay: index * 0.04 }}
+      onClick={() => onActionClick(lesson, isAuthorized)}
+      className={`group flex flex-col sm:flex-row bg-white rounded-3xl shadow-sm hover:shadow-xl border-2 border-slate-100 ${statusTheme.border} overflow-hidden transition-all duration-300 cursor-pointer relative`}
+    >
+      {/* جهة الصورة والشخصية */}
+      <div className={`relative w-full sm:w-[35%] shrink-0 ${statusTheme.bg} flex items-center justify-center p-4 overflow-hidden border-b-2 sm:border-b-0 sm:border-l-2 border-slate-100`}>
+        
+        {/* إضاءة دائرية فالخلفية */}
+        <div className={`absolute w-24 h-24 rounded-full blur-2xl opacity-30 transition-transform duration-700 group-hover:scale-150 ${statusTheme.glow}`}></div>
+
+        {/* صورة الشخصية */}
+        <img 
+          src={currentMascot} 
+          alt="Mascot" 
+          className="relative z-10 w-20 h-20 sm:w-24 sm:h-24 object-cover rounded-2xl border-4 border-white shadow-md group-hover:-translate-y-2 transition-transform duration-500" 
+        />
+        
+        {/* طبقة ضبابية كطّلع فالهوفر فيها الأيقونة (Play / Redo / Lock) */}
+        <div className="absolute inset-0 bg-white/40 backdrop-blur-[2px] opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-20 flex items-center justify-center">
+          <div className={`w-14 h-14 rounded-2xl flex items-center justify-center shadow-lg border-2 transition-transform group-hover:scale-110 ${statusTheme.iconBg}`}>
+            {statusTheme.icon}
+          </div>
+        </div>
+
+        {/* شريط التقدم الوهمي / الزينة لتحت */}
+        <div className="absolute bottom-0 left-0 w-full h-1 bg-slate-200 z-30">
+          {isCompleted && <div className="h-full w-full bg-emerald-500"></div>}
+          {!isCompleted && isAuthorized && <div className="h-full w-[15%] bg-blue-500"></div>}
+        </div>
+      </div>
+
+      {/* جهة التفاصيل والوصف */}
+      <div className="p-5 flex-1 flex flex-col justify-center bg-white relative">
+        
+        <div className="flex justify-between items-start mb-3">
+          {/* بادج الحالة (مكتمل أو رقم الدرس) */}
+          {isCompleted ? (
+            <span className="bg-emerald-50 border border-emerald-200 text-emerald-700 text-[11px] font-black px-2.5 py-1 rounded-lg shadow-sm flex items-center gap-1.5">
+              <FaCheckCircle /> مكتمل
+            </span>
+          ) : (
+            <span className="bg-blue-50 border border-blue-100 text-blue-700 text-[11px] font-black px-2.5 py-1 rounded-lg shadow-sm">
+              الدرس {index + 1}
+            </span>
+          )}
+
+          {/* بادج المجاني / المدفوع */}
+          {!lesson.is_premium ? (
+            <span className="text-emerald-500 text-[10px] font-black tracking-wider bg-emerald-50/50 border border-emerald-100 px-2 py-1 rounded-md">
+              مجاني 🎁
+            </span>
+          ) : (
+            <span className="text-amber-500 text-[10px] font-black tracking-wider bg-amber-50/50 border border-amber-100 px-2 py-1 rounded-md flex items-center gap-1">
+              <FaCrown className="text-[10px]" /> Premium
+            </span>
+          )}
+        </div>
+        
+        <h2 className={`text-lg sm:text-xl font-black text-slate-800 mb-2 transition-colors ${statusTheme.textHover} [unicode-bidi:plaintext]`}>
+          {lesson.title}
+        </h2>
+        
+        {lesson.description_darija && (
+          <p className="text-slate-500 text-xs sm:text-sm font-bold leading-relaxed line-clamp-2 [unicode-bidi:plaintext]">
+            {lesson.description_darija}
+          </p>
+        )}
+
+        {/* سطر تحفيزي صغير لتحت */}
+        {!isCompleted && isAuthorized && (
+          <div className="mt-3 flex items-center gap-1.5 text-[10px] font-black text-amber-500">
+            <FaBolt className="animate-pulse" />
+            <span>قرا هاد الدرس وجمع الـ XP دابا!</span>
+          </div>
+        )}
+      </div>
+    </motion.div>
+  );
+};
+
+
+// 2. المكون الرئيسي
 function Lessons() {
   const { user } = useAuth();
+  const navigate = useNavigate();
   const [lessons, setLessons] = useState([]);
-  const [completedLessons, setCompletedLessons] = useState([]); // هادي غنخبيو فيها IDs ديال الدروس المكتملة
+  const [completedLessons, setCompletedLessons] = useState([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -17,16 +143,13 @@ function Lessons() {
     async function fetchData() {
       setLoading(true);
       try {
-        // 1. كنجيبو جميع الدروس مرتبين من القديم للجديد
-        // 1. Kanjibo jmi3 dorous
         const { data: lessonsData, error: lessonsError } = await supabase
-          .from('lessons') // Kant lessonsTitles
+          .from('lessons')
           .select('*')
           .order('created_at', { ascending: true });
 
         if (lessonsError) throw lessonsError;
 
-        // 2. كنجيبو التقدم ديال الطالب (إلا كان مكونيكطي)
         let completedIds = [];
         if (user?.id) {
           const { data: progressData, error: progressError } = await supabase
@@ -57,139 +180,74 @@ function Lessons() {
     };
   }, [user]);
 
+  // دالة التعامل مع الكليك
+  const handleActionClick = (lesson, isAuthorized) => {
+    if (isAuthorized) {
+      navigate(`/lesson/${lesson.slug}`);
+    } else {
+      navigate('/pricing');
+    }
+  };
+
   return (
-    <div className="min-h-screen bg-white py-8 px-4 sm:px-6 lg:px-8 overflow-x-hidden" dir="rtl">
-      <div className="max-w-4xl mx-auto px-2">
+    <div className="min-h-screen bg-slate-50 py-10 px-4 sm:px-6 lg:px-8 overflow-x-hidden font-sans selection:bg-blue-200" dir="rtl">
+      <div className="max-w-5xl mx-auto">
         
-        {/* الهيدر */}
-        <motion.div className="text-center mb-10" initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.32 }}>
-          <h1 className="text-3xl sm:text-4xl font-extrabold text-blue-800 tracking-tight mb-3 [unicode-bidi:plaintext]">
-            البرنامج الدراسي
+        {/* الهيدر التحفيزي */}
+        <motion.div 
+          className="text-center mb-10" 
+          initial={{ opacity: 0, y: 8 }} 
+          animate={{ opacity: 1, y: 0 }} 
+          transition={{ duration: 0.32 }}
+        >
+          <div className="inline-flex items-center gap-2 bg-blue-100 border border-blue-200 text-blue-800 px-4 py-1.5 rounded-full text-xs sm:text-sm font-black mb-4 shadow-sm">
+            <FaRocket className="text-blue-600" />
+            <span>مسار الإتقان والطلاقة</span>
+          </div>
+          <h1 className="text-3xl sm:text-5xl font-black text-slate-900 mb-4 tracking-tight [unicode-bidi:plaintext]">
+            البرنامج <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600">الدراسي</span>
           </h1>
-          <p className="text-base sm:text-lg text-blue-800/75 max-w-xl mx-auto [unicode-bidi:plaintext]">
-            اختار الدرس اللي بغيتي تبدا فيه، وكمل التحديات باش تجمع النقاط.
+          <p className="text-slate-600 text-xs sm:text-base font-bold max-w-xl mx-auto leading-relaxed [unicode-bidi:plaintext]">
+            كل درس كتكملو كيقربك خطوة للطلاقة وكيعطيك XP باش تشارك فالحصص المباشرة. اختار الدرس وبدا تجمع النقط دابا!
           </p>
         </motion.div>
 
         {/* الأنيميشن ديال التحميل */}
         {loading ? (
-          <div className="space-y-6">
-            {[1, 2, 3].map((n) => (
-              <div key={n} className="bg-white border border-gray-100 rounded-2xl p-6 animate-pulse shadow-sm">
-                <div className="h-6 bg-blue-50 rounded-md w-1/3 mb-6"></div>
-                <div className="space-y-3">
-                  <div className="h-12 bg-gray-100 rounded-xl"></div>
-                  <div className="h-12 bg-gray-100 rounded-xl"></div>
-                </div>
-              </div>
-            ))}
+          <div className="flex flex-col items-center justify-center py-20 gap-4 text-blue-800/70 font-bold">
+            <FaSpinner className="animate-spin text-4xl text-blue-600" />
+            <span className="text-lg">جاري تجهيز مسار الدروس...</span>
           </div>
         ) : lessons.length === 0 ? (
           <div className="bg-white rounded-3xl border border-gray-100 p-12 text-center shadow-sm">
-            <p className="text-blue-800/70 font-semibold text-lg [unicode-bidi:plaintext]">باقي ما كاين حتى درس حالياً! ضيف الدروس من لوحة التحكم.</p>
+            <p className="text-blue-800/70 font-semibold text-lg [unicode-bidi:plaintext]">
+              كاين شي مشكل فالاتصال بالأنترنيت 🌐. تأكد من الكونيكسيون وعاود ريفريشي الصفحة.
+            </p>
           </div>
         ) : (
-          /* الواجهة ديال الدروس */
-          <motion.div className="bg-white rounded-2xl border border-gray-100 p-4 md:p-6 lg:p-8 shadow-sm" initial={{ opacity: 0, y: 6 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.32 }}>
-            <div className="mb-5">
-              <span className="text-xs font-bold tracking-wide text-blue-800 uppercase bg-blue-50 px-3 py-1 rounded-md [unicode-bidi:plaintext]">
-                RR English
-              </span>
-              <h2 className="text-xl md:text-2xl font-extrabold text-blue-800 mt-3 [unicode-bidi:plaintext]">
-                جميع الدروس
-              </h2>
-            </div>
+          /* شبكة الكروت التفاعلية */
+          <motion.div 
+            className="grid grid-cols-1 md:grid-cols-2 gap-5 sm:gap-6" 
+            initial={{ opacity: 0, y: 6 }} 
+            animate={{ opacity: 1, y: 0 }} 
+            transition={{ duration: 0.32 }}
+          >
+            {lessons.map((lesson, index) => {
+              const isCompleted = completedLessons.includes(lesson.id);
+              const isPremium = lesson.is_premium;
+              const isAuthorized = !isPremium || user?.role === 'admin' || user?.plan === 'Premium';
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              {lessons.map((lesson, index) => {
-                // كنفحصو واش هاد الدرس كاين فليستة الدروس لي سالا الطالب
-                const isCompleted = completedLessons.includes(lesson.id);
-
-                return (
-                  <motion.div
-                    key={lesson.id}
-                    className={`group flex flex-col sm:flex-row sm:items-center justify-between p-4 rounded-2xl border transition-all duration-200 gap-4 ${
-                      isCompleted 
-                        ? 'bg-green-100 border-green-100 hover:border-green-200' 
-                        : 'bg-blue-50/60 hover:bg-blue-50/40 border-transparent hover:border-blue-100'
-                    }`}
-                    initial={{ opacity: 0, y: 8 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.3, delay: index * 0.04 }}
-                    whileHover={{ y: -3 }}
-                  >
-                    {/* معلومات الدرس */}
-                    <div className="flex items-start gap-4">
-                      <div className={`flex items-center justify-center w-8 h-8 rounded-xl border text-xs font-bold shrink-0 mt-0.5 transition-colors ${
-                        isCompleted 
-                          ? 'bg-blue-800 border-blue-900 text-white shadow-sm' 
-                          : 'bg-white border-gray-200 text-gray-500 group-hover:border-blue-200 group-hover:text-blue-600'
-                      }`}>
-                        {isCompleted ? <FaCheckCircle className="text-sm" /> : index + 1}
-                      </div>
-                      <div className="space-y-1">
-                        <h3 className={`font-semibold text-right transition-colors ${
-                          isCompleted ? 'text-blue-900' : 'text-gray-800 group-hover:text-blue-600'
-                        } [unicode-bidi:plaintext]`}>
-                          {lesson.title}
-                        </h3>
-                        {lesson.description_darija && (
-                          <p className={`text-xs text-right leading-relaxed font-medium ${
-                            isCompleted ? 'text-blue-800/70' : 'text-gray-500'
-                          } [unicode-bidi:plaintext]`}>
-                            {lesson.description_darija}
-                          </p>
-                        )}
-                      </div>
-                    </div>
-                    
-                    {/* زر بدأ الدرس */}
-                    {/* <Link
-                      to={`/lesson/${lesson.slug}`}
-                      className={`text-sm font-bold px-4 py-2.5 rounded-xl border transition-all duration-150 shadow-sm active:scale-95 text-center shrink-0 [unicode-bidi:plaintext] ${
-                        isCompleted 
-                          ? 'bg-white text-blue-800 border-blue-100 hover:bg-blue-50' 
-                          : 'bg-orange-500 hover:bg-orange-600 text-white border-transparent'
-                      }`}
-                    >
-                      <span className="inline-block px-1">{isCompleted ? 'مراجعة' : 'بدأ الدرس'}</span>
-                    </Link> */}
-                    {(() => {
-                      // كنشوفو واش الدرس بريميوم
-                      const isPremium = lesson.is_premium;
-                      
-                      // مسموح ليه يلا: الدرس فابور، أو هو أدمين، أو الخطة ديالو Premium
-                      const isAuthorized = !isPremium || user?.role === 'admin' || user?.plan === 'Premium';
-
-                      if (isAuthorized) {
-                        return (
-                          <Link
-                            to={`/lesson/${lesson.slug}`}
-                            className={`text-sm font-bold px-5 py-2.5 rounded-xl border transition-all duration-200 shadow-sm active:scale-95 text-center shrink-0 ${
-                              isCompleted 
-                                ? 'bg-white text-emerald-600 border-emerald-200 hover:bg-emerald-50' 
-                                : 'bg-white hover:bg-blue-600 text-gray-700 hover:text-white border-gray-200 hover:border-blue-600'
-                            }`}
-                          >
-                            {isCompleted ? 'مراجعة' : 'بدأ الدرس'}
-                          </Link>
-                        );
-                      } else {
-                        return (
-                          <Link
-                            to="/pricing"
-                            className="flex items-center justify-center gap-2 text-sm font-black px-5 py-2.5 rounded-xl border-2 border-amber-200 bg-amber-50 text-amber-600 hover:bg-amber-100 transition-all duration-200 shadow-sm shrink-0"
-                          >
-                            <FaLock className="text-xs" />
-                            <span>مقفول</span>
-                          </Link>
-                        );
-                      }
-                    })()}
-                  </motion.div>
-                );
-              })}
-            </div>
+              return (
+                <InteractiveLessonCard
+                  key={lesson.id}
+                  lesson={lesson}
+                  index={index}
+                  isCompleted={isCompleted}
+                  isAuthorized={isAuthorized}
+                  onActionClick={handleActionClick}
+                />
+              );
+            })}
           </motion.div>
         )}
       </div>

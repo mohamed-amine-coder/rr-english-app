@@ -2,7 +2,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import confetti from 'canvas-confetti';
-import { FaChevronLeft, FaChevronRight, FaVolumeUp } from 'react-icons/fa';
+import { FaChevronLeft, FaChevronRight, FaVolumeUp, FaTimes } from 'react-icons/fa';
 import { useParams, useNavigate } from 'react-router-dom';
 import { useLesson } from '../../hooks/useLesson';
 import { useProgress } from '../../hooks/useProgress';
@@ -27,7 +27,7 @@ export default function MicroLesson() {
   const [isCompleted, setIsCompleted] = useState(false);
   const [xp, setXp] = useState(0);
   const [canProceed, setCanProceed] = useState(false);
-  const [isNextLoading, setIsNextLoading] = useState(false); // حالة التحميل ديال الدرس الجاي
+  const [isNextLoading, setIsNextLoading] = useState(false);
   const xpRef = useRef(0);
 
   useEffect(() => {
@@ -70,13 +70,11 @@ export default function MicroLesson() {
     confetti({ particleCount: 120, spread: 80, origin: { y: 0.6 } });
   };
 
-  // دالة إعادة الدرس
   const handleRestart = () => {
     setCurrentIndex(0);
     setIsCompleted(false);
   };
 
-  // دالة المرور للدرس القادم
   const handleNextLesson = async () => {
     if (!currentLesson?.created_at) {
       navigate('/lessons');
@@ -85,7 +83,6 @@ export default function MicroLesson() {
     
     setIsNextLoading(true);
     try {
-      // كنقلبو فجدول lessons على أول درس تكرية من بعد الدرس الحالي
       const { data, error } = await supabase
         .from('lessons')
         .select('slug')
@@ -116,11 +113,21 @@ export default function MicroLesson() {
   }
 
   return (
-    <div className="min-h-screen bg-slate-100/60 flex flex-col items-center justify-center p-3 sm:p-6 font-sans select-none dir-rtl">
+    // التغيير الرئيسي هنا: فالموبايل كياخد الشاشة كاملة (fixed inset-0 h-[100dvh]) وفالحاسوب كيرجع عادي
+    <div className="fixed inset-0 z-[100] bg-slate-50 flex flex-col h-[100dvh] w-full md:static md:z-auto md:bg-transparent md:min-h-[80vh] md:h-auto md:items-center md:justify-center md:py-8 font-sans select-none dir-rtl">
       
-      <Header currentIndex={currentIndex} total={lessonSlides.length} progress={progress} />
+      {/* الهيدر مع زر الإغلاق فالموبايل باش يقدرو يخرجو حيت خبينا النافبار */}
+      <div className="w-full max-w-4xl px-4 pt-6 pb-2 md:p-0 flex items-center gap-4">
+        <button onClick={() => navigate('/lessons')} className="md:hidden text-slate-400 hover:text-slate-700 cursor-pointer p-1">
+          <FaTimes className="text-xl" />
+        </button>
+        <div className="flex-1">
+          <Header currentIndex={currentIndex} total={lessonSlides.length} progress={progress} />
+        </div>
+      </div>
 
-      <div className="w-full max-w-2xl bg-white border-[3.5px] border-slate-900 rounded-[2.5rem] shadow-[0_10px_0_#0F172A] flex flex-col h-[580px] sm:h-[540px] relative overflow-hidden">
+      {/* الكونتينر ديال الدرس - كبير وعريض فالحاسوب، و Full-screen فالموبايل */}
+      <div className="w-full flex-1 flex flex-col bg-white md:max-w-4xl md:border-[3.5px] md:border-slate-900 md:rounded-[2.5rem] md:shadow-[0_10px_0_#0F172A] md:h-[650px] relative overflow-hidden">
         
         {!isCompleted ? (
           <>
@@ -133,7 +140,7 @@ export default function MicroLesson() {
               </span>
             </div>
 
-            <div className="flex-1 p-5 sm:p-7 overflow-y-auto flex flex-col justify-center relative">
+            <div className="flex-1 p-5 sm:p-8 overflow-y-auto flex flex-col justify-center relative">
               <AnimatePresence mode="wait">
                 <motion.div
                   key={currentIndex}
@@ -160,7 +167,7 @@ export default function MicroLesson() {
               <button
                 onClick={() => setCurrentIndex(c => Math.max(0, c - 1))}
                 disabled={currentIndex === 0}
-                className="text-slate-400 hover:text-slate-700 font-black text-sm px-4 py-2 disabled:opacity-0 transition-opacity"
+                className="text-slate-400 hover:text-slate-700 font-black text-sm px-4 py-2 disabled:opacity-0 transition-opacity cursor-pointer disabled:cursor-default"
               >
                 السابق
               </button>
@@ -168,7 +175,7 @@ export default function MicroLesson() {
               <button
                 disabled={!canProceed || saving}
                 onClick={handleNext}
-                className="flex items-center gap-2 bg-indigo-600 hover:bg-indigo-700 disabled:opacity-30 disabled:hover:bg-indigo-600 text-white font-black px-8 py-3.5 rounded-2xl text-base border-b-4 border-indigo-950 active:border-b-0 active:translate-y-1 shadow-md transition-all cursor-pointer"
+                className="flex items-center gap-2 bg-indigo-600 hover:bg-indigo-700 disabled:opacity-30 disabled:hover:bg-indigo-600 text-white font-black px-8 py-3.5 rounded-2xl text-base md:text-lg border-b-4 border-indigo-950 active:border-b-0 active:translate-y-1 shadow-md transition-all cursor-pointer disabled:cursor-not-allowed"
               >
                 <span>{saving ? 'كنسجلو...' : currentIndex === lessonSlides.length - 1 ? 'سالينا 🎉' : 'دوز ➔'}</span>
               </button>

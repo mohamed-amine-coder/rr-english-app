@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
-import { FaCheckCircle, FaTimesCircle } from 'react-icons/fa';
 import { TextWrapper } from './TextWrapper';
+import { MascotFeedback } from './SharedComponents'; // استيراد المكون
 
 export const GapFillSlide = ({ slide, onDone }) => {
   const [selectedOption, setSelectedOption] = useState(null);
@@ -23,14 +23,10 @@ export const GapFillSlide = ({ slide, onDone }) => {
 
   const renderSentence = () => {
     const parts = (slide.sentence || '').split(/(_{3,})/g);
-
     return parts.map((part, index) => {
       if (/^_{3,}$/.test(part)) {
-        return (
-          <span key={index} className="mx-2 inline-block min-w-[90px] border-b-2 border-slate-900" />
-        );
+        return <span key={index} className="mx-2 inline-block min-w-[90px] border-b-2 border-slate-900" />;
       }
-
       return <TextWrapper key={index} text={part} />;
     });
   };
@@ -69,24 +65,11 @@ export const GapFillSlide = ({ slide, onDone }) => {
       </div>
 
       {isSubmitted && (
-        <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="rounded-xl border-2 p-4 text-sm font-bold [unicode-bidi:plaintext]">
-          {selectedOption === slide.correctIndex ? (
-            <div className="flex items-center gap-3 bg-orange-100 border-orange-200 text-orange-800 p-3 rounded-lg">
-              <FaCheckCircle className="text-2xl" />
-              <span>برافو! هذا صحيح.</span>
-            </div>
-          ) : (
-            <div className="flex flex-col gap-2 bg-rose-100 border-rose-200 text-rose-900 p-3 rounded-lg">
-              <div className="flex items-center gap-3 [unicode-bidi:plaintext]">
-                <FaTimesCircle className="text-2xl" />
-                <span>خطأ! الجواب الصحيح هو:</span>
-              </div>
-              <span className="rounded-xl bg-white px-3 py-2 border border-rose-200 w-fit">
-                <TextWrapper text={slide.options?.[slide.correctIndex] || ''} />
-              </span>
-            </div>
-          )}
-        </motion.div>
+        <MascotFeedback 
+          isCorrect={selectedOption === slide.correctIndex}
+          message={selectedOption === slide.correctIndex ? "برافو! الجواب ديالك صحيح 👏" : "ركز شويا! الجواب الصحيح هو:"}
+          correction={selectedOption !== slide.correctIndex ? <TextWrapper text={slide.options?.[slide.correctIndex] || ''} /> : null}
+        />
       )}
     </motion.div>
   );

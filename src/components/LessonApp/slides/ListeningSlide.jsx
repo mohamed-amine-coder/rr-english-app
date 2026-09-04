@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
-import { FaCheckCircle, FaTimesCircle } from 'react-icons/fa';
-import { AudioButton } from './SharedComponents';
+import { AudioButton, MascotFeedback } from './SharedComponents';
 import { TextWrapper } from './TextWrapper';
 
 export const ListeningSlide = ({ slide, onDone }) => {
@@ -48,7 +47,7 @@ export const ListeningSlide = ({ slide, onDone }) => {
               key={index}
               disabled={isSubmitted}
               onClick={() => handleSelect(index)}
-              className={`w-full rounded-xl p-3 md:p-4 text-right font-bold transition-all ${btnClass} active:border-b-0 active:translate-y-1`}
+              className={`w-full rounded-xl p-3 md:p-4 text-right font-bold transition-all ${btnClass} active:border-b-0 active:translate-y-1 cursor-pointer disabled:cursor-default`}
             >
               <TextWrapper text={option} />
             </motion.button>
@@ -57,24 +56,11 @@ export const ListeningSlide = ({ slide, onDone }) => {
       </div>
 
       {isSubmitted && (
-        <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="rounded-xl border-2 p-4 text-sm font-bold dir-rtl">
-          {selectedOption === slide.correctIndex ? (
-            <div className="flex items-center gap-3 bg-emerald-100 border-emerald-400 text-emerald-900">
-              <FaCheckCircle className="text-2xl" />
-              <span>صحيح! الاستماع كان ممتازًا.</span>
-            </div>
-          ) : (
-            <div className="flex flex-col gap-2 bg-rose-100 border-rose-400 text-rose-900">
-              <div className="flex items-center gap-3">
-                <FaTimesCircle className="text-2xl" />
-                <span>أه! الجواب الصحيح هو:</span>
-              </div>
-              <span className="rounded-xl bg-white px-3 py-2 border border-rose-200 w-fit">
-                <TextWrapper text={slide.options?.[slide.correctIndex] || ''} />
-              </span>
-            </div>
-          )}
-        </motion.div>
+        <MascotFeedback 
+          isCorrect={selectedOption === slide.correctIndex}
+          message={selectedOption === slide.correctIndex ? "صحيح! الاستماع ديالك ناضي 🎧" : "أه! الجواب الصحيح هو:"}
+          correction={selectedOption !== slide.correctIndex ? <TextWrapper text={slide.options?.[slide.correctIndex] || ''} /> : null}
+        />
       )}
     </div>
   );
