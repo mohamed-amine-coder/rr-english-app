@@ -1,17 +1,16 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { 
-  FaWhatsapp, FaCheck, FaWifi, 
-  FaQuestionCircle, FaChevronDown, FaChevronUp, 
+  FaWhatsapp, FaQuestionCircle, FaChevronDown, FaChevronUp, 
   FaLock, FaCrown, FaVideo, 
-  FaLaptopCode, FaUsers, FaComments, FaBolt,
-  FaExclamationCircle, FaLightbulb
+  FaExclamationCircle, FaLightbulb,
+  FaGraduationCap, FaUserTie, FaLaptopCode
 } from 'react-icons/fa';
 import mrRr from '../assets/mr-rr.png';
 import msRr from '../assets/ms-rr.png';
 
 export default function Pricing() {
-  const whatsappNumber = '212600000000'; // بدلو برقمك
+  const whatsappNumber = '+212718090887'; // بدلو برقمك
 
   const getWhatsappUrl = (planName) => {
     const message = encodeURIComponent(`السلام عليكم، بغيت نشترك فـ ${planName}`);
@@ -19,6 +18,7 @@ export default function Pricing() {
   };
 
   const [openFaq, setOpenFaq] = useState(null);
+  const [isStudent, setIsStudent] = useState(true);
 
   const faqs = [
     {
@@ -43,7 +43,6 @@ export default function Pricing() {
     }
   ];
 
-  // إعدادات الأنيميشن
   const containerVariants = {
     hidden: { opacity: 0 },
     show: {
@@ -58,7 +57,7 @@ export default function Pricing() {
   };
 
   return (
-    <div className="min-h-screen bg-slate-50 py-12 px-4 sm:px-6 lg:px-8 dir-rtl font-sans overflow-hidden">
+    <div className="min-h-screen bg-slate-50 py-10 px-4 sm:px-6 lg:px-8 dir-rtl font-sans overflow-hidden">
       <motion.div 
         variants={containerVariants}
         initial="hidden"
@@ -66,128 +65,221 @@ export default function Pricing() {
         className="max-w-5xl mx-auto"
       >
 
-        {/* الهيدر الواثق والمباشر */}
-        <motion.div variants={itemVariants} className="text-center mb-16">
-          <div className="inline-flex items-center gap-2 bg-amber-100 border border-amber-200 text-amber-900 text-xs sm:text-sm font-black px-4 py-1.5 rounded-full mb-5 shadow-sm">
+        {/* الهيدر */}
+        <motion.div variants={itemVariants} className="text-center mb-10 sm:mb-14">
+          <div className="inline-flex items-center gap-2 bg-amber-100 border border-amber-200 text-amber-900 text-xs sm:text-sm font-black px-4 py-1.5 rounded-full mb-4 shadow-sm">
             <FaLock className="text-amber-600 text-sm" />
             <span>هاد الدرس داخل فالمحتوى المدفوع</span>
           </div>
-          <h1 className="text-3xl sm:text-5xl font-black text-slate-900 tracking-tight mb-8 leading-tight">
+          <h1 className="text-2xl sm:text-4xl md:text-5xl font-black text-slate-900 tracking-tight mb-6 leading-tight">
             جودة <span className="text-blue-600">أعلى</span>، وثمن <span className="text-blue-600">أقل</span>.. باش حتى واحد ما يبقى بلاش!
           </h1>
           
-          <div className="max-w-4xl mx-auto flex flex-col gap-4">
-            {/* الأسئلة المستفزة (على شكل كروت) */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-right">
-              <motion.div whileHover={{ y: -3 }} className="bg-white border-2 border-rose-100 p-5 rounded-2xl shadow-sm flex items-start gap-4 hover:border-rose-300 transition-colors">
-                <div className="w-10 h-10 rounded-full bg-rose-100 text-rose-500 flex items-center justify-center shrink-0 text-lg">
+          <div className="max-w-3xl mx-auto flex flex-col gap-3">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-3 text-right">
+              <div className="bg-white border-2 border-rose-100 p-4 rounded-2xl shadow-sm flex items-start gap-3">
+                <div className="w-9 h-9 rounded-full bg-rose-100 text-rose-500 flex items-center justify-center shrink-0">
                   <FaQuestionCircle />
                 </div>
-                <p className="text-slate-700 font-bold text-sm leading-relaxed mt-1">
-                  واش كيجيك منطقي تخلص فلوس صحيحة باش تجلس فقسم عامر بـ 20 واحد، وتضيع وقتك كتسمع داكشي لي تقدر تقراه بوحدك؟
+                <p className="text-slate-700 font-bold text-xs sm:text-sm leading-relaxed">
+                  كتخلص فلوس صحيحة باش تجلس فقسم فيه 20 واحد وتسمع داكشي لي تقدر تقراه بوحدك؟
                 </p>
-              </motion.div>
+              </div>
 
-              <motion.div whileHover={{ y: -3 }} className="bg-white border-2 border-rose-100 p-5 rounded-2xl shadow-sm flex items-start gap-4 hover:border-rose-300 transition-colors">
-                <div className="w-10 h-10 rounded-full bg-rose-100 text-rose-500 flex items-center justify-center shrink-0 text-lg">
+              <div className="bg-white border-2 border-rose-100 p-4 rounded-2xl shadow-sm flex items-start gap-3">
+                <div className="w-9 h-9 rounded-full bg-rose-100 text-rose-500 flex items-center justify-center shrink-0">
                   <FaExclamationCircle />
                 </div>
-                <p className="text-slate-700 font-bold text-sm leading-relaxed mt-1">
-                  واش ماحسيتيش بلي كيبيعو ليك الوهم فحصص كيمشي نصها غير فتقطاع الهضرة وشرح الأستاذ؟
+                <p className="text-slate-700 font-bold text-xs sm:text-sm leading-relaxed">
+                  كتضيع وقتك فحصص كيمشي نصها غير فتقطاع الهضرة وشرح القواعد المملة؟
                 </p>
-              </motion.div>
+              </div>
             </div>
 
-            {/* الجواب / قالبنا الآية */}
-            <motion.div whileHover={{ y: -3 }} className="bg-emerald-50 border-2 border-emerald-200 p-5 sm:p-6 rounded-2xl shadow-sm flex items-start sm:items-center gap-4 text-right mt-2">
-              <div className="w-12 h-12 rounded-full bg-emerald-500 text-white flex items-center justify-center shrink-0 text-xl shadow-md">
+            <div className="bg-emerald-50 border-2 border-emerald-200 p-4 rounded-2xl shadow-sm flex items-center gap-3 text-right">
+              <div className="w-10 h-10 rounded-full bg-emerald-500 text-white flex items-center justify-center shrink-0 text-lg shadow-md">
                 <FaLightbulb />
               </div>
-              <p className="text-emerald-950 font-black text-sm sm:text-base leading-relaxed">
-                حنا قلبنا هاد اللعبة: <span className="font-bold text-emerald-800">المنصة كتعطيك الشرح والتمارين والملخصات، أما الحصص كتدخل ليهم غير باش تهضر وتطبق نتا وصحابك والأستاذ يصحح ليكم.</span>
+              <p className="text-emerald-950 font-black text-xs sm:text-sm leading-relaxed">
+                حنا قلبنا اللعبة: <span className="font-bold text-emerald-800">المنصة كتعطيك الشرح والتمارين، والحصص كتدخل ليهم غير باش تهضر وتطبق والأستاذ يصحح ليك.</span>
               </p>
-            </motion.div>
+            </div>
           </div>
         </motion.div>
 
-        {/* سلم القيمة */}
-        <motion.div variants={containerVariants} className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16 items-center max-w-4xl mx-auto">
+        {/* سيكشن الأثمنة المبسط */}
+        <motion.div variants={itemVariants} className="mb-14">
           
-          {/* الباقة الأولى: 99 درهم */}
-          <motion.div variants={itemVariants} className="bg-white border-2 border-slate-200 rounded-3xl p-6 sm:p-8 shadow-sm hover:shadow-lg transition-all text-right h-full flex flex-col">
-            <div className="w-16 h-16 mb-4 shrink-0">
-              <img 
-                src={mrRr} 
-                alt="Mr RR" 
-                className="w-full h-full object-cover rounded-2xl shadow-sm border-2 border-slate-100" 
-              />
-            </div>
-            <h3 className="text-2xl font-black text-slate-900 mb-2">الاشتراك الذكي</h3>
-            <p className="text-slate-500 text-xs font-bold mb-6 h-8">الولوج الكامل للسيستيم باش تقرا وتفهم بوحدك بسلاسة.</p>
-            <div className="mb-6">
-              <span className="text-4xl font-black text-slate-900">99</span>
-              <span className="text-slate-500 font-bold"> درهم / شهر</span>
-            </div>
-            <ul className="space-y-3 mb-8 text-sm font-bold text-slate-700 flex-1">
-              <li className="flex items-start gap-2"><FaCheck className="text-blue-500 mt-1 shrink-0" /> فتح جميع الدروس التفاعلية فالمنصة.</li>
-              <li className="flex items-start gap-2"><FaCheck className="text-blue-500 mt-1 shrink-0" /> نظام النقاط والتمارين الذكية والتصحيح الآلي.</li>
-              <li className="flex items-start gap-2"><FaCheck className="text-blue-500 mt-1 shrink-0" /> تحميل ملخصات PDF عالية الجودة.</li>
-              <li className="flex items-start gap-2"><FaCheck className="text-blue-500 mt-1 shrink-0" /> وصول دائم 24/7 للمنصة.</li>
-            </ul>
-            <a 
-              href={getWhatsappUrl("الاشتراك الذكي (99 درهم)")} 
-              target="_blank" 
-              rel="noopener noreferrer" 
-              className="w-full flex items-center justify-center bg-slate-100 hover:bg-slate-200 text-slate-800 font-black py-4 rounded-xl transition-all cursor-pointer active:scale-95 mt-auto"
-            >
-              فعل حسابك دابا
-            </a>
-          </motion.div>
+          {/* الـ Toggle الذكي */}
+          <div className="flex flex-col items-center justify-center mb-8">
+            <div className="bg-slate-200/90 p-1.5 rounded-2xl flex items-center gap-1 shadow-inner w-full max-w-[320px] sm:max-w-sm">
+              <button
+                type="button"
+                onClick={() => setIsStudent(true)}
+                className={`flex-1 flex items-center justify-center gap-1.5 py-2.5 px-3 rounded-xl text-xs sm:text-sm font-black transition-all cursor-pointer ${
+                  isStudent
+                    ? "bg-white text-blue-600 shadow-md scale-[1.02]"
+                    : "text-slate-600 hover:text-slate-900"
+                }`}
+              >
+                <FaGraduationCap className="text-base" />
+                <span>طالب / تلميذ</span>
+              </button>
 
-          {/* الباقة الثانية: 199 درهم */}
-          <motion.div variants={itemVariants} className="bg-slate-900 border-4 border-amber-500 rounded-[2.5rem] p-6 sm:p-8 shadow-[0_15px_40px_rgba(245,158,11,0.2)] relative text-right transform md:-translate-y-2 h-full flex flex-col">
-            <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-gradient-to-r from-amber-400 to-amber-600 text-slate-900 text-xs font-black px-5 py-1.5 rounded-full shadow-md flex items-center gap-1.5 whitespace-nowrap">
-              <FaCrown /> الأكثر اختياراً (السيستيم + التطبيق المباشر)
+              <button
+                type="button"
+                onClick={() => setIsStudent(false)}
+                className={`flex-1 flex items-center justify-center gap-1.5 py-2.5 px-3 rounded-xl text-xs sm:text-sm font-black transition-all cursor-pointer ${
+                  !isStudent
+                    ? "bg-white text-slate-900 shadow-md scale-[1.02]"
+                    : "text-slate-600 hover:text-slate-900"
+                }`}
+              >
+                <FaUserTie className="text-sm" />
+                <span>عموم / موظف</span>
+              </button>
             </div>
+          </div>
+
+          {/* الكارطات مركزين على الفرق الأساسي فقط */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-5 sm:gap-6 items-stretch max-w-4xl mx-auto">
             
-            <div className="w-16 h-16 mb-4 shrink-0 relative">
-              <img 
-                src={msRr} 
-                alt="Ms RR" 
-                className="w-full h-full object-cover rounded-2xl shadow-md border-2 border-amber-400" 
-              />
-              <div className="absolute -bottom-2 -right-2 bg-slate-900 text-amber-400 rounded-full p-1.5 border border-amber-500/30">
-                <FaVideo className="text-xs" />
+            {/* الباقة 1: بدون حصص */}
+            <div className="bg-white border-2 border-slate-200 rounded-3xl p-6 sm:p-7 shadow-sm hover:shadow-md transition-all text-right flex flex-col justify-between">
+              <div>
+                <div className="flex items-center justify-between mb-4">
+                  <div className="w-14 h-14 shrink-0">
+                    <img src={mrRr} alt="Mr RR" className="w-full h-full object-cover rounded-2xl shadow-sm border-2 border-slate-100" />
+                  </div>
+                  <span className="bg-slate-100 text-slate-700 text-xs font-black px-3 py-1 rounded-lg border border-slate-200">
+                    قرا بوحدك
+                  </span>
+                </div>
+
+                <h3 className="text-2xl font-black text-slate-900 mb-1">الاشتراك الذكي</h3>
+                <p className="text-slate-500 text-xs sm:text-sm font-bold mb-6">
+                  الولوج الكامل للمنصة، التمارين، والتصحيح الآلي 24/7.
+                </p>
+
+                {/* الفرق الجوهري */}
+                <div className="bg-slate-50 border border-slate-200/80 rounded-2xl p-4 mb-6">
+                  <div className="flex items-center gap-2 text-slate-800 font-black text-sm mb-1">
+                    <FaLaptopCode className="text-blue-600 text-base shrink-0" />
+                    <span>منصة الدروس التفاعلية كاملة</span>
+                  </div>
+                  <div className="text-rose-500 font-bold text-xs pr-6">
+                    ✕ بدون حصص مباشرة مع الأستاذ
+                  </div>
+                </div>
+
+                {/* الثمن: منطقي حسب السويتش */}
+                <div className="mb-6">
+                  {isStudent ? (
+                    <div className="flex items-baseline gap-2">
+                      <div className="relative inline-block text-xl font-black text-slate-400">
+                        159
+                        <motion.span
+                          initial={{ scaleX: 0 }}
+                          animate={{ scaleX: 1 }}
+                          className="absolute right-0 top-1/2 -translate-y-1/2 w-full h-[2px] bg-red-500 origin-right rounded-full"
+                        />
+                      </div>
+                      <span className="text-4xl font-black text-blue-600 leading-none">99</span>
+                      <span className="text-slate-600 text-xs font-bold">درهم / شهر</span>
+                    </div>
+                  ) : (
+                    <div className="flex items-baseline gap-2">
+                      <span className="text-4xl font-black text-slate-900 leading-none">159</span>
+                      <span className="text-slate-600 text-xs font-bold">درهم / شهر</span>
+                    </div>
+                  )}
+                </div>
               </div>
+
+              <a 
+                href={getWhatsappUrl(`الاشتراك الذكي (${isStudent ? "طالب: 99 درهم" : "159 درهم"})`)}
+                target="_blank" rel="noopener noreferrer" 
+                className="w-full flex items-center justify-center bg-slate-100 hover:bg-blue-600 hover:text-white text-slate-900 font-black py-3.5 rounded-xl transition-all cursor-pointer active:scale-95 text-sm shadow-sm"
+              >
+                {isStudent ? "فعل حسابك بـ 99 درهم" : "فعل حسابك بـ 159 درهم"}
+              </a>
             </div>
 
-            <h3 className="text-2xl font-black text-white mb-2">الباقة التفاعلية (VIP)</h3>
-            <p className="text-slate-400 text-xs font-bold mb-6 h-8">السيستيم كيشرح ليك، والأستاذ كيسمعك ويصحح ليكم.</p>
-            <div className="mb-6">
-              <span className="text-5xl font-black text-amber-400">199</span>
-              <span className="text-slate-400 font-bold"> درهم / شهر</span>
-            </div>
-            <ul className="space-y-3 mb-8 text-sm font-bold text-slate-200 flex-1">
-              <li className="flex items-start gap-2"><FaCheck className="text-amber-500 mt-1 shrink-0" /> <span className="text-white">الولوج الكامل للسيستيم</span></li>
-              <li className="flex items-start gap-2"><FaCheck className="text-amber-500 mt-1 shrink-0" /> <span className="text-amber-400">تأطير مباشر:</span> حصص تطبيقية أسبوعياً مع الأستاذ.</li>
-              <li className="flex items-start gap-2"><FaCheck className="text-amber-500 mt-1 shrink-0" /> مجموعات مصغرة: <strong className="text-amber-400">5 لـ 8 أشخاص كحد أقصى</strong>.</li>
-              <li className="flex items-start gap-2"><FaWifi className="text-amber-500 mt-1 shrink-0" /> مجموعة WhatsApp للتواصل والتصحيح المستمر.</li>
-            </ul>
-            <a 
-              href={getWhatsappUrl("الباقة التفاعلية VIP (199 درهم)")} 
-              target="_blank" 
-              rel="noopener noreferrer" 
-              className="w-full flex items-center justify-center gap-2 bg-gradient-to-r from-amber-400 to-amber-600 hover:brightness-110 text-slate-900 font-black py-4 rounded-xl transition-all shadow-[0_5px_15px_rgba(245,158,11,0.3)] cursor-pointer active:scale-95 text-base sm:text-lg mt-auto"
-            >
-              <FaWhatsapp className="text-xl" /> احجز بلاصتك فالمجموعة
-            </a>
-          </motion.div>
+            {/* الباقة 2: مع حصص مباشرة */}
+            <div className="bg-slate-900 border-4 border-amber-500 rounded-3xl p-6 sm:p-7 shadow-[0_12px_35px_rgba(245,158,11,0.2)] relative text-right md:-translate-y-2 flex flex-col justify-between">
+              <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-gradient-to-r from-amber-400 to-amber-500 text-slate-950 text-xs font-black px-4 py-1.5 rounded-full shadow-md flex items-center gap-1.5 whitespace-nowrap">
+                <FaCrown /> الأكثر اختياراً
+              </div>
+              
+              <div>
+                <div className="flex items-center justify-between mb-4 mt-1">
+                  <div className="w-14 h-14 shrink-0 relative">
+                    <img src={msRr} alt="Ms RR" className="w-full h-full object-cover rounded-2xl shadow-md border-2 border-amber-400" />
+                    <div className="absolute -bottom-2 -right-2 bg-slate-900 text-amber-400 rounded-full p-1 border border-amber-500/40">
+                      <FaVideo className="text-xs" />
+                    </div>
+                  </div>
+                  <span className="bg-amber-500/20 text-amber-400 text-xs font-black px-3 py-1 rounded-lg border border-amber-500/30">
+                    السيستيم + الأستاذ
+                  </span>
+                </div>
 
+                <h3 className="text-2xl font-black text-white mb-1">الباقة التفاعلية (VIP)</h3>
+                <p className="text-slate-300 text-xs sm:text-sm font-bold mb-6">
+                  السيستيم كيشرح ليك، والأستاذ كيسمعك ويصحح ليك.
+                </p>
+
+                {/* الفرق الجوهري */}
+                <div className="bg-slate-800/90 border border-slate-700 rounded-2xl p-4 mb-6">
+                  <div className="flex items-center gap-2 text-white font-black text-sm mb-1">
+                    <FaLaptopCode className="text-amber-400 text-base shrink-0" />
+                    <span>منصة الدروس التفاعلية كاملة</span>
+                  </div>
+                  <div className="text-amber-400 font-bold text-xs pr-6">
+                    ✓ + حصص تطبيقية أسبوعياً (مجموعات 5 لـ 8 فقط)
+                  </div>
+                </div>
+
+                {/* الثمن: منطقي حسب السويتش */}
+                <div className="mb-6">
+                  {isStudent ? (
+                    <div className="flex items-baseline gap-2">
+                      <div className="relative inline-block text-xl font-black text-slate-400">
+                        299
+                        <motion.span
+                          initial={{ scaleX: 0 }}
+                          animate={{ scaleX: 1 }}
+                          className="absolute right-0 top-1/2 -translate-y-1/2 w-full h-[2px] bg-red-500 origin-right rounded-full"
+                        />
+                      </div>
+                      <span className="text-4xl font-black text-amber-400 leading-none">199</span>
+                      <span className="text-slate-300 text-xs font-bold">درهم / شهر</span>
+                    </div>
+                  ) : (
+                    <div className="flex items-baseline gap-2">
+                      <span className="text-4xl font-black text-amber-400 leading-none">299</span>
+                      <span className="text-slate-300 text-xs font-bold">درهم / شهر</span>
+                    </div>
+                  )}
+                </div>
+              </div>
+
+              <a 
+                href={getWhatsappUrl(`الباقة التفاعلية VIP (${isStudent ? "طالب: 199 درهم" : "299 درهم"})`)}
+                target="_blank" rel="noopener noreferrer" 
+                className="w-full flex items-center justify-center gap-2 bg-gradient-to-r from-amber-400 to-amber-500 hover:brightness-110 text-slate-950 font-black py-3.5 rounded-xl transition-all shadow-md cursor-pointer active:scale-95 text-sm"
+              >
+                <FaWhatsapp className="text-lg" /> 
+                {isStudent ? "احجز بلاصتك بـ 199 درهم" : "احجز بلاصتك بـ 299 درهم"}
+              </a>
+            </div>
+
+          </div>
         </motion.div>
 
         {/* الأسئلة الشائعة */}
         <motion.div variants={itemVariants} className="max-w-2xl mx-auto space-y-3">
-          <h3 className="text-2xl font-black text-slate-900 mb-6 text-center flex items-center justify-center gap-2">
+          <h3 className="text-xl sm:text-2xl font-black text-slate-900 mb-6 text-center flex items-center justify-center gap-2">
             <FaQuestionCircle className="text-blue-600" />
             <span>عندك شي سؤال؟</span>
           </h3>
@@ -196,9 +288,9 @@ export default function Pricing() {
             <div key={idx} className="bg-white border border-slate-200 rounded-2xl overflow-hidden shadow-sm hover:border-blue-200 transition-colors">
               <button 
                 onClick={() => setOpenFaq(openFaq === idx ? null : idx)}
-                className="w-full p-4 text-right font-black text-slate-800 flex justify-between items-center text-sm sm:text-base hover:bg-slate-50 cursor-pointer"
+                className="w-full p-4 text-right font-black text-slate-800 flex justify-between items-center text-xs sm:text-sm hover:bg-slate-50 cursor-pointer"
               >
-                <span>{faq.q}</span>
+                <span className="leading-relaxed">{faq.q}</span>
                 {openFaq === idx ? <FaChevronUp className="text-blue-500 text-xs shrink-0 mr-3" /> : <FaChevronDown className="text-slate-400 text-xs shrink-0 mr-3" />}
               </button>
               <AnimatePresence>
@@ -209,7 +301,7 @@ export default function Pricing() {
                     exit={{ height: 0, opacity: 0 }}
                     className="overflow-hidden"
                   >
-                    <div className="p-4 pt-0 text-slate-600 text-xs sm:text-sm font-bold leading-relaxed border-t border-slate-100 bg-slate-50">
+                    <div className="p-4 pt-0 text-slate-600 text-[11px] sm:text-xs font-bold leading-relaxed border-t border-slate-100 bg-slate-50">
                       {faq.a}
                     </div>
                   </motion.div>

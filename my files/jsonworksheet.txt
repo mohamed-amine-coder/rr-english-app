@@ -1,0 +1,88 @@
+Act as a Senior ESL Curriculum Developer specializing in high-interaction speaking lessons for Moroccan adult beginners (CEFR A0/A1). Your goal is to generate an intensive speaking-first lesson in strict JSON format designed for a FULL 60-minute live interactive class of 1 teacher and exactly 8 students based on the provided topic.
+
+Topic of the lesson: [INSERT LESSON TOPIC HERE]
+
+Strict Pedagogical & Technical Constraints:
+1. TARGET AUDIENCE & TONE: Moroccan adult beginners (A0/A1). Language must be simple, communicative, and practical.
+2. CLASS SIZE: Exactly 8 students. Always use generic labels (S1, S2, S3, S4, S5, S6, S7, S8) so real students insert their names and speak equally.
+3. FULL 60 MINUTES OF TALK TIME: Maximize speaking output. Pair and group dialogues must feature extended turns (not short one-liners) so each student speaks extensively.
+4. SCREEN HEIGHT / ANTI-TRUNCATION: Never overload pages. Strictly 2 to 3 compact content blocks per page (excluding header and footer).
+5. COMPACT BLOCKS ONLY: Use ONLY "reading" type blocks for all dialogues, reading passages, scripts, drills, prompts, and summaries. STRICTLY NO "roleplay" blocks.
+6. VOCABULARY FORMAT: In all "vocabulary" blocks, format strictly as clean text: "English = Darija, English = Darija". DO NOT use labels like "WordBank:", and DO NOT use brackets or quotes around words.
+7. VISUAL BLANKS:
+   - Pair dialogues: Use clear dots `........` for single missing words.
+   - Group dialogues: Use long dots `................` for entire missing phrases/chunks.
+8. IMAGES: Absolutely NO image blocks, URLs, or image placeholders.
+9. FOOTER: Every single page MUST terminate with a footer block: `{"id": "...", "type": "footer", "content": {}}`.
+10. DARIJA INTEGRATION:
+    - Page 1 Intro: Natural, motivating Darija stating the lesson goals, encouraging mistakes as part of learning, and reminding them that detailed grammar rules and written exercises are available on the platform in Darija, while this 60-minute session is 100% dedicated to speaking practice.
+    - Page 7 Outro: Clear, positive Darija summary reinforcing what they achieved and reminding them to review platform exercises and grammar.
+
+Output ONLY valid raw JSON matching this 7-page structure. Do not wrap in markdown code tags like ```json. Do not include introductory or closing conversational text:
+
+[
+  {
+    "id": "page1_warmup_vocab",
+    "blocks": [
+      { "id": "b1_header", "type": "header", "content": { "title": "UNIT: [TOPIC IN ENGLISH]" } },
+      { "id": "b2_darija", "type": "darija", "content": { "text": "🎯 مرحبا بيكم فهاد الحصة! اليوم غادي نطلقو لساننا ونتعلمو [الهدف المرتبط بالموضوع] بالإنجليزية بلا خوف. تذكير مهم: الشرح المفصل ديال القواعد والتمارين الكتابية راهم مشروحين كيف العادة فالمنصة بالدارجة، أما هاد الساعة المباشرة راها مخصصة 100% للممارسة وإطلاق اللسان، فماتحشموش وغلطو باش نتعلمو كاملين!" } },
+      { "id": "b3_vocabulary", "type": "vocabulary", "content": { "text": "word1 = شرح1, word2 = شرح2, word3 = شرح3, word4 = شرح4, word5 = شرح5, word6 = شرح6, word7 = شرح7, word8 = شرح8" } },
+      { "id": "b4_reading_drill", "type": "reading", "content": { "text": "WARM-UP PING-PONG (Fast Answers):\nTeacher -> S1: [Short topic-related question]?\nS1 -> S2: [Short question]?\nS2 -> S3: [Short question]?\nS3 -> S4: [Short question]?\nS4 -> S5: [Short question]?\nS5 -> S6: [Short question]?\nS6 -> S7: [Short question]?\nS7 -> S8: [Short question]?" } },
+      { "id": "b5_footer", "type": "footer", "content": {} }
+    ]
+  },
+  {
+    "id": "page2_story_reading",
+    "blocks": [
+      { "id": "b6_header", "type": "header", "content": { "title": "PAGE 2 - CONTEXT STORY" } },
+      { "id": "b7_reading_part1", "type": "reading", "content": { "text": "P1 (S1): [2-3 easy lines related to topic]...\n\nP2 (S2): [2-3 easy lines related to topic]...\n\nP3 (S3): [2-3 easy lines related to topic]...\n\nP4 (S4): [2-3 easy lines related to topic]..." } },
+      { "id": "b8_reading_part2", "type": "reading", "content": { "text": "P5 (S5): [2-3 easy lines related to topic]...\n\nP6 (S6): [2-3 easy lines related to topic]...\n\nP7 (S7): [2-3 easy lines related to topic]...\n\nP8 (S8): [2-3 easy lines related to topic]..." } },
+      { "id": "b9_footer", "type": "footer", "content": {} }
+    ]
+  },
+  {
+    "id": "page3_pairs_1_2",
+    "blocks": [
+      { "id": "b10_header", "type": "header", "content": { "title": "PAGE 3 - EXTENDED PAIR DIALOGUES (PART 1)" } },
+      { "id": "b11_vocabulary", "type": "vocabulary", "content": { "text": "wordA = شرح, wordB = شرح, wordC = شرح, wordD = شرح" } },
+      { "id": "b12_reading_pairs1_2", "type": "reading", "content": { "text": "PAIR 1 (S1 & S2) - Read, fill blanks, then SWITCH roles:\nS1: [Dialogue line]...\nS2: [Dialogue line with blank] ........ ?\nS1: [Dialogue line with blank] ........ .\nS2: [Dialogue line]...\nS1: [Dialogue line]...\nS2: [Dialogue line]...\n\nPAIR 2 (S3 & S4) - Read, fill blanks, then SWITCH roles:\nS3: [Dialogue line]...\nS4: [Dialogue line with blank] ........ ?\nS3: [Dialogue line with blank] ........ .\nS4: [Dialogue line]...\nS3: [Dialogue line]...\nS4: [Dialogue line]..." } },
+      { "id": "b13_footer", "type": "footer", "content": {} }
+    ]
+  },
+  {
+    "id": "page4_pairs_3_4",
+    "blocks": [
+      { "id": "b14_header", "type": "header", "content": { "title": "PAGE 4 - EXTENDED PAIR DIALOGUES (PART 2)" } },
+      { "id": "b15_vocabulary", "type": "vocabulary", "content": { "text": "wordE = شرح, wordF = شرح, wordG = شرح, wordH = شرح" } },
+      { "id": "b16_reading_pairs3_4", "type": "reading", "content": { "text": "PAIR 3 (S5 & S6) - Read, fill blanks, then SWITCH roles:\nS5: [Dialogue line]...\nS6: [Dialogue line with blank] ........ ?\nS5: [Dialogue line with blank] ........ .\nS6: [Dialogue line]...\nS5: [Dialogue line]...\nS6: [Dialogue line]...\n\nPAIR 4 (S7 & S8) - Read, fill blanks, then SWITCH roles:\nS7: [Dialogue line]...\nS8: [Dialogue line with blank] ........ ?\nS7: [Dialogue line with blank] ........ .\nS8: [Dialogue line]...\nS7: [Dialogue line]...\nS8: [Dialogue line]..." } },
+      { "id": "b17_footer", "type": "footer", "content": {} }
+    ]
+  },
+  {
+    "id": "page5_group_challenge",
+    "blocks": [
+      { "id": "b18_header", "type": "header", "content": { "title": "PAGE 5 - 4-PERSON GROUP CHALLENGE" } },
+      { "id": "b19_vocabulary", "type": "vocabulary", "content": { "text": "phrase 1 = شرح, phrase 2 = شرح, phrase 3 = شرح, phrase 4 = شرح" } },
+      { "id": "b20_reading_groups", "type": "reading", "content": { "text": "GROUP 1 (S1, S2, S3, S4):\nS1: [Line with phrase blank] ................ ?\nS2: [Line]...\nS3: [Line with phrase blank] ................ .\nS4: [Line]...\nS1: [Line]...\nS2: [Line]...\n\nGROUP 2 (S5, S6, S7, S8):\nS5: [Line with phrase blank] ................ ?\nS6: [Line]...\nS7: [Line with phrase blank] ................ .\nS8: [Line]...\nS5: [Line]...\nS6: [Line]..." } },
+      { "id": "b21_footer", "type": "footer", "content": {} }
+    ]
+  },
+  {
+    "id": "page6_free_practice",
+    "blocks": [
+      { "id": "b22_header", "type": "header", "content": { "title": "PAGE 6 - REAL CONVERSATION (NO SCRIPT)" } },
+      { "id": "b23_darija", "type": "darija", "content": { "text": "🎯 تحدي بدون نص: كل جوج يهدرو دقيقة باستعمال الكلمات لي تعلمو اليوم وبمعلوماتهم الحقيقية." } },
+      { "id": "b24_reading_prompts", "type": "reading", "content": { "text": "Pair 1 (S1 & S2): [Realistic Moroccan situation related to topic].\n\nPair 2 (S3 & S4): [Realistic Moroccan situation related to topic].\n\nPair 3 (S5 & S6): [Realistic Moroccan situation related to topic].\n\nPair 4 (S7 & S8): [Realistic Moroccan situation related to topic]." } },
+      { "id": "b25_footer", "type": "footer", "content": {} }
+    ]
+  },
+  {
+    "id": "page7_wrapup",
+    "blocks": [
+      { "id": "b26_header", "type": "header", "content": { "title": "PAGE 7 - SUMMARY & RAPID EXIT TICKET" } },
+      { "id": "b27_darija", "type": "darija", "content": { "text": "👏 تبارك الله عليكم! اليوم قدرتو [ملخص الإنجازات المرتبطة بالموضوع]. ديرو طليلة على المنصة باش تراجعو تفاصيل القواعد وتخدمو التمارين التثبيتية." } },
+      { "id": "b28_reading_exit", "type": "reading", "content": { "text": "RAPID EXIT TICKET (15 seconds each):\nS1: [Quick question related to topic]?\nS2: [Quick question related to topic]?\nS3: [Quick question related to topic]?\nS4: [Quick question related to topic]?\nS5: [Quick question related to topic]?\nS6: [Quick question related to topic]?\nS7: [Quick question related to topic]?\nS8: [Quick question related to topic]?" } },
+      { "id": "b29_footer", "type": "footer", "content": {} }
+    ]
+  }
+]

@@ -74,7 +74,7 @@ function Navbar() {
 
               <Link to="/about" className="flex items-center gap-2 text-slate-600 hover:text-blue-600 font-bold transition-colors cursor-pointer">
                 <FaQuestionCircle className="text-lg" />
-                <span>حول المنصة</span>
+                <span>كيفاش كنقراو؟</span>
               </Link>
             </div>
 
@@ -132,7 +132,7 @@ function Navbar() {
                   </button>
                 </div>
               ) : (
-                <Link to="/login" className="bg-slate-900 text-white px-6 py-3 rounded-xl font-black hover:bg-slate-800 transition-all shadow-[0_5px_15px_rgba(15,23,42,0.2)] active:scale-95 flex items-center gap-2 cursor-pointer">
+                <Link to="/login" className="bg-blue-600 text-white px-6 py-3 rounded-xl font-black hover:bg-slate-800 transition-all shadow-[0_5px_15px_rgba(15,23,42,0.2)] active:scale-95 flex items-center gap-2 cursor-pointer">
                   تسجيل الدخول
                 </Link>
               )}
@@ -194,7 +194,7 @@ function Navbar() {
 
               <Link to="/about" onClick={closeMenu} className="flex items-center gap-3 px-4 py-3.5 rounded-2xl font-black text-slate-700 hover:text-blue-600 hover:bg-blue-50 transition-all cursor-pointer">
                 <FaQuestionCircle className="text-xl text-slate-400" />
-                <span>حول المنصة</span>
+                <span>كيفاش كنقراو؟</span>
               </Link>
 
               {/* قسم اليوزر أو تسجيل الدخول */}

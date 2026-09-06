@@ -38,9 +38,9 @@ const InteractiveWorksheetCard = ({ sheet, index, onActionClick, isAuthorized })
           className="relative z-10 w-24 h-24 sm:w-28 sm:h-28 object-cover rounded-2xl border-4 border-white shadow-md group-hover:-translate-y-2 transition-transform duration-500" 
         />
         
-        {/* طبقة ضبابية كطّلع فالهوفر فيها أيقونة القفل أو الكتاب */}
-        <div className="absolute inset-0 bg-white/50 backdrop-blur-[2px] opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-20 flex items-center justify-center">
-          <div className={`w-14 h-14 rounded-2xl flex items-center justify-center shadow-lg border-2 transition-transform group-hover:scale-110 ${
+        {/* طبقة ضبابية كتبان ديما يلا كان مقفول، أو كطّلع فالهوفر يلا كان متاح */}
+        <div className={`absolute inset-0 bg-white/50 backdrop-blur-[2px] transition-opacity duration-300 z-20 flex items-center justify-center ${!isAuthorized ? 'opacity-90' : 'opacity-0 group-hover:opacity-100'}`}>
+          <div className={`w-14 h-14 rounded-2xl flex items-center justify-center shadow-lg border-2 transition-transform ${!isAuthorized ? 'scale-100' : 'group-hover:scale-110'} ${
             isAuthorized 
               ? 'bg-blue-600 text-white border-blue-400' 
               : 'bg-slate-100 text-slate-500 border-slate-200'
@@ -73,13 +73,22 @@ const InteractiveWorksheetCard = ({ sheet, index, onActionClick, isAuthorized })
           </span>
         </div>
         
-        <h2 className="text-lg sm:text-xl font-black text-slate-800 mb-2 group-hover:text-blue-600 transition-colors">
+        {/* صغرنا الحجم ديال العنوان هنا */}
+        <h2 className="text-base sm:text-lg font-black text-slate-800 mb-2 group-hover:text-blue-600 transition-colors">
           {sheet.title}
         </h2>
         
         <p className="text-slate-500 text-xs sm:text-sm font-bold leading-relaxed line-clamp-2">
           {sheet.description}
         </p>
+
+        {/* عبارة "اشترك الآن" للتمارين المقفولة */}
+        {!isAuthorized && (
+          <div className="mt-3 inline-flex items-center gap-1.5 text-[11px] font-black text-slate-700 bg-slate-100 border border-slate-200 px-3 py-1.5 rounded-lg w-max">
+            <FaLock className="text-slate-500" />
+            <span>تمرين مدفوع - اشترك الآن</span>
+          </div>
+        )}
       </div>
     </motion.div>
   );

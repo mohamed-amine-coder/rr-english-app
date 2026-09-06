@@ -191,10 +191,10 @@ export default function PdfViewerModal({ worksheet, onClose }) {
           <div className="w-full mt-auto pt-8 pb-6 px-4 sm:px-10">
             <div className="bg-white rounded-2xl p-4 sm:p-5 flex flex-col sm:flex-row justify-between items-center gap-4 border-2 border-gray-200 shadow-sm">
               <div className="flex items-center gap-3 text-emerald-700 font-black bg-emerald-50 px-4 py-2 rounded-xl border-2 border-emerald-300">
-                <FaWhatsapp className="text-xl sm:text-2xl text-emerald-500" /><span dir="ltr" className="tracking-wide text-sm sm:text-base">+212 600 000 000</span>
+                <FaWhatsapp className="text-xl sm:text-2xl text-emerald-500" /><span dir="ltr" className="tracking-wide text-sm sm:text-base">فريق الدعم: 07 18 09 08 87</span>
               </div>
               <div dir="rtl" className="flex items-center gap-2 bg-amber-100 border-2 border-amber-400 px-4 py-2 rounded-xl shadow-sm w-full sm:w-auto justify-center">
-                <span className="text-amber-900 font-black text-xs sm:text-sm">شرح بالدارجة فـ: <span className="text-blue-700 mx-1" dir="ltr">rrenglish.com</span></span>
+                <span className="text-amber-900 font-black text-xs sm:text-sm">شرح بالدارجة فـ: <span className="text-blue-700 mx-1" dir="ltr">rrenglish.vercel.app</span></span>
               </div>
             </div>
           </div>

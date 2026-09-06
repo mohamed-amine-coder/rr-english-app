@@ -71,11 +71,11 @@ function Footer() {
             <ul className="space-y-4 mb-6">
               <li className="flex items-center gap-3 text-slate-500 font-bold">
                 <div className="bg-slate-50 border border-slate-100 p-2 rounded-lg text-slate-600"><FaEnvelope /></div>
-                <span dir="ltr">contact@rrenglish.com</span>
+                <span dir="ltr">team.rrplatform@gmail.com</span>
               </li>
               <li className="flex items-center gap-3 text-slate-500 font-bold">
                 <div className="bg-slate-50 border border-slate-100 p-2 rounded-lg text-slate-600"><FaPhoneAlt /></div>
-                <span dir="ltr">+212 600 000 000</span>
+                <span dir="ltr">07 18 09 08 87</span>
               </li>
             </ul>
             

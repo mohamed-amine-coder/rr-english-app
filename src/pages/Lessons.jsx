@@ -65,9 +65,9 @@ const InteractiveLessonCard = ({ lesson, index, isCompleted, isAuthorized, onAct
           className="relative z-10 w-20 h-20 sm:w-24 sm:h-24 object-cover rounded-2xl border-4 border-white shadow-md group-hover:-translate-y-2 transition-transform duration-500" 
         />
         
-        {/* طبقة ضبابية كطّلع فالهوفر فيها الأيقونة (Play / Redo / Lock) */}
-        <div className="absolute inset-0 bg-white/40 backdrop-blur-[2px] opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-20 flex items-center justify-center">
-          <div className={`w-14 h-14 rounded-2xl flex items-center justify-center shadow-lg border-2 transition-transform group-hover:scale-110 ${statusTheme.iconBg}`}>
+        {/* طبقة ضبابية كطّلع فالهوفر (أو كتبقى ديما باينة يلا كان الدرس مقفول) */}
+        <div className={`absolute inset-0 bg-white/40 backdrop-blur-[2px] transition-opacity duration-300 z-20 flex items-center justify-center ${!isAuthorized ? 'opacity-90' : 'opacity-0 group-hover:opacity-100'}`}>
+          <div className={`w-14 h-14 rounded-2xl flex items-center justify-center shadow-lg border-2 transition-transform ${!isAuthorized ? 'scale-100' : 'group-hover:scale-110'} ${statusTheme.iconBg}`}>
             {statusTheme.icon}
           </div>
         </div>
@@ -106,7 +106,8 @@ const InteractiveLessonCard = ({ lesson, index, isCompleted, isAuthorized, onAct
           )}
         </div>
         
-        <h2 className={`text-lg sm:text-xl font-black text-slate-800 mb-2 transition-colors ${statusTheme.textHover} [unicode-bidi:plaintext]`}>
+        {/* العناوين صغرنا الحجم ديالهم هنا */}
+        <h2 className={`text-base sm:text-lg font-black text-slate-800 mb-2 transition-colors ${statusTheme.textHover} [unicode-bidi:plaintext]`}>
           {lesson.title}
         </h2>
         
@@ -116,18 +117,25 @@ const InteractiveLessonCard = ({ lesson, index, isCompleted, isAuthorized, onAct
           </p>
         )}
 
-        {/* سطر تحفيزي صغير لتحت */}
+        {/* سطر تحفيزي أو زر الاشتراك */}
         {!isCompleted && isAuthorized && (
           <div className="mt-3 flex items-center gap-1.5 text-[10px] font-black text-amber-500">
             <FaBolt className="animate-pulse" />
             <span>قرا هاد الدرس وجمع الـ XP دابا!</span>
           </div>
         )}
+        
+        {/* عبارة "اشترك الآن" للدروس المقفولة */}
+        {!isAuthorized && (
+          <div className="mt-3 inline-flex items-center gap-1.5 text-[11px] font-black text-slate-700 bg-slate-100 border border-slate-200 px-3 py-1.5 rounded-lg w-max">
+            <FaLock className="text-slate-500" />
+            <span>درس مدفوع - اشترك الآن</span>
+          </div>
+        )}
       </div>
     </motion.div>
   );
 };
-
 
 // 2. المكون الرئيسي
 function Lessons() {
