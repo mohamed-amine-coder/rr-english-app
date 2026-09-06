@@ -81,13 +81,13 @@ function Footer() {
             
             {/* أيقونات السوشال ميديا */}
             <div className="flex gap-3">
-              <a href="#" className="bg-white border border-slate-200 text-slate-500 p-3 rounded-xl hover:bg-blue-600 hover:text-white hover:border-blue-600 shadow-sm transition-all cursor-pointer active:scale-95">
+              <a href="https://www.instagram.com/rr.en.glish/" className="bg-white border border-slate-200 text-slate-500 p-3 rounded-xl hover:bg-blue-600 hover:text-white hover:border-blue-600 shadow-sm transition-all cursor-pointer active:scale-95">
                 <FaFacebookF />
               </a>
-              <a href="#" className="bg-white border border-slate-200 text-slate-500 p-3 rounded-xl hover:bg-pink-600 hover:text-white hover:border-pink-600 shadow-sm transition-all cursor-pointer active:scale-95">
+              <a href="https://www.instagram.com/rr.en.glish/" className="bg-white border border-slate-200 text-slate-500 p-3 rounded-xl hover:bg-pink-600 hover:text-white hover:border-pink-600 shadow-sm transition-all cursor-pointer active:scale-95">
                 <FaInstagram />
               </a>
-              <a href="#" className="bg-white border border-slate-200 text-slate-500 p-3 rounded-xl hover:bg-blue-400 hover:text-white hover:border-blue-400 shadow-sm transition-all cursor-pointer active:scale-95">
+              <a href="https://www.instagram.com/rr.en.glish/" className="bg-white border border-slate-200 text-slate-500 p-3 rounded-xl hover:bg-blue-400 hover:text-white hover:border-blue-400 shadow-sm transition-all cursor-pointer active:scale-95">
                 <FaTwitter />
               </a>
             </div>

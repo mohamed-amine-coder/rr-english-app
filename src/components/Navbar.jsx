@@ -94,6 +94,9 @@ function Navbar() {
                       <Link to="/add-worksheet" className="bg-white text-amber-600 p-2 rounded-xl hover:bg-amber-100 shadow-sm transition-colors cursor-pointer" title="إضافة تمارين">
                         <FaEdit className="text-sm" />
                       </Link>
+                      <Link to="/post-maker" className="bg-white text-black p-2 rounded-xl hover:bg-gray-400 shadow-sm transition-colors cursor-pointer" title="إضافة تمارين">
+                        <FaEdit className="text-sm" />
+                      </Link>
                     </div>
                   )}
                   
@@ -188,6 +191,9 @@ function Navbar() {
                   </Link>
                   <Link to="/add-worksheet" onClick={closeMenu} className="flex-1 flex justify-center items-center gap-2 p-3 rounded-2xl font-bold text-amber-700 bg-amber-100 transition-all cursor-pointer text-sm">
                     <FaEdit /> تمرين جديد
+                  </Link>
+                  <Link to="/post-maker" onClick={closeMenu} className="flex-1 flex justify-center items-center gap-2 p-3 rounded-2xl font-bold text-amber-700 bg-amber-100 transition-all cursor-pointer text-sm">
+                    <FaEdit /> بوست جديد
                   </Link>
                 </div>
               )}

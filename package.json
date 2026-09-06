@@ -10,9 +10,12 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@dnd-kit/core": "^6.3.1",
+    "@dnd-kit/modifiers": "^9.0.0",
     "@supabase/supabase-js": "^2.108.2",
     "@tailwindcss/vite": "^4.3.1",
     "canvas-confetti": "^1.9.4",
+    "downloadjs": "^1.4.7",
     "framer-motion": "^12.42.2",
     "html-to-image": "^1.11.13",
     "html2canvas": "^1.4.1",

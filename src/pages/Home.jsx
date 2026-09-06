@@ -34,14 +34,14 @@ export default function Home() {
         {/* =========================================
             1. Hero Section (الواجهة الرئيسية)
         ========================================= */}
-        <section className="flex flex-col lg:flex-row items-center justify-between gap-12 lg:gap-8 mb-24">
+        <section className="flex flex-col lg:flex-row items-center justify-between gap-20 lg:gap-8 mb-24">
           
           {/* النص والأزرار (جهة اليمين) */}
           <motion.div 
             initial={{ opacity: 0, x: 30 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6, ease: "easeOut" }}
-            className="flex-1 text-center lg:text-right"
+            className="flex-1 text-center lg:text-right relative z-30"
           >
             <div className="inline-flex items-center gap-2 bg-white border border-slate-200 text-slate-700 px-4 py-2 rounded-full text-xs sm:text-sm font-black mb-6 shadow-sm">
               <FaGem className="text-amber-500" />
@@ -81,18 +81,18 @@ export default function Home() {
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.6 }}
-            className="flex-1 w-full max-w-lg relative flex justify-center h-80 sm:h-[450px]"
+            className="flex-1 w-full max-w-lg relative flex justify-center h-[350px] sm:h-[450px] mt-16 lg:mt-0 z-10"
           >
             {/* خلفية الشخصيات */}
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-64 h-64 sm:w-80 sm:h-80 bg-gradient-to-tr from-blue-100 to-amber-100 rounded-full border-4 border-white shadow-2xl z-0"></div>
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-60 h-60 sm:w-80 sm:h-80 bg-gradient-to-tr from-blue-100 to-amber-100 rounded-full border-4 border-white shadow-2xl z-0"></div>
 
             {/* Mr-RR */}
             <motion.div 
               animate={{ y: [0, -12, 0], rotate: [-2, 2, -2] }}
               transition={{ duration: 3.5, repeat: Infinity, ease: "easeInOut" }}
-              className="absolute top-4 sm:top-10 right-4 sm:right-10 z-10"
+              className="absolute top-2 sm:top-10 right-2 sm:right-10 z-10"
             >
-              <img src={mrRr} alt="Mr RR" className="w-36 h-36 sm:w-48 sm:h-48 object-cover rounded-3xl border-4 border-white shadow-xl bg-amber-50" />
+              <img src={mrRr} alt="Mr RR" className="w-32 h-32 sm:w-48 sm:h-48 object-cover rounded-3xl border-4 border-white shadow-xl bg-amber-50" />
               <div className="absolute -bottom-3 -left-3 bg-white px-3 py-1.5 rounded-xl shadow-md border border-slate-100 font-black text-xs text-amber-600 flex items-center gap-1">
                 <span>تفاعلي</span> ⚡
               </div>
@@ -102,9 +102,9 @@ export default function Home() {
             <motion.div 
               animate={{ y: [0, -10, 0], rotate: [2, -2, 2] }}
               transition={{ duration: 3, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
-              className="absolute bottom-4 sm:bottom-10 left-4 sm:left-10 z-20"
+              className="absolute bottom-2 sm:bottom-10 left-2 sm:left-10 z-20"
             >
-              <img src={msRr} alt="Ms RR" className="w-40 h-40 sm:w-56 sm:h-56 object-cover rounded-3xl border-4 border-white shadow-2xl bg-blue-50" />
+              <img src={msRr} alt="Ms RR" className="w-36 h-36 sm:w-56 sm:h-56 object-cover rounded-3xl border-4 border-white shadow-2xl bg-blue-50" />
               <div className="absolute -top-4 -right-2 bg-white px-3 py-1.5 rounded-xl shadow-md border border-slate-100 font-black text-xs text-blue-600 flex items-center gap-1">
                 <span>مباشر</span> 🗣️
               </div>

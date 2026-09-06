@@ -34,13 +34,13 @@ export default function About() {
       <div className="max-w-5xl mx-auto space-y-20 relative z-10">
         
         {/* 1. الهيدر الترحيبي مع الشخصيات */}
-        <section className="flex flex-col md:flex-row items-center justify-between gap-10 md:gap-6 mt-4">
+        <section className="flex flex-col md:flex-row items-center justify-between gap-12 mt-4 mb-16">
           
           <motion.div 
             initial={{ opacity: 0, x: 30 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6 }}
-            className="flex-1 text-center md:text-right"
+            className="flex-1 text-center md:text-right relative z-30"
           >
             <div className="inline-flex items-center gap-2 bg-blue-100 border border-blue-200 text-blue-800 px-4 py-1.5 rounded-full text-xs sm:text-sm font-black mb-6 shadow-sm">
               <FaRocket className="text-blue-600" />
@@ -61,20 +61,20 @@ export default function About() {
             </Link>
           </motion.div>
 
-          {/* الشخصيات العائمة */}
+          {/* الشخصيات العائمة (مخفية فالموبايل: hidden md:flex) */}
           <motion.div 
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.6 }}
-            className="flex-1 w-full max-w-md relative flex justify-center h-72 sm:h-96"
+            className="hidden md:flex flex-1 w-full max-w-md relative justify-center h-[400px] z-10"
           >
             {/* Mr-RR */}
             <motion.div 
               animate={{ y: [0, -15, 0], rotate: [-2, 2, -2] }}
               transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
-              className="absolute top-4 right-4 sm:right-10 z-10"
+              className="absolute top-0 right-10 z-10"
             >
-              <img src={mrRr} alt="Mr RR" className="w-32 h-32 sm:w-48 sm:h-48 object-cover rounded-3xl border-4 border-white shadow-2xl bg-amber-50" />
+              <img src={mrRr} alt="Mr RR" className="w-48 h-48 object-cover rounded-3xl border-4 border-white shadow-2xl bg-amber-50" />
               <div className="absolute -bottom-4 -left-4 bg-white px-3 py-1.5 rounded-xl shadow-lg border border-slate-100 font-black text-xs text-amber-600">
                 شرح مبسط 💡
               </div>
@@ -84,9 +84,9 @@ export default function About() {
             <motion.div 
               animate={{ y: [0, -10, 0], rotate: [2, -2, 2] }}
               transition={{ duration: 3.5, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
-              className="absolute bottom-4 left-4 sm:left-10 z-20"
+              className="absolute bottom-0 left-10 z-20"
             >
-              <img src={msRr} alt="Ms RR" className="w-36 h-36 sm:w-52 sm:h-52 object-cover rounded-3xl border-4 border-white shadow-2xl bg-blue-50" />
+              <img src={msRr} alt="Ms RR" className="w-52 h-52 object-cover rounded-3xl border-4 border-white shadow-2xl bg-blue-50" />
               <div className="absolute -top-4 -right-4 bg-white px-3 py-1.5 rounded-xl shadow-lg border border-slate-100 font-black text-xs text-blue-600">
                 تطبيق مباشر 🗣️
               </div>

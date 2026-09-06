@@ -12,6 +12,7 @@ import Profile from './pages/Profile';
 import Login from './pages/admin/Login';
 import AddLesson from './pages/admin/AddLesson';
 import AddWorksheet from './pages/admin/AddWorksheet';
+import InstaPostMaker from './pages/admin/InstaPostMaker';
 import { AuthProvider, useAuth } from './context/AuthContext';
 import ScrollToTop from './components/ScrollToTop';
 
@@ -58,6 +59,7 @@ function App() {
           <Route path="add-lesson" element={<AdminRoute> <AddLesson /> </AdminRoute>} />
           <Route path="lesson-pdf" element={<AdminRoute> <LessonPDF /> </AdminRoute>} />
           <Route path="add-worksheet" element={<AdminRoute> <AddWorksheet /> </AdminRoute>} />
+          <Route path="post-maker" element={<AdminRoute> <InstaPostMaker /> </AdminRoute>} />
           </Route>
         </Routes>
       </BrowserRouter>
