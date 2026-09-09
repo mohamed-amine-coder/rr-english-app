@@ -12,7 +12,9 @@ import Profile from './pages/Profile';
 import Login from './pages/admin/Login';
 import AddLesson from './pages/admin/AddLesson';
 import AddWorksheet from './pages/admin/AddWorksheet';
+import UsersDashboard from './pages/admin/UsersDashboard';
 import InstaPostMaker from './pages/admin/InstaPostMaker';
+import AdMockupMaker from './pages/admin/AdMockupMaker';
 import { AuthProvider, useAuth } from './context/AuthContext';
 import ScrollToTop from './components/ScrollToTop';
 
@@ -55,11 +57,13 @@ function App() {
             <Route path="login" element={<Login />} />
             <Route path="worksheets" element={<Worksheets />} />
             <Route path="*" element={<NotFound />} />
+            <Route path="users" element={<AdminRoute> <UsersDashboard /> </AdminRoute>} />
             <Route path="profile" element={<ProtectedRoute> <Profile /> </ProtectedRoute>} />
-          <Route path="add-lesson" element={<AdminRoute> <AddLesson /> </AdminRoute>} />
-          <Route path="lesson-pdf" element={<AdminRoute> <LessonPDF /> </AdminRoute>} />
-          <Route path="add-worksheet" element={<AdminRoute> <AddWorksheet /> </AdminRoute>} />
-          <Route path="post-maker" element={<AdminRoute> <InstaPostMaker /> </AdminRoute>} />
+            <Route path="add-lesson" element={<AdminRoute> <AddLesson /> </AdminRoute>} />
+            <Route path="lesson-pdf" element={<AdminRoute> <LessonPDF /> </AdminRoute>} />
+            <Route path="add-worksheet" element={<AdminRoute> <AddWorksheet /> </AdminRoute>} />
+            <Route path="post-maker" element={<AdminRoute> <InstaPostMaker /> </AdminRoute>} />
+            <Route path="ad-maker" element={<AdminRoute> <AdMockupMaker /> </AdminRoute>} />
           </Route>
         </Routes>
       </BrowserRouter>

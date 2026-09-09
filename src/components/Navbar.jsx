@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { 
   FaBars, FaTimes, FaHome, FaQuestionCircle, FaGraduationCap, 
   FaUserCircle, FaSignOutAlt, FaBook, FaEdit, FaChevronDown, 
-  FaCalendarDay, FaBolt, FaPenNib
+  FaCalendarDay, FaBolt, FaPenNib, FaUsers
 } from 'react-icons/fa';
 import { useAuth } from '../context/AuthContext';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -94,8 +94,11 @@ function Navbar() {
                       <Link to="/add-worksheet" className="bg-white text-amber-600 p-2 rounded-xl hover:bg-amber-100 shadow-sm transition-colors cursor-pointer" title="إضافة تمارين">
                         <FaEdit className="text-sm" />
                       </Link>
-                      <Link to="/post-maker" className="bg-white text-black p-2 rounded-xl hover:bg-gray-400 shadow-sm transition-colors cursor-pointer" title="إضافة تمارين">
+                      <Link to="/post-maker" className="bg-white text-black p-2 rounded-xl hover:bg-gray-400 shadow-sm transition-colors cursor-pointer" title="إضافة بوست">
                         <FaEdit className="text-sm" />
+                      </Link>
+                      <Link to="/users" className="bg-white text-emerald-600 p-2 rounded-xl hover:bg-emerald-100 shadow-sm transition-colors cursor-pointer" title="إدارة المستخدمين">
+                        <FaUsers className="text-sm" />
                       </Link>
                     </div>
                   )}
