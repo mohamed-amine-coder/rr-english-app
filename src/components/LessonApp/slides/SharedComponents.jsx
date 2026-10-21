@@ -1,8 +1,8 @@
+// src/components/LessonApp/slides/SharedComponents.jsx
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { FaVolumeUp, FaCheckCircle, FaTimesCircle } from 'react-icons/fa';
 
-// استيراد الشخصيات
 import mrRr from '../../../assets/mr-rr.png';
 import msRr from '../../../assets/ms-rr.png';
 
@@ -11,70 +11,60 @@ export const playAudio = (text) => {
     window.speechSynthesis.cancel();
     const utterance = new SpeechSynthesisUtterance(text);
     utterance.lang = 'en-US';
+    utterance.rate = 0.9;
     window.speechSynthesis.speak(utterance);
   }
 };
 
 export const AudioButton = ({ text }) => (
-  <motion.button whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }} onClick={() => playAudio(text)} className="mb-4 px-4 py-2 bg-sky-500 hover:bg-sky-600 text-white border-b-[3px] border-sky-700 rounded-xl flex items-center gap-2 text-sm font-extrabold shadow-sm transition-all w-fit active:border-b-0 active:translate-y-1 cursor-pointer">
-    <FaVolumeUp className="text-base" /><span>النطق 🔊</span>
-  </motion.button>
+  <button 
+    type="button"
+    onClick={() => playAudio(text)} 
+    className="px-4 py-2 bg-blue-50 hover:bg-blue-100 text-blue-700 border border-blue-200 rounded-xl inline-flex items-center gap-2 text-xs sm:text-sm font-black transition-all active:scale-95 cursor-pointer w-fit"
+  >
+    <FaVolumeUp className="text-sm text-blue-600" />
+    <span>استمع للنطق 🔊</span>
+  </button>
 );
 
-// المكون الجديد ديال الفيدباك بالشخصيات
+// الفيدباك العائم اللي ما كيهزش عناصر الصفحة
 export const MascotFeedback = ({ isCorrect, message, correction, explanation }) => {
-  const [mascot, setMascot] = useState(null);
-
-  useEffect(() => {
-    // اختيار عشوائي للشخصية (50% لكل واحد)
-    setMascot(Math.random() > 0.5 ? mrRr : msRr);
-  }, []);
-
-  if (!mascot) return null;
+  const [mascot] = useState(() => (Math.random() > 0.5 ? mrRr : msRr));
 
   return (
     <motion.div
-      initial={{ opacity: 0, y: 15, scale: 0.95 }}
-      animate={{ opacity: 1, y: 0, scale: 1 }}
-      className={`mt-4 p-4 rounded-2xl border-2 flex items-start gap-4 ${
-        isCorrect ? 'bg-emerald-50 border-emerald-200' : 'bg-rose-50 border-rose-200'
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.2, ease: "easeOut" }}
+      className={`mt-4 p-3.5 sm:p-4 rounded-2xl border flex items-center gap-3.5 shadow-sm ${
+        isCorrect 
+          ? 'bg-emerald-50/95 border-emerald-200 text-emerald-900' 
+          : 'bg-rose-50/95 border-rose-200 text-rose-900'
       }`}
       dir="rtl"
     >
-      {/* صورة الشخصية مع أنيميشن */}
-      <motion.div
-        animate={{ y: [0, -6, 0] }}
-        transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
-        className="shrink-0 relative"
-      >
-        <img 
-          src={mascot} 
-          alt="Mascot" 
-          className={`w-14 h-14 sm:w-16 sm:h-16 object-cover rounded-xl border-2 shadow-sm ${
-            isCorrect ? 'border-emerald-400' : 'border-rose-400'
-          }`} 
-        />
-        {/* إيموجي صغير كيعبر على الحالة */}
-        <div className="absolute -bottom-2 -right-2 bg-white rounded-full p-0.5 shadow-sm text-sm">
-          {isCorrect ? '🤩' : '🤔'}
-        </div>
-      </motion.div>
+      <img 
+        src={mascot} 
+        alt="Mascot" 
+        className={`w-11 h-11 object-cover rounded-xl border-2 shrink-0 bg-white ${
+          isCorrect ? 'border-emerald-400' : 'border-rose-400'
+        }`} 
+      />
 
-      {/* النص والتصحيح */}
-      <div className="flex flex-col gap-1.5 pt-1 w-full">
-        <div className={`flex items-center gap-2 font-black text-base sm:text-lg ${isCorrect ? 'text-emerald-800' : 'text-rose-800'}`}>
-          {isCorrect ? <FaCheckCircle className="shrink-0" /> : <FaTimesCircle className="shrink-0" />}
-          <span>{message}</span>
+      <div className="flex-1 min-w-0 text-right">
+        <div className="flex items-center gap-1.5 font-black text-xs sm:text-sm">
+          {isCorrect ? <FaCheckCircle className="text-emerald-600 shrink-0" /> : <FaTimesCircle className="text-rose-600 shrink-0" />}
+          <span className="truncate">{message}</span>
         </div>
         
         {correction && (
-          <span className="font-bold text-slate-800 bg-white px-3 py-1.5 border border-slate-200 rounded-lg dir-ltr w-fit mt-1 shadow-sm">
+          <div className="font-bold text-xs text-slate-800 bg-white px-2.5 py-1 border border-slate-200 rounded-lg dir-ltr w-fit mt-1">
             {correction}
-          </span>
+          </div>
         )}
 
         {explanation && (
-          <p className={`text-sm font-bold mt-1 leading-relaxed ${isCorrect ? 'text-emerald-700' : 'text-rose-700'}`}>
+          <p className="text-xs font-bold mt-1 opacity-90 line-clamp-2">
             {explanation}
           </p>
         )}

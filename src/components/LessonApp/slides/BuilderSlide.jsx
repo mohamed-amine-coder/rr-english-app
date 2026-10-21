@@ -1,5 +1,5 @@
+// src/components/LessonApp/slides/BuilderSlide.jsx
 import React, { useState, useEffect } from 'react';
-import { motion } from 'framer-motion';
 import { MascotFeedback } from './SharedComponents';
 
 export const BuilderSlide = ({ slide, onDone }) => {
@@ -35,36 +35,60 @@ export const BuilderSlide = ({ slide, onDone }) => {
   const isCorrect = selected.map(w => w.text).join(' ') === correctOrder.join(' ');
 
   return (
-    <motion.div initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} className="space-y-5 overflow-x-hidden" dir="rtl">
-      <p className="text-lg text-blue-800 font-extrabold [unicode-bidi:plaintext]">{slide.question}</p>
+    <div className="space-y-4 max-w-xl mx-auto" dir="rtl">
+      <h3 className="text-base sm:text-lg text-slate-800 font-black [unicode-bidi:plaintext]">
+        {slide.question}
+      </h3>
 
-      <div className="min-h-[80px] bg-white border-2 border-slate-100 rounded-xl p-3 flex flex-wrap gap-3 items-center" dir="ltr">
+      {/* منطقة تركيب الجملة - ارتفاع ثابت باش ما تنقزش */}
+      <div className="min-h-[68px] bg-slate-50 border-2 border-dashed border-slate-200 rounded-2xl p-3 flex flex-wrap gap-2 items-center" dir="ltr">
+        {selected.length === 0 && (
+          <span className="text-xs font-bold text-slate-400 mx-auto select-none">
+            كليكي على الكلمات لتحت باش تركب الجملة
+          </span>
+        )}
         {selected.map(word => (
-          <motion.button layout key={word.id} onClick={() => move(word, false)} className="py-3 px-4 bg-white border-2 border-slate-200 text-blue-800 font-semibold rounded-xl text-lg shadow-sm [unicode-bidi:plaintext] cursor-pointer hover:bg-slate-50">
+          <button
+            type="button"
+            key={word.id}
+            onClick={() => move(word, false)}
+            className="py-2 px-3.5 bg-blue-600 text-white font-bold rounded-xl text-sm shadow-xs hover:bg-blue-700 transition-transform active:scale-95 cursor-pointer"
+          >
             {word.text}
-          </motion.button>
+          </button>
         ))}
       </div>
 
-      <div className="flex flex-wrap gap-3 justify-center border-t-2 border-slate-100 pt-4" dir="ltr">
+      {/* الكلمات المتاحة - ارتفاع ثابت */}
+      <div className="min-h-[60px] flex flex-wrap gap-2 justify-center items-center py-2" dir="ltr">
         {available.map(word => (
-          <motion.button layout key={word.id} onClick={() => move(word, true)} className="py-3 px-4 bg-orange-50 border-2 border-orange-200 text-orange-700 font-semibold rounded-xl text-lg hover:bg-orange-100 transition-all [unicode-bidi:plaintext] cursor-pointer">
+          <button
+            type="button"
+            key={word.id}
+            onClick={() => move(word, true)}
+            className="py-2 px-3.5 bg-white border border-slate-200 hover:border-blue-300 hover:bg-blue-50/40 text-slate-700 font-bold rounded-xl text-sm shadow-2xs transition-all active:scale-95 cursor-pointer"
+          >
             {word.text}
-          </motion.button>
+          </button>
         ))}
       </div>
 
       {!isSubmitted ? (
-        <motion.button disabled={selected.length === 0} onClick={checkAnswer} className="w-full py-3 md:py-4 bg-orange-50 text-orange-900 border-2 border-orange-300 rounded-xl text-lg font-black mt-4 shadow-sm border-b-[3px] border-orange-400 active:border-b-0 active:translate-y-1 disabled:opacity-50 cursor-pointer disabled:cursor-not-allowed">
+        <button
+          type="button"
+          disabled={selected.length === 0}
+          onClick={checkAnswer}
+          className="w-full py-3 bg-slate-900 hover:bg-slate-800 disabled:bg-slate-100 disabled:text-slate-400 text-white rounded-xl text-sm font-black transition-all active:scale-[0.99] cursor-pointer disabled:cursor-not-allowed"
+        >
           تأكد من الجواب
-        </motion.button>
+        </button>
       ) : (
         <MascotFeedback 
           isCorrect={isCorrect}
-          message={isCorrect ? "برافو! جملة صحيحة 👏" : "خطأ! الترتيب الصحيح هو:"}
+          message={isCorrect ? "برافو! ترتيب صحيح 👏" : "الترتيب الصحيح هو:"}
           correction={!isCorrect ? correctOrder.join(' ') : null}
         />
       )}
-    </motion.div>
+    </div>
   );
 };

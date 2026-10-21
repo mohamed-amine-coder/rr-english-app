@@ -70,7 +70,7 @@ export const SpotErrorSlide = ({ slide, onDone }) => {
       {isSubmitted && (
         <MascotFeedback 
           isCorrect={isCorrect}
-          message={isCorrect ? "خطير! صدتيها هي هاديك 🎯" : "للأسف ماشي هاديك الكلمة! ❌"}
+          message={isCorrect ? "ناضي! هي هاديك 🎯" : "للأسف ماشي هاديك الكلمة! ❌"}
           explanation={slide.tip}
         />
       )}

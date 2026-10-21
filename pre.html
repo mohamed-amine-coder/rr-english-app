@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Soutenance : Fiche de Lecture</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <!-- Google Fonts -->
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Merriweather:wght@300;400;700;900&family=Inter:wght@300;400;500;600&display=swap');
+        
+        body { font-family: 'Inter', sans-serif; overflow: hidden; background-color: #0f172a; } /* خلفية غامقة بزاف */
+        h1, h2, h3, h4, h5 { font-family: 'Merriweather', serif; }
+        
+        .slide {
+            transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+        }
+        
+        /* Pattern background الغامق */
+        .bg-pattern {
+            background-image: radial-gradient(#334155 1px, transparent 1px);
+            background-size: 25px 25px;
+        }
+        
+        /* باش سلايدات الشرح يبانو مبدلين */
+        .prep-slide {
+            border: 4px dashed #eab308; /* إطار صفر باش تعرفوه ديال الشرح */
+            background-color: #1e293b;
+        }
+    </style>
+</head>
+<body class="text-slate-100 h-screen w-screen relative">
+
+    <!-- Header officiel -->
+    <header class="fixed top-0 left-0 w-full px-8 py-4 flex justify-between items-center z-50 opacity-0 transition-opacity duration-300" id="global-header">
+        <div class="flex items-center gap-3">
+            <div class="w-10 h-10 bg-blue-500 rounded flex items-center justify-center text-slate-900 font-bold text-xs">OFPPT</div>
+            <span class="text-sm font-semibold text-slate-300 uppercase tracking-widest">TSGE - Tronc Commun</span>
+        </div>
+        <div class="text-sm font-medium text-slate-400">Module M101 : Métier et Formation</div>
+    </header>
+
+    <!-- Conteneur des slides -->
+    <div id="slides-container" class="relative w-full h-full bg-pattern">
+
+        <!-- ================= SLIDE 1: Page de Garde ================= -->
+        <div class="slide flex flex-col items-center justify-center text-center px-10 bg-slate-900" data-index="0">
+            <div class="mb-8">
+                <div class="w-24 h-24 border-4 border-blue-500 mx-auto flex items-center justify-center rounded-lg rotate-45 mb-10 bg-slate-800">
+                    <div class="-rotate-45 font-bold text-2xl text-blue-400">TSGE</div>
+                </div>
+                <p class="text-sm uppercase tracking-widest text-slate-400 font-semibold mb-2">Exposé Méthodologique</p>
+                <h1 class="text-5xl md:text-6xl font-black text-white mb-6 leading-tight">
+                    Préparation d'une <br> <span class="text-blue-400">Fiche de Lecture</span>
+                </h1>
+                <div class="h-1 w-24 bg-blue-500 mx-auto mb-6"></div>
+            </div>
+            
+            <div class="absolute bottom-12 border border-slate-700 bg-slate-800 px-8 py-4 rounded-lg shadow-lg text-left flex gap-12">
+                <div>
+                    <span class="block text-xs text-slate-400 uppercase tracking-wider mb-1">Présenté par</span>
+                    <span class="font-bold text-slate-100 block">Mohamed Amine</span>
+                    <span class="font-bold text-slate-100 block mt-1">Othmane</span>
+                </div>
+                <div>
+                    <span class="block text-xs text-slate-400 uppercase tracking-wider mb-1">Année de formation</span>
+                    <span class="font-bold text-slate-100 mt-2 block">2026 / 2027</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- === PREP SLIDE 1 === -->
+        <!-- مسح هاد الجزء نهار العرض -->
+        <div class="slide prep-slide flex flex-col justify-center px-20 opacity-0 translate-x-full" data-index="1">
+            <h2 class="text-3xl text-yellow-500 mb-4" dir="rtl">💡 شرح السلايد 1 (ل محمد أمين وعثمان)</h2>
+            <div class="text-xl leading-relaxed text-right" dir="rtl">
+                <p class="mb-4"><strong>التقديم:</strong> محمد أمين يبدا يقول: "السلام عليكم، كنشكرو الأستاذ على هاد الفرصة. أنا وصديقي عثمان غادي نقدمو ليكم اليوم موضوع مهم بزاف فالقراية والخدمة ديالنا لي هو: La fiche de lecture."</p>
+                <p>عثمان يكمل: "الهدف من هاد العرض ماشي غير نعطيو تعريف، ولكن نفهمو كيفاش نخدمو بيها فالمحيط المهني ديال Gestion des entreprises."</p>
+            </div>
+        </div>
+        <!-- نهاية مسح الجزء -->
+
+        <!-- ================= SLIDE 2: Définition ================= -->
+        <div class="slide flex flex-col justify-center px-20 bg-slate-900 opacity-0 translate-x-full" data-index="2">
+            <div class="max-w-5xl mx-auto w-full">
+                <div class="flex gap-4 items-end mb-12">
+                    <h2 class="text-5xl font-bold text-blue-500">01.</h2>
+                    <h3 class="text-4xl font-bold text-white pb-1">Cadrage Théorique</h3>
+                </div>
+                <div class="grid grid-cols-2 gap-16">
+                    <div>
+                        <h4 class="text-2xl font-bold mb-4 border-l-4 border-blue-500 pl-4">C'est quoi ?</h4>
+                        <p class="text-lg text-slate-300 leading-relaxed mb-6 text-justify">
+                            Une fiche de lecture est un outil pour <strong>résumer</strong> et <strong>garder l'essentiel</strong> d'un document long (un livre, un rapport ou un cours).
+                        </p>
+                    </div>
+                    <div class="bg-slate-800 p-8 rounded-xl shadow-lg border border-slate-700">
+                        <h4 class="text-xl font-bold mb-4 text-blue-400">Pourquoi en entreprise ?</h4>
+                        <ul class="space-y-4">
+                            <li class="flex items-start gap-3">
+                                <i class="fas fa-bolt text-yellow-400 mt-1"></i>
+                                <span class="text-slate-300"><strong>Gagner du temps :</strong> Pas besoin de relire 40 pages.</span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <i class="fas fa-brain text-yellow-400 mt-1"></i>
+                                <span class="text-slate-300"><strong>Mémoriser :</strong> Retenir les chiffres et idées clés.</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- === PREP SLIDE 2 === -->
+        <div class="slide prep-slide flex flex-col justify-center px-20 opacity-0 translate-x-full" data-index="3">
+            <h2 class="text-3xl text-yellow-500 mb-4" dir="rtl">💡 شرح السلايد 2 (محمد أمين)</h2>
+            <div class="text-xl leading-relaxed text-right" dir="rtl">
+                <p class="mb-4"><strong>الشرح المبسط للدراري:</strong> "فاش كنتفرجو فماتش د الكورة فيه 90 دقيقة، فالاخر كنشوفو ملخص (Résumé) فيه 5 دقايق ديال البيوتة. هاديك هي la fiche de lecture.. كتاب ولا بي دي إف فيه 50 صفحة، كنخرج منو غير الزبدة فورقة وحدة."</p>
+                <p><strong>علاش كنحتاجوها؟</strong> "فالخدمة غدا ولا بعدو، الشاف ديالك غيعطيك تقرير طويل، ماغاديش تعاود تقراه كامل كل مرة، كترجع غير للفيش لي صاوبتي باش تربح الوقت (Gagner du temps)."</p>
+            </div>
+        </div>
+
+        <!-- ================= SLIDE 3: Structure ================= -->
+        <div class="slide flex flex-col justify-center px-20 bg-slate-900 opacity-0 translate-x-full" data-index="4">
+            <div class="max-w-5xl mx-auto w-full">
+                <div class="flex gap-4 items-end mb-12">
+                    <h2 class="text-5xl font-bold text-blue-500">02.</h2>
+                    <h3 class="text-4xl font-bold text-white pb-1">Comment la faire ?</h3>
+                </div>
+                <div class="grid grid-cols-3 gap-6">
+                    <div class="border border-slate-700 bg-slate-800 p-6 rounded-lg">
+                        <div class="text-3xl text-blue-400 mb-4 font-black">1</div>
+                        <h4 class="font-bold text-lg mb-2 text-white">L'identité</h4>
+                        <p class="text-sm text-slate-400">Titre, Auteur, Date. (Pour savoir de quoi on parle).</p>
+                    </div>
+                    <div class="border border-slate-700 bg-slate-800 p-6 rounded-lg">
+                        <div class="text-3xl text-blue-400 mb-4 font-black">2</div>
+                        <h4 class="font-bold text-lg mb-2 text-white">Le Plan</h4>
+                        <p class="text-sm text-slate-400">Le sommaire ou les grandes parties du texte.</p>
+                    </div>
+                    <div class="border border-slate-700 bg-slate-800 p-6 rounded-lg">
+                        <div class="text-3xl text-blue-400 mb-4 font-black">3</div>
+                        <h4 class="font-bold text-lg mb-2 text-white">L'Essentiel</h4>
+                        <p class="text-sm text-slate-400">Les idées fortes, les mots-clés et votre avis personnel.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- === PREP SLIDE 3 === -->
+        <div class="slide prep-slide flex flex-col justify-center px-20 opacity-0 translate-x-full" data-index="5">
+            <h2 class="text-3xl text-yellow-500 mb-4" dir="rtl">💡 شرح السلايد 3 (عثمان)</h2>
+            <div class="text-xl leading-relaxed text-right" dir="rtl">
+                <p class="mb-4"><strong>عثمان يقول:</strong> "كيفاش كنصاوبوها؟ ساهلة، بحال لاكارط ناسيونال ديال شي كتاب. فيها 3 دالحوايج:"</p>
+                <ul class="list-disc pr-6 mb-4">
+                    <li>أولاً، السمية ديال الكتاب والكاتب، باش مانتلفوش ليمّن كيرجع (Identité).</li>
+                    <li>ثانياً، التصميم (Le Plan) يعني الفهرس دكشي علاش كيدوي.</li>
+                    <li>ثالثاً، الأفكار المهمة (L'essentiel) يعني شنو ستافدنا.</li>
+                </ul>
+                <p>"بحال ملي كتبغي تشري طوموبيل، كتشوف الماركة (identite)، الموطور (plan)، وواش كتستهلك بزاف ولا لا (l'essentiel)."</p>
+            </div>
+        </div>
+
+        <!-- ================= SLIDE: Comparaison / Analogie Gestion ================= -->
+<div class="slide flex flex-col justify-center px-12 md:px-20 bg-slate-900 opacity-0 translate-x-full" data-index="XX">
+    <div class="max-w-6xl mx-auto w-full">
+        <!-- Titre -->
+        <div class="flex gap-4 items-end mb-8">
+            <h2 class="text-4xl md:text-5xl font-bold text-blue-500">Exemple</h2>
+            <h3 class="text-2xl md:text-3xl font-bold text-white pb-1">Pourquoi synthétiser ? (Analogie Entreprise)</h3>
+        </div>
+
+        <div class="flex flex-col lg:flex-row items-center justify-between gap-8 bg-slate-800/80 p-8 rounded-2xl border border-slate-700 shadow-2xl">
+            
+            <!-- Left: Les 12 Factures (Le problème) -->
+            <div class="w-full lg:w-5/12">
+                <div class="flex items-center justify-between mb-4">
+                    <span class="text-xs uppercase tracking-wider text-red-400 font-bold flex items-center gap-2">
+                        <i class="fas fa-file-invoice"></i> Détails Bruts (12 Mois)
+                    </span>
+                    <span class="text-xs text-slate-400">Volume important</span>
+                </div>
+
+                <!-- Grille des 12 factures -->
+                <div class="grid grid-cols-4 sm:grid-cols-6 gap-2 bg-slate-900/60 p-4 rounded-xl border border-slate-750">
+                    <!-- Factures M01 à M12 -->
+                    <div class="bg-slate-800 p-2 rounded border border-slate-700 text-center hover:border-blue-500 transition">
+                        <i class="fas fa-file-invoice text-slate-400 text-xs block mb-1"></i>
+                        <span class="text-[10px] font-bold text-slate-300 block">Fact. 01</span>
+                        <span class="text-[9px] text-slate-500">Janvier</span>
+                    </div>
+                    <div class="bg-slate-800 p-2 rounded border border-slate-700 text-center hover:border-blue-500 transition">
+                        <i class="fas fa-file-invoice text-slate-400 text-xs block mb-1"></i>
+                        <span class="text-[10px] font-bold text-slate-300 block">Fact. 02</span>
+                        <span class="text-[9px] text-slate-500">Février</span>
+                    </div>
+                    <div class="bg-slate-800 p-2 rounded border border-slate-700 text-center hover:border-blue-500 transition">
+                        <i class="fas fa-file-invoice text-slate-400 text-xs block mb-1"></i>
+                        <span class="text-[10px] font-bold text-slate-300 block">Fact. 03</span>
+                        <span class="text-[9px] text-slate-500">Mars</span>
+                    </div>
+                    <div class="bg-slate-800 p-2 rounded border border-slate-700 text-center hover:border-blue-500 transition">
+                        <i class="fas fa-file-invoice text-slate-400 text-xs block mb-1"></i>
+                        <span class="text-[10px] font-bold text-slate-300 block">Fact. 04</span>
+                        <span class="text-[9px] text-slate-500">Avril</span>
+                    </div>
+                    <div class="bg-slate-800 p-2 rounded border border-slate-700 text-center hover:border-blue-500 transition">
+                        <i class="fas fa-file-invoice text-slate-400 text-xs block mb-1"></i>
+                        <span class="text-[10px] font-bold text-slate-300 block">Fact. 05</span>
+                        <span class="text-[9px] text-slate-500">Mai</span>
+                    </div>
+                    <div class="bg-slate-800 p-2 rounded border border-slate-700 text-center hover:border-blue-500 transition">
+                        <i class="fas fa-file-invoice text-slate-400 text-xs block mb-1"></i>
+                        <span class="text-[10px] font-bold text-slate-300 block">Fact. 06</span>
+                        <span class="text-[9px] text-slate-500">Juin</span>
+                    </div>
+                    <div class="bg-slate-800 p-2 rounded border border-slate-700 text-center hover:border-blue-500 transition">
+                        <i class="fas fa-file-invoice text-slate-400 text-xs block mb-1"></i>
+                        <span class="text-[10px] font-bold text-slate-300 block">Fact. 07</span>
+                        <span class="text-[9px] text-slate-500">Juillet</span>
+                    </div>
+                    <div class="bg-slate-800 p-2 rounded border border-slate-700 text-center hover:border-blue-500 transition">
+                        <i class="fas fa-file-invoice text-slate-400 text-xs block mb-1"></i>
+                        <span class="text-[10px] font-bold text-slate-300 block">Fact. 08</span>
+                        <span class="text-[9px] text-slate-500">Août</span>
+                    </div>
+                    <div class="bg-slate-800 p-2 rounded border border-slate-700 text-center hover:border-blue-500 transition">
+                        <i class="fas fa-file-invoice text-slate-400 text-xs block mb-1"></i>
+                        <span class="text-[10px] font-bold text-slate-300 block">Fact. 09</span>
+                        <span class="text-[9px] text-slate-500">Sept.</span>
+                    </div>
+                    <div class="bg-slate-800 p-2 rounded border border-slate-700 text-center hover:border-blue-500 transition">
+                        <i class="fas fa-file-invoice text-slate-400 text-xs block mb-1"></i>
+                        <span class="text-[10px] font-bold text-slate-300 block">Fact. 10</span>
+                        <span class="text-[9px] text-slate-500">Oct.</span>
+                    </div>
+                    <div class="bg-slate-800 p-2 rounded border border-slate-700 text-center hover:border-blue-500 transition">
+                        <i class="fas fa-file-invoice text-slate-400 text-xs block mb-1"></i>
+                        <span class="text-[10px] font-bold text-slate-300 block">Fact. 11</span>
+                        <span class="text-[9px] text-slate-500">Nov.</span>
+                    </div>
+                    <div class="bg-slate-800 p-2 rounded border border-slate-700 text-center hover:border-blue-500 transition">
+                        <i class="fas fa-file-invoice text-slate-400 text-xs block mb-1"></i>
+                        <span class="text-[10px] font-bold text-slate-300 block">Fact. 12</span>
+                        <span class="text-[9px] text-slate-500">Déc.</span>
+                    </div>
+                </div>
+                <p class="text-xs text-slate-400 mt-3 text-center">Un dirigeant ne peut pas analyser chaque facture une par une.</p>
+            </div>
+
+            <!-- Center: Le Traitement (La Flèche) -->
+            <div class="flex flex-col items-center justify-center my-2 lg:my-0">
+                <div class="w-10 h-10 rounded-full bg-blue-500/20 text-blue-400 flex items-center justify-center border border-blue-500/40 mb-2 animate-pulse">
+                    <i class="fas fa-arrow-right text-lg hidden lg:block"></i>
+                    <i class="fas fa-arrow-down text-lg lg:hidden"></i>
+                </div>
+                <span class="text-[11px] font-semibold uppercase tracking-wider text-blue-400">Synthèse</span>
+            </div>
+
+            <!-- Right: Fiche Finale de Synthèse (La Solution) -->
+            <div class="w-full lg:w-5/12 bg-slate-900 border-2 border-green-500/60 p-6 rounded-xl shadow-lg relative">
+                <div class="absolute -top-3 right-4 bg-green-600 text-white text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded">
+                    Objectif Dirigeant
+                </div>
+
+                <div class="flex items-center gap-3 border-b border-slate-700 pb-3 mb-4">
+                    <div class="w-8 h-8 rounded bg-green-500/20 text-green-400 flex items-center justify-center text-sm">
+                        <i class="fas fa-clipboard-check"></i>
+                    </div>
+                    <div>
+                        <h4 class="font-bold text-white text-sm">Fiche de Synthèse Annuelle</h4>
+                        <span class="text-[11px] text-slate-400">1 seule page = Décision rapide</span>
+                    </div>
+                </div>
+
+                <div class="space-y-2 text-xs">
+                    <div class="flex justify-between p-2 bg-slate-800/80 rounded border border-slate-700">
+                        <span class="text-slate-400">Chiffre d'Affaires Total :</span>
+                        <span class="font-bold text-white">1 450 000 DH</span>
+                    </div>
+                    <div class="flex justify-between p-2 bg-slate-800/80 rounded border border-slate-700">
+                        <span class="text-slate-400">Total des Charges :</span>
+                        <span class="font-bold text-red-400">920 000 DH</span>
+                    </div>
+                    <div class="flex justify-between p-2 bg-slate-850 rounded border border-green-500/30">
+                        <span class="text-slate-300 font-medium">Résultat Net (Bénéfice) :</span>
+                        <span class="font-bold text-green-400">+ 530 000 DH</span>
+                    </div>
+                </div>
+
+                <p class="text-[11px] text-slate-400 mt-4 italic border-t border-slate-800 pt-3">
+                    = Même rôle qu'une <strong>fiche de lecture</strong> pour un document technique de 50 pages.
+                </p>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+        <!-- ================= SLIDE 4: Exemple ================= -->
+        <div class="slide flex flex-col justify-center px-20 bg-slate-900 opacity-0 translate-x-full" data-index="6">
+            <div class="max-w-5xl mx-auto w-full">
+                <div class="flex gap-4 items-end mb-10">
+                    <h2 class="text-5xl font-bold text-blue-500">03.</h2>
+                    <h3 class="text-4xl font-bold text-white pb-1">Exemple Pratique</h3>
+                </div>
+                
+                <div class="bg-slate-800 p-8 rounded-xl border border-slate-700 shadow-2xl">
+                    <div class="flex justify-between items-start border-b border-slate-600 pb-4 mb-6">
+                        <div>
+                            <span class="text-xs uppercase text-slate-400 font-bold tracking-widest">Document</span>
+                            <h4 class="text-2xl font-bold text-blue-400 mt-1">Le jeune professionnel et le monde du travail</h4>
+                        </div>
+                        <div class="text-right">
+                            <span class="text-xs uppercase text-slate-400 font-bold tracking-widest">Source</span>
+                            <p class="text-sm font-medium mt-1 text-slate-300">Module M101</p>
+                        </div>
+                    </div>
+                    <div>
+                        <h5 class="text-lg font-bold mb-3 text-white"><i class="fas fa-list-ul mr-2 text-blue-500"></i> Les Idées (Résumé)</h5>
+                        <ul class="space-y-3 text-slate-300 text-sm">
+                            <li class="flex items-start gap-2">
+                                <i class="fas fa-caret-right text-blue-500 mt-1"></i>
+                                <span>Le métier ne suffit pas : Il faut du sérieux, de la ponctualité et savoir communiquer.</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <i class="fas fa-caret-right text-blue-500 mt-1"></i>
+                                <span>La formation permet de faire un lien entre la théorie et le monde réel.</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <i class="fas fa-caret-right text-blue-500 mt-1"></i>
+                                <span>Toujours continuer à apprendre (Formation continue).</span>
+                            </li>
+                        </ul>
+                        <div class="mt-6 flex gap-2">
+                            <span class="bg-slate-700 px-3 py-1 text-xs rounded text-slate-200">Mots clés:</span>
+                            <span class="bg-blue-900/50 text-blue-300 px-3 py-1 text-xs rounded border border-blue-800">Soft Skills</span>
+                            <span class="bg-blue-900/50 text-blue-300 px-3 py-1 text-xs rounded border border-blue-800">Communication</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- === PREP SLIDE 4 === -->
+        <div class="slide prep-slide flex flex-col justify-center px-20 opacity-0 translate-x-full" data-index="7">
+            <h2 class="text-3xl text-yellow-500 mb-4" dir="rtl">💡 شرح السلايد 4 (محمد أمين أو عثمان)</h2>
+            <div class="text-xl leading-relaxed text-right" dir="rtl">
+                <p class="mb-4"><strong>المثال التطبيقي (هنا فين غتبينو للأستاذ أنكم فاهمين الدرس ديالو):</strong></p>
+                <p>"خدينا نص من المقرر ديالنا سميتو (الشاب المهني وعالم الشغل). فبلاصت مانقراوه كامل، جبدنا منو الزبدة:"</p>
+                <ul class="list-disc pr-6 mb-4">
+                    <li>تكون حرايفي بوحدها ماكافياش، خاصك تكون كتجي فالوقت وكتعرف تهضر مع الكليان (Soft skills).</li>
+                    <li>التكوين المستمر ضروري، حيت الخدمة دايما كتبدل بحال التليفونات كل عام كيخرج جديد، خاصك ديما تتعلم.</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- ================= SLIDE 5: Conclusion ================= -->
+        <div class="slide flex flex-col items-center justify-center px-20 bg-slate-900 opacity-0 translate-x-full text-center" data-index="8">
+            <div class="max-w-3xl mx-auto">
+                <i class="fas fa-handshake text-6xl text-blue-500 mb-8"></i>
+                <h3 class="text-4xl font-bold text-white mb-6">Conclusion</h3>
+                <p class="text-xl text-slate-300 leading-relaxed mb-10">
+                    Savoir synthétiser l'information n'est pas juste un devoir de classe, c'est une vraie compétence pour réussir en entreprise.
+                </p>
+                <div class="inline-block border-2 border-blue-500 text-blue-400 font-bold px-8 py-3 rounded uppercase tracking-widest">
+                    Merci à vous et à M. le Professeur
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Navigation Controls -->
+    <div class="fixed bottom-6 right-8 z-50 flex gap-4">
+        <button id="prevBtn" class="w-12 h-12 bg-slate-800 rounded-full shadow-lg flex items-center justify-center text-slate-300 hover:bg-slate-700 transition border border-slate-600 disabled:opacity-50">
+            <i class="fas fa-arrow-left"></i>
+        </button>
+        <button id="nextBtn" class="w-12 h-12 bg-blue-600 rounded-full shadow-lg flex items-center justify-center text-white hover:bg-blue-500 transition disabled:opacity-50">
+            <i class="fas fa-arrow-right"></i>
+        </button>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const slides = document.querySelectorAll('.slide');
+            const prevBtn = document.getElementById('prevBtn');
+            const nextBtn = document.getElementById('nextBtn');
+            const globalHeader = document.getElementById('global-header');
+            
+            let currentSlide = 0;
+            const totalSlides = slides.length;
+
+            function updateSlides() {
+                slides.forEach((slide, index) => {
+                    if (index === currentSlide) {
+                        slide.style.transform = 'translateX(0)';
+                        slide.style.opacity = '1';
+                    } else if (index < currentSlide) {
+                        slide.style.transform = 'translateX(-100%)';
+                        slide.style.opacity = '0';
+                    } else {
+                        slide.style.transform = 'translateX(100%)';
+                        slide.style.opacity = '0';
+                    }
+                });
+
+                if(currentSlide === 0) {
+                    globalHeader.style.opacity = '0';
+                } else {
+                    globalHeader.style.opacity = '1';
+                }
+
+                prevBtn.disabled = currentSlide === 0;
+                nextBtn.disabled = currentSlide === totalSlides - 1;
+            }
+
+            nextBtn.addEventListener('click', () => { if (currentSlide < totalSlides - 1) { currentSlide++; updateSlides(); } });
+            prevBtn.addEventListener('click', () => { if (currentSlide > 0) { currentSlide--; updateSlides(); } });
+
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'ArrowRight' || e.key === ' ') {
+                    if (currentSlide < totalSlides - 1) { currentSlide++; updateSlides(); }
+                } else if (e.key === 'ArrowLeft') {
+                    if (currentSlide > 0) { currentSlide--; updateSlides(); }
+                }
+            });
+
+            updateSlides();
+        });
+    </script>
+</body>
+</html>

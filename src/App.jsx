@@ -15,6 +15,7 @@ import AddWorksheet from './pages/admin/AddWorksheet';
 import UsersDashboard from './pages/admin/UsersDashboard';
 import InstaPostMaker from './pages/admin/InstaPostMaker';
 import AdMockupMaker from './pages/admin/AdMockupMaker';
+import CarouselMaker from './pages/admin/CarouselMaker';
 import { AuthProvider, useAuth } from './context/AuthContext';
 import ScrollToTop from './components/ScrollToTop';
 
@@ -64,6 +65,7 @@ function App() {
             <Route path="add-worksheet" element={<AdminRoute> <AddWorksheet /> </AdminRoute>} />
             <Route path="post-maker" element={<AdminRoute> <InstaPostMaker /> </AdminRoute>} />
             <Route path="ad-maker" element={<AdminRoute> <AdMockupMaker /> </AdminRoute>} />
+            <Route path="carousel-maker" element={<AdminRoute> <CarouselMaker /> </AdminRoute>} />
           </Route>
         </Routes>
       </BrowserRouter>

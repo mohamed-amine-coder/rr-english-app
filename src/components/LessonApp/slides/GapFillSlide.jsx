@@ -1,7 +1,7 @@
+// src/components/LessonApp/slides/GapFillSlide.jsx
 import React, { useEffect, useState } from 'react';
-import { motion } from 'framer-motion';
 import { TextWrapper } from './TextWrapper';
-import { MascotFeedback } from './SharedComponents'; // استيراد المكون
+import { MascotFeedback } from './SharedComponents';
 
 export const GapFillSlide = ({ slide, onDone }) => {
   const [selectedOption, setSelectedOption] = useState(null);
@@ -14,7 +14,6 @@ export const GapFillSlide = ({ slide, onDone }) => {
 
   const handleSelect = (index) => {
     if (isSubmitted) return;
-
     const isCorrect = index === slide.correctIndex;
     setSelectedOption(index);
     setIsSubmitted(true);
@@ -22,44 +21,57 @@ export const GapFillSlide = ({ slide, onDone }) => {
   };
 
   const renderSentence = () => {
-    const parts = (slide.sentence || '').split(/(_{3,})/g);
+    const parts = (slide.sentence || '').split(/(_{2,})/g);
     return parts.map((part, index) => {
-      if (/^_{3,}$/.test(part)) {
-        return <span key={index} className="mx-2 inline-block min-w-[90px] border-b-2 border-slate-900" />;
+      if (/^_{2,}$/.test(part)) {
+        const filledWord = selectedOption !== null ? slide.options?.[selectedOption] : '____';
+        return (
+          <span 
+            key={index} 
+            className={`mx-1.5 px-3 py-0.5 rounded-lg border-b-2 font-black inline-block text-center transition-colors ${
+              !isSubmitted 
+                ? 'bg-blue-50 border-blue-400 text-blue-600' 
+                : selectedOption === slide.correctIndex
+                ? 'bg-emerald-100 border-emerald-500 text-emerald-800'
+                : 'bg-rose-100 border-rose-500 text-rose-800'
+            }`}
+          >
+            {filledWord}
+          </span>
+        );
       }
       return <TextWrapper key={index} text={part} />;
     });
   };
 
   return (
-    <motion.div initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} className="space-y-5 overflow-x-hidden" dir="rtl">
-      <div className="rounded-xl border-2 border-slate-100 bg-white p-5">
-        <p className="text-xl md:text-2xl font-black text-blue-800 leading-loose [unicode-bidi:plaintext]">
+    <div className="space-y-4 max-w-xl mx-auto" dir="rtl">
+      <div className="rounded-2xl border border-slate-200 bg-slate-50/70 p-4 sm:p-5 text-center">
+        <p className="text-lg sm:text-xl font-black text-slate-800 leading-relaxed [unicode-bidi:plaintext]">
           {renderSentence()}
         </p>
       </div>
 
-      <div className="grid gap-3">
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
         {slide.options?.map((option, index) => {
-          let btnClass = 'bg-white border-2 border-slate-200 text-slate-700 hover:border-blue-200 hover:bg-slate-50';
+          let btnClass = 'bg-white border-slate-200 text-slate-700 hover:border-blue-400 hover:bg-blue-50/30';
 
           if (isSubmitted && index === slide.correctIndex) {
-            btnClass = 'bg-emerald-50 border-emerald-500 text-emerald-900 shadow-sm';
+            btnClass = 'bg-emerald-50 border-emerald-500 text-emerald-900 ring-2 ring-emerald-200';
           } else if (isSubmitted && selectedOption === index) {
-            btnClass = 'bg-rose-50 border-rose-500 text-rose-900 shadow-sm';
-          } else if (selectedOption === index) {
-            btnClass = 'bg-blue-50 border-blue-500 text-blue-900 shadow-sm';
+            btnClass = 'bg-rose-50 border-rose-500 text-rose-900';
           }
 
           return (
-            <motion.button
+            <button
+              type="button"
               key={index}
               disabled={isSubmitted}
               onClick={() => handleSelect(index)}
-              className={`w-full rounded-xl py-3 px-4 text-right font-bold transition-all ${btnClass} [unicode-bidi:plaintext] active:border-b-0 active:translate-y-1`}
+              className={`w-full rounded-xl py-3 px-4 text-center font-bold text-sm sm:text-base border transition-all cursor-pointer disabled:cursor-default active:scale-[0.98] ${btnClass}`}
             >
               <TextWrapper text={option} />
-            </motion.button>
+            </button>
           );
         })}
       </div>
@@ -67,10 +79,10 @@ export const GapFillSlide = ({ slide, onDone }) => {
       {isSubmitted && (
         <MascotFeedback 
           isCorrect={selectedOption === slide.correctIndex}
-          message={selectedOption === slide.correctIndex ? "برافو! الجواب ديالك صحيح 👏" : "ركز شويا! الجواب الصحيح هو:"}
+          message={selectedOption === slide.correctIndex ? "برافو! الجواب صحيح 👏" : "الجواب الصحيح هو:"}
           correction={selectedOption !== slide.correctIndex ? <TextWrapper text={slide.options?.[slide.correctIndex] || ''} /> : null}
         />
       )}
-    </motion.div>
+    </div>
   );
 };
